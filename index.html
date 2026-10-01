@@ -414,7 +414,7 @@ section.contact-wrap { border-top: 0; padding-block: 40px 88px; }
 .faq-tab:hover { color: var(--fg); border-color: rgba(255,255,255,.4); }
 .faq-tab[aria-selected="true"] { background: #fff; color: #0b0b0c; border-color: #fff; }
 @media (max-width: 760px) {
-  .top nav a[href="#faq"] { display: none; }
+  .top nav a[href="#faq"], .top nav a[href="#bewertungen"] { display: none; }
 }
 
 /* Vertrauenszeile und Kontakt-Button in der Kopfzeile */
@@ -435,6 +435,41 @@ section.contact-wrap { border-top: 0; padding-block: 40px 88px; }
 .top nav a { font-size: 13px; font-weight: 500; color: #e2e2e6; letter-spacing: 0.14em; }
 .top nav a:hover { color: #fff; }
 .top nav a.keep { font-weight: 600; }
+
+/* Bewertungen */
+.rev-grid { display: grid; grid-template-columns: minmax(0,1.1fr) minmax(0,.9fr); gap: 40px; align-items: start; }
+.rev-sum { display: flex; align-items: baseline; gap: 14px; margin: 0 0 22px; color: var(--muted); font-size: .95rem; }
+.rev-sum b { font-size: 2.4rem; line-height: 1; color: #fff; letter-spacing: -.03em; }
+.stars { color: #ffb400; letter-spacing: .12em; white-space: nowrap; }
+.stars .off { color: #4a4a52; }
+.rev-list { display: grid; gap: 14px; margin: 0; padding: 0; list-style: none; }
+.rev { border: 1px solid var(--line); background: var(--surface); padding: 22px 24px; }
+.rev-head { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; align-items: baseline; margin-bottom: 8px; }
+.rev-head b { font-size: 1rem; }
+.rev p { margin: 0; color: var(--muted); overflow-wrap: anywhere; }
+.rev time { display: block; margin-top: 10px; font-size: .78rem; color: #8d8d96; }
+.rev-empty { border: 1px dashed var(--line); padding: 34px 26px; color: var(--muted); }
+.rev-empty b { color: #fff; display: block; margin-bottom: 6px; }
+.rev-form { border: 1px solid var(--line); background: var(--surface); padding: 28px; display: grid; gap: 18px; }
+.rev-form h3 { margin: 0; font-size: 1.25rem; letter-spacing: -.01em; }
+.rev-form label, .rev-form legend { display: block; font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 8px; padding: 0; }
+.rev-form fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+.rev-form input[type=text], .rev-form textarea { width: 100%; background: #0d0d10; color: #fff; border: 1px solid var(--line); padding: 14px 16px; font: inherit; border-radius: 0; }
+.rev-form textarea { min-height: 120px; resize: vertical; }
+.rev-form input[type=text]:focus, .rev-form textarea:focus { outline: 2px solid var(--red); outline-offset: 1px; border-color: var(--red); }
+.star-pick { display: inline-flex; flex-direction: row-reverse; gap: 4px; }
+.star-pick input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.star-pick label { margin: 0; font-size: 2rem; line-height: 1; color: #4a4a52; cursor: pointer; text-transform: none; letter-spacing: 0; transition: color .15s, transform .15s; }
+.star-pick label:hover, .star-pick label:hover ~ label, .star-pick input:checked ~ label { color: #ffb400; }
+.star-pick label:hover { transform: scale(1.12); }
+.star-pick input:focus-visible + label { outline: 2px solid #fff; outline-offset: 3px; }
+.rev-check { display: flex; gap: 10px; align-items: flex-start; font-size: .84rem; color: var(--muted); }
+.rev-check input { margin-top: 4px; accent-color: var(--red); }
+.rev-form .btn { justify-self: start; cursor: pointer; font: inherit; font-weight: 700; }
+.rev-note { margin: 0; font-size: .84rem; color: var(--muted); min-height: 1.2em; }
+.rev-note.err { color: #ff8a9a; }
+.hp { position: absolute; left: -9999px; }
+@media (max-width: 860px) { .rev-grid { grid-template-columns: minmax(0,1fr); } }
 </style>
 </head>
 <body>
@@ -446,6 +481,7 @@ section.contact-wrap { border-top: 0; padding-block: 40px 88px; }
       <a href="#ueber-mich">Über mich</a>
       <a href="#ablauf">Ablauf</a>
       <a href="#faq">Fragen</a>
+      <a href="#bewertungen">Bewertungen</a>
       <a href="#kontakt" class="keep">Kontakt</a>
     </nav>
   </div>
@@ -622,6 +658,36 @@ section.contact-wrap { border-top: 0; padding-block: 40px 88px; }
     </div>
   </section>
 
+  <section class="block" id="bewertungen">
+    <h2>Das sagen <em>Kunden</em></h2>
+    <p class="sub">Haben wir zusammengearbeitet? Dann freue ich mich über Ihre ehrliche Bewertung. Neue Beiträge erscheinen hier, sobald ich sie geprüft habe.</p>
+    <div class="rev-grid">
+      <div>
+        <div class="rev-sum" id="rev-sum" hidden><b id="rev-avg"></b><span><span class="stars" id="rev-avg-stars" aria-hidden="true"></span><br><span id="rev-count"></span></span></div>
+        <ul class="rev-list" id="rev-list"></ul>
+        <div class="rev-empty" id="rev-empty"><b>Noch keine Bewertungen</b>Seien Sie die erste Firma, die hier etwas hinterlässt.</div>
+      </div>
+      <form class="rev-form" id="rev-form" novalidate>
+        <h3>Ihre Bewertung</h3>
+        <div><label for="rev-firma">Firmenname</label><input type="text" id="rev-firma" name="firma" maxlength="80" autocomplete="organization" required></div>
+        <fieldset><legend>Sterne</legend>
+          <div class="star-pick" id="rev-stars">
+            <input type="radio" name="sterne" id="st5" value="5"><label for="st5" title="5 Sterne">★</label>
+            <input type="radio" name="sterne" id="st4" value="4"><label for="st4" title="4 Sterne">★</label>
+            <input type="radio" name="sterne" id="st3" value="3"><label for="st3" title="3 Sterne">★</label>
+            <input type="radio" name="sterne" id="st2" value="2"><label for="st2" title="2 Sterne">★</label>
+            <input type="radio" name="sterne" id="st1" value="1"><label for="st1" title="1 Stern">★</label>
+          </div>
+        </fieldset>
+        <div><label for="rev-text">Kommentar</label><textarea id="rev-text" name="kommentar" maxlength="600" required></textarea></div>
+        <div class="hp" aria-hidden="true"><label for="rev-web">Nicht ausfüllen</label><input type="text" id="rev-web" tabindex="-1" autocomplete="off"></div>
+        <label class="rev-check" style="text-transform:none;letter-spacing:0;font-weight:400"><input type="checkbox" id="rev-ok"><span>Ich bin damit einverstanden, dass mein Firmenname und mein Kommentar auf dieser Seite veröffentlicht werden.</span></label>
+        <button class="btn" type="submit">Bewertung absenden</button>
+        <p class="rev-note" id="rev-note" role="status"></p>
+      </form>
+    </div>
+  </section>
+
   <section class="block contact-wrap" id="kontakt">
     <div class="cta-panel">
       <h2>Schreiben Sie mir <em>Ihre Wünsche</em></h2>
@@ -738,6 +804,53 @@ section.contact-wrap { border-top: 0; padding-block: 40px 88px; }
         document.getElementById('panel-' + x.getAttribute('data-tab')).hidden = !on;
       });
     });
+  });
+})();
+</script>
+<script>
+(function () {
+  var REVIEWS = [];
+  var MAIL = "kontakt.mika.gertz@gmail.com";
+
+  function esc(t) { return String(t).replace(/[&<>"']/g, function (c) { return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+  function stars(n) { var o = ""; for (var i = 1; i <= 5; i++) o += i <= n ? "★" : '<span class="off">★</span>'; return o; }
+  function fmt(d) { try { return new Date(d).toLocaleDateString("de-DE", { year: "numeric", month: "long" }); } catch (e) { return ""; } }
+
+  var list = document.getElementById("rev-list"), empty = document.getElementById("rev-empty"), sum = document.getElementById("rev-sum");
+  function render() {
+  if (REVIEWS.length) {
+    empty.hidden = true; sum.hidden = false;
+    var total = 0;
+    list.innerHTML = REVIEWS.map(function (r) {
+      total += r.sterne;
+      return '<li class="rev"><div class="rev-head"><b>' + esc(r.firma) + '</b><span class="stars" role="img" aria-label="' + r.sterne + ' von 5 Sternen">' + stars(r.sterne) + '</span></div><p>' + esc(r.text) + '</p>' + (r.datum ? '<time datetime="' + esc(r.datum) + '">' + fmt(r.datum) + '</time>' : '') + '</li>';
+    }).join("");
+    var avg = total / REVIEWS.length;
+    document.getElementById("rev-avg").textContent = avg.toFixed(1).replace(".", ",");
+    document.getElementById("rev-avg-stars").innerHTML = stars(Math.round(avg));
+    document.getElementById("rev-count").textContent = REVIEWS.length + (REVIEWS.length === 1 ? " Bewertung" : " Bewertungen");
+  }
+  }
+  fetch("bewertungen.json?v=" + Date.now(), { cache: "no-store" })
+    .then(function (r) { return r.ok ? r.json() : []; })
+    .then(function (d) {
+      if (Array.isArray(d)) REVIEWS = d.filter(function (r) { return r && r.firma && r.text && r.sterne >= 1 && r.sterne <= 5; }).map(function (r) { return { firma: r.firma, text: r.text, sterne: Math.round(r.sterne), datum: r.datum }; });
+      render();
+    })
+    .catch(function () {});
+
+  var form = document.getElementById("rev-form"), note = document.getElementById("rev-note");
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    note.className = "rev-note";
+    var firma = form.firma.value.trim(), text = form.kommentar.value.trim();
+    var st = form.querySelector('input[name="sterne"]:checked');
+    if (document.getElementById("rev-web").value) return;
+    if (!firma || !st || !text) { note.className = "rev-note err"; note.textContent = "Bitte Firmenname, Sterne und Kommentar ausfüllen."; return; }
+    if (!document.getElementById("rev-ok").checked) { note.className = "rev-note err"; note.textContent = "Bitte stimmen Sie der Veröffentlichung zu."; return; }
+    var body = "Firma: " + firma + "\nSterne: " + st.value + " von 5\n\nKommentar:\n" + text + "\n\nIch bin mit der Veröffentlichung einverstanden.";
+    window.location.href = "mailto:" + MAIL + "?subject=" + encodeURIComponent("Bewertung für Mika Gertz") + "&body=" + encodeURIComponent(body);
+    note.textContent = "Ihr E-Mail-Programm öffnet sich mit Ihrer Bewertung. Bitte senden Sie die Mail ab. Nach kurzer Prüfung erscheint sie hier.";
   });
 })();
 </script>
