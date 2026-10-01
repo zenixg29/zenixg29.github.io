@@ -1,0 +1,745 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Mika Gertz erstellt und überarbeitet Websites für Unternehmen und berät zu Social Media. Modern, klar und persönlich betreut. Jetzt Erstgespräch anfragen.">
+<title>Mika Gertz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: ein ruhiger, einspaltiger Auftritt. Die Kante sitzt im Hero:
+   ein Vorher/Nachher-Regler, der zeigt, was ein Redesign bewirkt. */
+:root {
+  --bg: #070707;
+  --surface: rgba(24,24,28,.72);
+  --line: #34343a;
+  --fg: #ffffff;
+  --muted: #c6c6cc;
+  --red: #ff0a2c;
+  --red-deep: #d10022;
+  --font-display: "Plus Jakarta Sans", "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-body: "Plus Jakarta Sans", "Segoe UI", Helvetica, Arial, sans-serif;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background:
+    radial-gradient(900px 640px at 96% 0%, rgba(255,10,44,.42), transparent 70%),
+    radial-gradient(800px 800px at 0% 38%, rgba(255,10,44,.22), transparent 70%),
+    radial-gradient(900px 700px at 100% 68%, rgba(255,10,44,.2), transparent 70%),
+    var(--bg);
+  background-repeat: no-repeat;
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.65;
+  padding-inline: 20px;
+  padding-block: 0;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+
+.wrap { max-width: 1040px; margin-inline: auto; min-width: 0; }
+
+/* Kopfzeile */
+header.top {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  margin-inline: -20px; padding-inline: 20px;
+}
+.top-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 68px; }
+.brand { font-family: var(--font-display); font-weight: 800; font-size: 1.25rem; text-decoration: none; letter-spacing: -0.01em; }
+.brand i { color: var(--red); }
+.top nav { display: flex; gap: 28px; }
+.top nav a { text-decoration: none; font-size: 0.78rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); transition: color .2s; }
+.top nav a:hover { color: var(--fg); }
+
+/* Hero */
+.hero { padding-block: 84px 72px; }
+.eyebrow { font-size: 0.75rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--red); font-weight: 600; margin: 0 0 22px; }
+h1 {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(2.8rem, 7.4vw, 5.6rem);
+  line-height: 1.02; letter-spacing: -0.035em; font-weight: 800; margin: 0; max-width: 14ch; text-wrap: balance;
+}
+em { font-style: normal; }
+h1 em { color: var(--red); }
+.lead { max-width: 54ch; color: var(--muted); font-size: 1.12rem; margin: 28px 0 38px; }
+.btn-row { display: flex; gap: 14px; flex-wrap: wrap; }
+.btn {
+  display: inline-block; padding: 15px 30px; font: 600 0.8rem/1 var(--font-body);
+  letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; cursor: pointer;
+  background: var(--red); color: #fff; border: 1px solid var(--red); box-shadow: 0 0 30px rgba(255,10,44,.5); transition: background .2s, border-color .2s;
+}
+.btn:hover { background: var(--red-deep); border-color: var(--red-deep); }
+.btn.ghost { box-shadow: none; background: transparent; border-color: #4a4a4d; color: var(--fg); }
+.btn.ghost:hover { border-color: var(--red); background: transparent; }
+
+/* Vorher / Nachher */
+.compare-sec { padding-bottom: 88px; }
+.compare-cap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 14px; font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+.compare-cap b { color: var(--fg); font-weight: 600; }
+.compare {
+  --p: 50%;
+  position: relative; height: 360px; border: 1px solid var(--line); overflow: hidden; user-select: none;
+}
+.layer { position: absolute; inset: 0; padding: 20px 24px; overflow: hidden; }
+
+/* alte Seite */
+.old { background: #ececdf; color: #222; font-family: "Times New Roman", Times, serif; font-size: 15px; line-height: 1.35; }
+.old .o-bar { background: #000080; color: #ffff66; padding: 6px 10px; font-weight: bold; font-size: 13px; margin: -20px -24px 14px; }
+.old h4 { margin: 0 0 6px; font-size: 26px; color: #800000; font-weight: bold; }
+.old p { margin: 0 0 8px; }
+.old a { color: #0000ee; text-decoration: underline; }
+.old .o-row { display: flex; gap: 10px; flex-wrap: wrap; margin: 10px 0; }
+.old .o-box { border: 2px outset #999; background: #d4d0c8; padding: 6px 10px; font-size: 13px; font-family: Arial, sans-serif; }
+.old .o-count { font-size: 12px; margin-top: 12px; }
+
+/* neue Seite */
+.new { background: #0f0f10; color: var(--fg); font-family: var(--font-body); clip-path: inset(0 calc(100% - var(--p)) 0 0); }
+.new .n-bar { display: flex; justify-content: space-between; align-items: center; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 38px; }
+.new .n-bar b { font-family: var(--font-display); font-size: 18px; font-weight: 700; letter-spacing: 0; text-transform: none; color: var(--fg); }
+.new h4 { font-family: var(--font-display); font-weight: 800; letter-spacing: -0.03em; font-size: 40px; line-height: 1.05; margin: 0 0 14px; max-width: 12ch; }
+.new h4 em { color: var(--red); }
+.new p { color: var(--muted); margin: 0 0 20px; max-width: 34ch; font-size: 14px; }
+.new .n-btn { display: inline-block; background: var(--red); color: #fff; padding: 11px 20px; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; font-weight: 600; }
+
+.divider { position: absolute; top: 0; bottom: 0; left: var(--p); width: 2px; background: var(--red); transform: translateX(-1px); pointer-events: none; }
+.divider::after {
+  content: "↔"; position: absolute; top: 50%; left: 50%; width: 42px; height: 42px; transform: translate(-50%, -50%);
+  display: grid; place-items: center; background: var(--red); color: #fff; border-radius: 50%; font-size: 18px;
+}
+.compare input[type=range] { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: ew-resize; margin: 0; }
+.compare input[type=range]:focus-visible + .divider::after { outline: 2px solid #fff; outline-offset: 2px; }
+.tag { position: absolute; top: 12px; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; padding: 4px 9px; font-family: var(--font-body); font-weight: 600; z-index: 2; pointer-events: none; }
+.tag.l { left: 12px; background: var(--red); color: #fff; }
+.tag.r { right: 12px; background: #000; color: #fff; }
+
+/* Abschnitte */
+section.block { padding-block: 88px; border-top: 1px solid var(--line); }
+h2 { font-family: var(--font-display); font-weight: 700; font-size: clamp(2.1rem, 4.6vw, 3.2rem); line-height: 1.08; letter-spacing: -0.03em; margin: 0 0 14px; text-wrap: balance; max-width: 18ch; }
+h2 em { color: var(--red); }
+.sub { color: var(--muted); max-width: 54ch; margin: 0 0 48px; }
+
+.services { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border: 1px solid var(--line); background: var(--surface); }
+.service { padding: 36px 30px 40px; border-right: 1px solid var(--line); min-width: 0; transition: background .25s; }
+.service:last-child { border-right: 0; }
+.service:hover { background: var(--red); }
+.service:hover p { color: #fff; }
+.service:hover .mark { background: #fff; }
+.service h3 { font-family: var(--font-display); font-weight: 700; font-size: 1.5rem; line-height: 1.15; letter-spacing: -0.02em; margin: 0 0 14px; }
+.service p { margin: 0; color: var(--muted); font-size: 0.98rem; }
+.service .mark { display: block; width: 28px; height: 3px; background: var(--red); margin-bottom: 26px; }
+
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; counter-reset: s; }
+.steps li { counter-increment: s; border-top: 1px solid var(--line); padding-top: 22px; min-width: 0; }
+.steps li::before { content: "Schritt " counter(s); display: block; font-size: 0.74rem; letter-spacing: .2em; text-transform: uppercase; color: var(--red); font-weight: 600; margin-bottom: 12px; }
+.steps h3 { font-family: var(--font-display); font-weight: 700; font-size: 1.3rem; letter-spacing: -0.02em; margin: 0 0 8px; }
+.steps p { margin: 0; color: var(--muted); font-size: 0.98rem; }
+
+/* Kontakt */
+.alt { background: var(--surface); margin-inline: -20px; padding-inline: 20px; }
+.contact { background: var(--red); margin-inline: -20px; padding-inline: 20px; border-top: 0 !important; }
+.contact h2 em { color: #070707; }
+.contact .sub { color: #fff; }
+.contact-box { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 56px; align-items: center; }
+.mail-card { border: 1px solid #000; background: var(--bg); padding: 28px; }
+.mail-label { font-size: 0.74rem; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; }
+.mail-addr { font-size: 1.1rem; font-weight: 600; word-break: break-all; margin: 0 0 20px; user-select: all; }
+.mail-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.copied { font-size: 0.85rem; color: var(--muted); min-height: 1.4em; }
+
+/* Fuß */
+footer { padding-block: 34px 44px; color: var(--muted); font-size: 0.86rem; }
+.foot { display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+.foot div { display: flex; gap: 22px; }
+.linkbtn { background: none; border: 0; padding: 0; font: inherit; color: inherit; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+.linkbtn:hover { color: var(--fg); }
+
+.legal { border-top: 1px solid var(--line); padding-block: 44px 10px; max-width: 70ch; }
+.legal h3 { font-family: var(--font-display); font-weight: 700; font-size: 1.6rem; margin: 0 0 16px; }
+.legal h4 { font-size: 0.78rem; letter-spacing: .16em; text-transform: uppercase; color: var(--fg); margin: 24px 0 6px; }
+.legal p { margin: 0 0 8px; color: var(--muted); font-size: 0.95rem; }
+
+@media (max-width: 820px) {
+  body { font-size: 16px; }
+  .top nav { gap: 18px; }
+  .hero { padding-block: 56px 48px; }
+  .services, .steps, .contact-box { grid-template-columns: minmax(0, 1fr); }
+  .service { border-right: 0; border-bottom: 1px solid var(--line); }
+  .service:last-child { border-bottom: 0; }
+  .steps { gap: 28px; }
+  .contact-box { gap: 36px; }
+  section.block { padding-block: 64px; }
+  .compare { height: 320px; }
+  .new h4 { font-size: 30px; }
+  .layer { padding: 16px; }
+  .old .o-bar { margin: -16px -16px 12px; }
+}
+@media (max-width: 520px) {
+  .top nav a:not(.keep) { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
+
+/* Bilder im Redesign-Beispiel */
+.new { display: flex; flex-direction: column; }
+.new .n-bar { margin-bottom: 22px; }
+.n-main { flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px; align-items: stretch; }
+.n-text { align-self: center; min-width: 0; }
+.n-imgs { display: grid; grid-template-columns: 1.15fr 1fr; grid-template-rows: 1fr 1fr; gap: 10px; min-height: 0; }
+.ph { position: relative; overflow: hidden; min-height: 0; }
+.ph svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.ph1 { grid-row: 1 / span 2; }
+.ph3 { background: #ff0a2c; color: #fff; display: flex; flex-direction: column; justify-content: center; padding: 10px 14px; }
+.ph3 b { font-size: 34px; font-weight: 800; line-height: 1; letter-spacing: -0.03em; }
+.ph3 span { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; margin-top: 4px; font-weight: 600; }
+.o-imgs { position: absolute; right: 24px; top: 72px; display: flex; flex-direction: column; gap: 8px; width: 38%; max-width: 230px; }
+.o-img { border: 2px inset #999; background: #d4d0c8; padding: 14px 8px; font: 11px Arial, sans-serif; color: #333; display: flex; align-items: center; gap: 8px; }
+.old h4, .old p { max-width: 56%; }
+@media (max-width: 820px) {
+  .n-main { gap: 16px; }
+  .ph3 b { font-size: 26px; }
+}
+@media (max-width: 520px) {
+  .new .n-bar span { display: none; }
+  .new h4 { font-size: 22px; }
+  .new p { display: none; }
+  .ph3 span { font-size: 9px; }
+  .o-imgs { right: 12px; width: 44%; }
+}
+
+/* Beispiel "Nachher": eigenes, helles Design */
+.new { background: #ffffff; color: #16384f; }
+.new .n-bar { color: #5b6f7c; }
+.new .n-bar b { font-family: Georgia, "Times New Roman", serif; font-weight: 700; color: #16384f; display: inline-flex; align-items: center; gap: 8px; }
+.new .dot { width: 14px; height: 14px; border-radius: 50%; background: #12805c; display: inline-block; }
+.new h4 { font-family: Georgia, "Times New Roman", serif; font-weight: 700; letter-spacing: -0.01em; color: #16384f; }
+.new h4 em { color: #12805c; font-style: italic; }
+.new p { color: #4a5e6b; }
+.new .n-btn { background: #12805c; color: #fff; border-radius: 999px; padding: 12px 22px; }
+.ph { border-radius: 14px; }
+.ph3 { background: #dff1e8; color: #16384f; }
+.ph3 b { font-family: Georgia, "Times New Roman", serif; color: #12805c; }
+
+/* Ablauf: Zeitachse ohne Kasten */
+.steps li { position: relative; border-top: 1px solid var(--line); padding-top: 30px; }
+.steps li::after { content: ""; position: absolute; top: -6px; left: 0; width: 11px; height: 11px; border-radius: 50%; background: var(--red); box-shadow: 0 0 16px 2px rgba(255,10,44,.65); }
+.steps li::before { margin-bottom: 10px; }
+
+/* Ablauf: Fortschrittsbalken */
+.steps li { border-top: 0; padding-top: 34px; background: linear-gradient(var(--line), var(--line)) top left / 100% 4px no-repeat; }
+.steps li::after { top: 0; left: 0; width: var(--w); height: 4px; border-radius: 4px; background: var(--red); box-shadow: 0 0 14px rgba(255,10,44,.7); }
+.steps li:nth-child(1) { --w: 18%; }
+.steps li:nth-child(2) { --w: 52%; }
+.steps li:nth-child(3) { --w: 100%; }
+
+/* Kontakt: runde Fläche mit Verlauf */
+section.contact-wrap { border-top: 0; padding-block: 40px 88px; }
+.cta-panel {
+  position: relative; overflow: hidden; text-align: center;
+  border-radius: 40px; padding: 84px 32px 76px;
+  background: radial-gradient(130% 150% at 15% 0%, #ff1535 0%, #ff0a2c 50%, #e0001f 100%);
+  box-shadow: 0 30px 90px rgba(255,10,44,.38);
+}
+.cta-panel::before, .cta-panel::after { content: ""; position: absolute; border-radius: 50%; border: 1px solid rgba(255,255,255,.2); pointer-events: none; }
+.cta-panel::before { width: 520px; height: 520px; right: -160px; top: -240px; }
+.cta-panel::after { width: 380px; height: 380px; left: -120px; bottom: -200px; }
+.cta-panel > * { position: relative; z-index: 1; }
+.cta-panel h2 { margin: 0 auto 16px; max-width: 16ch; color: #fff; }
+.cta-panel h2 em { color: #070707; }
+.cta-panel .sub { margin: 0 auto 36px; color: rgba(255,255,255,.92); max-width: 46ch; }
+.mail-pill {
+  display: inline-flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 10px;
+  max-width: 100%; padding: 8px 8px 8px 26px; border-radius: 999px;
+  background: rgba(7,7,7,.5); border: 1px solid rgba(255,255,255,.25);
+}
+.mail-pill .mail-addr { margin: 0; font-size: 1.05rem; font-weight: 600; color: #fff; min-width: 0; }
+.copy-pill {
+  border: 0; border-radius: 999px; padding: 12px 20px; cursor: pointer;
+  background: rgba(255,255,255,.16); color: #fff; font: 600 0.78rem/1 var(--font-body);
+  letter-spacing: .14em; text-transform: uppercase; transition: background .2s;
+}
+.copy-pill:hover { background: rgba(255,255,255,.3); }
+.cta-actions { margin-top: 22px; }
+.btn-white {
+  display: inline-block; padding: 17px 38px; border-radius: 999px; text-decoration: none;
+  background: #fff; color: #c8001f; font: 700 0.85rem/1 var(--font-body);
+  letter-spacing: .14em; text-transform: uppercase; box-shadow: 0 10px 30px rgba(0,0,0,.25);
+  transition: transform .2s;
+}
+.btn-white:hover { transform: translateY(-2px); }
+.cta-panel .copied { color: #fff; margin: 16px 0 0; }
+@media (max-width: 520px) {
+  .cta-panel { border-radius: 28px; padding: 56px 20px 52px; }
+  .mail-pill { border-radius: 26px; padding: 14px; flex-direction: column; }
+}
+
+/* Leistungen: ruhige, helle Kacheln ohne Rot */
+.services { border: 0; background: none; gap: 20px; }
+.services .service, .services .service:last-child {
+  position: relative; display: flex; flex-direction: column;
+  padding: 34px 30px 30px; border: 1px solid rgba(255,255,255,.13); border-radius: 26px;
+  background: linear-gradient(160deg, rgba(255,255,255,.085) 0%, rgba(255,255,255,.025) 60%);
+  transition: transform .25s, border-color .25s, background .25s;
+}
+.services .service:hover {
+  transform: translateY(-4px); border-color: rgba(255,255,255,.3);
+  background: linear-gradient(160deg, rgba(255,255,255,.12) 0%, rgba(255,255,255,.04) 60%);
+}
+.services .service:hover p { color: var(--muted); }
+.ico {
+  width: 54px; height: 54px; border-radius: 17px; display: grid; place-items: center; margin-bottom: 28px;
+  color: #fff; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.16);
+}
+.ico svg { width: 26px; height: 26px; }
+.service .meta {
+  margin-top: auto; padding-top: 18px; font-size: 0.74rem; letter-spacing: .14em; text-transform: uppercase; color: #9d9da6;
+}
+.service p { margin-bottom: 26px; }
+
+/* Redesign-Beispiel: skalierbare Miniatur-Seite */
+.compare { height: auto; }
+.compare-sec { max-width: 720px; margin-inline: auto; }
+.page { position: absolute; left: 0; top: 0; width: 960px; height: 620px; transform-origin: 0 0; transform: scale(var(--k, 1)); overflow: hidden; }
+.layer.s-old, .layer.s-new { padding: 0; }
+.layer.s-old { background: #ececdf; color: #1a1a1a; font-family: "Times New Roman", Times, serif; font-size: 14px; line-height: 1.3; }
+.so-banner { background: #000080; color: #ffff66; font-weight: 700; padding: 9px 10px; text-align: center; font-size: 16px; }
+.so-cols { display: grid; grid-template-columns: 150px 1fr 200px; gap: 14px; padding: 14px; }
+.so-nav { display: flex; flex-direction: column; gap: 6px; }
+.so-btn { border: 2px outset #999; background: #d4d0c8; padding: 6px 8px; font: 13px Arial, sans-serif; }
+.so-mid h4 { margin: 0 0 8px; font-size: 28px; color: #800000; font-weight: 700; }
+.so-mid p { margin: 0 0 9px; }
+.so-mid ul { margin: 0 0 9px 20px; padding: 0; }
+.so-mid .hot { color: #d00000; font-weight: 700; text-decoration: underline; }
+.so-mid .lnk { color: #0000ee; text-decoration: underline; }
+.so-side { display: flex; flex-direction: column; gap: 9px; }
+.so-img { border: 2px inset #999; background: #d4d0c8; padding: 12px 8px; font: 11px Arial, sans-serif; display: flex; gap: 8px; align-items: center; min-height: 78px; }
+.so-star { background: #ffff00; border: 2px solid #d00000; transform: rotate(-6deg); font: 700 16px Arial, sans-serif; text-align: center; padding: 14px 8px; }
+.so-count { background: #000; color: #00ff00; font: 12px "Courier New", monospace; text-align: center; padding: 5px; border: 2px inset #999; }
+.so-foot { position: absolute; left: 0; right: 0; bottom: 0; background: #000080; color: #ccc; font: 12px Arial, sans-serif; padding: 8px 10px; text-align: center; }
+
+.layer.s-new { background: #0b1418; color: #eaf2f0; font-family: system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; clip-path: inset(0 calc(100% - var(--p)) 0 0); }
+.np { display: flex; flex-direction: column; gap: 18px; padding: 0 44px; }
+.np-nav { height: 68px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #1d2c33; }
+.np-logo { font-family: Georgia, "Times New Roman", serif; font-size: 20px; display: flex; align-items: center; gap: 10px; font-weight: 700; }
+.np-logo i { width: 16px; height: 16px; border-radius: 50%; background: #34d3a3; display: block; }
+.np-links { font-size: 13px; color: #8fa6ad; letter-spacing: .04em; word-spacing: 18px; }
+.np-pill { background: #34d3a3; color: #04241b; font-weight: 700; font-size: 13px; padding: 10px 18px; border-radius: 999px; }
+.np-hero { display: grid; grid-template-columns: 1.05fr 1fr; gap: 36px; align-items: center; height: 250px; }
+.np-eyebrow { color: #34d3a3; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; font-weight: 700; }
+.np-copy h4 { font-family: Georgia, "Times New Roman", serif; font-size: 44px; line-height: 1.05; margin: 10px 0 12px; font-weight: 700; letter-spacing: -.01em; color: #fff; }
+.np-copy h4 em { font-style: italic; color: #34d3a3; }
+.np-copy p { margin: 0 0 16px; color: #9bb0b6; font-size: 14px; line-height: 1.5; }
+.np-btns { display: flex; gap: 10px; }
+.np-btn { display: inline-block; background: #34d3a3; color: #04241b; font-weight: 700; font-size: 13px; padding: 13px 22px; border-radius: 999px; }
+.np-btn.ghost { background: transparent; color: #eaf2f0; border: 1px solid #2c4149; }
+.np-visual { position: relative; height: 100%; border-radius: 22px; overflow: hidden; border: 1px solid #1d2c33; }
+.np-visual img { width: 100%; height: 100%; object-fit: cover; display: block; max-width: none; }
+.np-float { position: absolute; left: 16px; bottom: 16px; background: rgba(11,20,24,.9); border: 1px solid #2c4149; border-radius: 14px; padding: 10px 14px; display: flex; flex-direction: column; }
+.np-float b { font-size: 18px; color: #ffd166; }
+.np-float span { font-size: 11px; color: #9bb0b6; }
+.np-stats { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid #1d2c33; border-bottom: 1px solid #1d2c33; height: 70px; }
+.np-stats div { display: flex; flex-direction: column; justify-content: center; padding-left: 20px; border-left: 1px solid #1d2c33; }
+.np-stats div:first-child { border-left: 0; padding-left: 0; }
+.np-stats b { font-family: Georgia, "Times New Roman", serif; font-size: 26px; line-height: 1; color: #fff; }
+.np-stats span { font-size: 12px; color: #8fa6ad; margin-top: 4px; }
+.np-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.np-card { background: #111e24; border: 1px solid #1d2c33; border-radius: 16px; padding: 14px 18px; }
+.np-card .ic { width: 34px; height: 34px; border-radius: 10px; background: #143028; color: #34d3a3; display: grid; place-items: center; margin-bottom: 10px; }
+.np-card b { font-size: 15px; display: block; margin-bottom: 4px; color: #fff; }
+.np-card .t { font-size: 12.5px; color: #8fa6ad; line-height: 1.45; display: block; }
+.np-cta { display: flex; align-items: center; justify-content: space-between; background: linear-gradient(90deg, #143028, #0f2a3a); border: 1px solid #1f3d48; border-radius: 16px; padding: 12px 12px 12px 22px; font-family: Georgia, "Times New Roman", serif; font-size: 18px; }
+
+/* Vorher-Seite im Dunkelmodus (retro) */
+.layer.s-old { background: #1c1c24; color: #d8d8d8; }
+.so-banner { background: #1a1ab0; color: #ffff66; }
+.so-btn { border-color: #6a6a74; background: #3a3a42; color: #e6e6e6; }
+.so-mid h4 { color: #ff9a3c; }
+.so-mid .hot { color: #ff5555; }
+.so-mid .lnk { color: #6c9cff; }
+.so-img { border-color: #6a6a74; background: #3a3a42; color: #cfcfcf; }
+.so-star { color: #111; }
+.so-foot { background: #1a1ab0; color: #dcdcdc; }
+
+/* Über mich */
+.about {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 48px; align-items: center;
+  padding: 52px; border: 1px solid rgba(255,255,255,.13); border-radius: 32px;
+  background: linear-gradient(160deg, rgba(255,255,255,.085) 0%, rgba(255,255,255,.025) 60%);
+}
+.about h2 { max-width: 14ch; }
+.about .sub { margin: 0; }
+.about-facts { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.about-facts li { display: flex; gap: 18px; align-items: center; padding: 18px 20px; border-radius: 22px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); }
+.about-facts .ico { flex: none; width: 48px; height: 48px; margin: 0; border-radius: 15px; }
+.about-facts b { display: block; font-size: 1.02rem; margin-bottom: 2px; }
+.about-facts li div span { color: var(--muted); font-size: 0.92rem; line-height: 1.5; display: block; }
+@media (max-width: 820px) {
+  .about { grid-template-columns: minmax(0, 1fr); gap: 32px; padding: 30px 22px; border-radius: 26px; }
+}
+@media (max-width: 640px) {
+  .top nav a[href="#ueber-mich"] { display: none; }
+}
+
+/* Häufige Fragen */
+.faq { display: flex; flex-direction: column; gap: 12px; max-width: 820px; }
+.faq details { border-radius: 22px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); padding: 0 24px; transition: border-color .2s, background .2s; }
+.faq details:hover { border-color: rgba(255,255,255,.26); }
+.faq details[open] { background: rgba(255,255,255,.07); }
+.faq summary { cursor: pointer; list-style: none; padding: 20px 0; font-weight: 600; font-size: 1.05rem; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; flex: none; width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; background: rgba(255,255,255,.1); font-size: 1.2rem; font-weight: 500; }
+.faq details[open] summary::after { content: "\2013"; }
+.faq details p { margin: 0 0 22px; color: var(--muted); max-width: 62ch; }
+
+.pkg-note { margin: 20px 0 0; padding: 20px 26px; border-radius: 22px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); color: var(--muted); max-width: 820px; }
+
+/* FAQ-Themen */
+.faq-tabs { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 22px; }
+.faq-tab {
+  border: 1px solid rgba(255,255,255,.16); background: transparent; color: var(--muted); cursor: pointer;
+  border-radius: 999px; padding: 11px 22px; font: 600 0.85rem/1 var(--font-body); letter-spacing: .03em;
+  transition: background .2s, color .2s, border-color .2s;
+}
+.faq-tab:hover { color: var(--fg); border-color: rgba(255,255,255,.4); }
+.faq-tab[aria-selected="true"] { background: #fff; color: #0b0b0c; border-color: #fff; }
+@media (max-width: 760px) {
+  .top nav a[href="#faq"] { display: none; }
+}
+
+/* Vertrauenszeile und Kontakt-Button in der Kopfzeile */
+.trust { list-style: none; display: flex; flex-wrap: wrap; gap: 10px 28px; margin: 34px 0 0; padding: 0; color: var(--muted); font-size: 0.92rem; }
+.trust li { display: flex; align-items: center; gap: 10px; }
+.trust li::before { content: "\2713"; color: var(--red); font-weight: 800; }
+.top nav a.keep { background: var(--red); color: #fff; padding: 11px 22px; border-radius: 999px; box-shadow: 0 0 22px rgba(255,10,44,.4); transition: background .2s; }
+.top nav a.keep:hover { background: var(--red-deep); color: #fff; }
+
+/* Kopfzeile: alle Links mittig ausrichten */
+.top nav { align-items: center; }
+.top nav a { display: inline-flex; align-items: center; line-height: 1; }
+
+/* hidden muss auch außerhalb von Claude greifen */
+[hidden] { display: none !important; }
+
+/* Kopfzeile: schärfere Schrift */
+.top nav a { font-size: 13px; font-weight: 500; color: #e2e2e6; letter-spacing: 0.14em; }
+.top nav a:hover { color: #fff; }
+.top nav a.keep { font-weight: 600; }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap top-inner">
+    <a href="#top" class="brand">Mika <i>Gertz</i></a>
+    <nav>
+      <a href="#leistungen">Leistungen</a>
+      <a href="#ueber-mich">Über mich</a>
+      <a href="#ablauf">Ablauf</a>
+      <a href="#faq">Fragen</a>
+      <a href="#kontakt" class="keep">Kontakt</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top" class="wrap">
+
+  <div class="hero">
+    <p class="eyebrow">Webdesign &amp; Social-Media-Beratung für Unternehmen</p>
+    <h1>Ihr Auftritt im Netz verdient <em>mehr</em>.</h1>
+    <p class="lead">Sie führen Ihr Unternehmen mit Anspruch. Ich sorge dafür, dass Ihr Auftritt im Netz diesen Anspruch zeigt: modern, klar und so gestaltet, dass Kunden Ihnen vertrauen. Von der ersten Idee bis zur Veröffentlichung sind Sie bei mir in besten Händen, persönlich betreut und mit voller Aufmerksamkeit für Ihre Wünsche.</p>
+    <div class="btn-row">
+      <a class="btn" href="#kontakt">Erstgespräch anfragen</a>
+      <a class="btn ghost" href="#leistungen">Leistungen ansehen</a>
+    </div>
+    <ul class="trust"><li>Unverbindliches Erstgespräch</li><li>Persönliche Betreuung</li><li>Klare Absprachen</li></ul>
+  </div>
+
+  <div class="compare-sec">
+    <div class="compare-cap"><b>Beispiel: Redesign einer veralteten Firmenseite</b><span>Regler ziehen</span></div>
+    <div class="compare" id="compare">
+      <div class="layer s-old" aria-hidden="true"><div class="page">
+        <div class="so-banner">*** Herzlich Willkommen auf der Homepage der Firma Müller &amp; Söhne GmbH ***</div>
+        <div class="so-cols">
+          <div class="so-nav">
+            <div class="so-btn">Startseite</div><div class="so-btn">Über uns</div><div class="so-btn">Unsere Produkte</div><div class="so-btn">Preise</div><div class="so-btn">Gästebuch</div><div class="so-btn">Links</div><div class="so-btn">Kontakt</div>
+          </div>
+          <div class="so-mid">
+            <h4>Müller &amp; Söhne GmbH</h4>
+            <p>Sehr geehrte Besucher, wir freuen uns, dass Sie den Weg auf unsere Homepage gefunden haben. Unsere Firma besteht bereits seit dem Jahr 1987 und ist in der Region bekannt für Qualität und Zuverlässigkeit.</p>
+            <p><span class="hot">!!! NEU !!! Jetzt auch Terrassen und Carports !!!</span></p>
+            <p>Wir bieten Ihnen folgende Leistungen an:</p>
+            <ul><li>Fenster und Türen</li><li>Dachstühle, Dachsanierung</li><li>Möbel nach Maß</li><li>Treppen, Geländer</li><li>und vieles mehr</li></ul>
+            <p>Rufen Sie uns einfach an oder schreiben Sie uns eine <span class="lnk">E-Mail</span>. Preise auf Anfrage. Bitte beachten Sie auch unsere <span class="lnk">Allgemeinen Geschäftsbedingungen</span> und unser <span class="lnk">Gästebuch</span>.</p>
+            <p>Diese Seite wird ständig aktualisiert. Viel Spaß beim Stöbern!</p>
+          </div>
+          <div class="so-side">
+            <div class="so-img"><svg viewBox="0 0 24 24" width="22" height="22"><rect x="2" y="3" width="20" height="18" fill="none" stroke="#666" stroke-width="1.5"/><path d="M5 17l5-6 4 4 2-2 3 4" fill="none" stroke="#666" stroke-width="1.5"/><path d="M4 4l16 16" stroke="#c00" stroke-width="2"/></svg><span>firma_foto1.jpg</span></div>
+            <div class="so-img"><svg viewBox="0 0 24 24" width="22" height="22"><rect x="2" y="3" width="20" height="18" fill="none" stroke="#666" stroke-width="1.5"/><path d="M5 17l5-6 4 4 2-2 3 4" fill="none" stroke="#666" stroke-width="1.5"/><path d="M4 4l16 16" stroke="#c00" stroke-width="2"/></svg><span>logo_alt.gif</span></div>
+            <div class="so-star">Bester Preis!!!</div>
+            <div class="so-count">Besucher Nr. 004721</div>
+          </div>
+        </div>
+        <div class="so-foot">Letzte Änderung: 03.03.2009 &nbsp;|&nbsp; Optimiert für Internet Explorer 6, 800x600</div>
+      </div></div>
+      <div class="layer s-new" aria-hidden="true"><div class="page np">
+        <div class="np-nav"><b class="np-logo"><i></i>Müller &amp; Söhne</b><span class="np-links">Leistungen Referenzen Team Kontakt</span><span class="np-pill">Angebot anfragen</span></div>
+        <div class="np-hero">
+          <div class="np-copy">
+            <span class="np-eyebrow">Meisterbetrieb · Seit 1987</span>
+            <h4>Handwerk mit <em>Haltung</em>.</h4>
+            <p>Wir planen, bauen und sanieren mit eigenen Teams. Transparent im Preis, zuverlässig im Termin.</p>
+            <div class="np-btns"><span class="np-btn">Projekt besprechen</span><span class="np-btn ghost">Referenzen ansehen</span></div>
+          </div>
+          <div class="np-visual"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCIgd2lkdGg9IjEyMDAiIGhlaWdodD0iODAwIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0id2FsbCIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNlZWY1ZjIiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZGNlOGUyIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJiZW5jaCIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNjOTlhNjIiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjYTk3ODQyIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJzdGVlbCIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNkZmU3ZWMiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjYWViYWMzIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPHBhdHRlcm4gaWQ9ImhvbGVzIiB3aWR0aD0iMzYiIGhlaWdodD0iMzYiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8Y2lyY2xlIGN4PSIxOCIgY3k9IjE4IiByPSIzLjIiIGZpbGw9IiNiOWNlYzQiLz4KICAgIDwvcGF0dGVybj4KICA8L2RlZnM+CgogIDwhLS0gV2FuZCB1bmQgQm9kZW4gLS0+CiAgPHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iODAwIiBmaWxsPSJ1cmwoI3dhbGwpIi8+CiAgPHJlY3QgeT0iNzQyIiB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI1OCIgZmlsbD0iI2M1ZDVjYyIvPgogIDxyZWN0IHk9Ijc0MiIgd2lkdGg9IjEyMDAiIGhlaWdodD0iNiIgZmlsbD0iI2IzYzZiYiIvPgoKICA8IS0tIExvY2h3YW5kIC0tPgogIDxyZWN0IHg9IjgwIiB5PSI2NCIgd2lkdGg9IjEwNDAiIGhlaWdodD0iNDEwIiByeD0iMjYiIGZpbGw9IiNkM2UzZGIiLz4KICA8cmVjdCB4PSI4MCIgeT0iNjQiIHdpZHRoPSIxMDQwIiBoZWlnaHQ9IjQxMCIgcng9IjI2IiBmaWxsPSJ1cmwoI2hvbGVzKSIvPgogIDxyZWN0IHg9IjgwIiB5PSI2NCIgd2lkdGg9IjEwNDAiIGhlaWdodD0iNDEwIiByeD0iMjYiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2I5Y2VjNCIgc3Ryb2tlLXdpZHRoPSI0Ii8+CgogIDwhLS0gSGFtbWVyIC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDE5MCAxMDQpIj4KICAgIDxyZWN0IHg9Ii0xMCIgeT0iMzQiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMzAiIHJ4PSI5IiBmaWxsPSIjYjk3ZjNmIi8+CiAgICA8cmVjdCB4PSItMTAiIHk9IjM0IiB3aWR0aD0iOCIgaGVpZ2h0PSIyMzAiIHJ4PSI0IiBmaWxsPSIjZDI5YTU4Ii8+CiAgICA8cmVjdCB4PSItNTYiIHk9IjAiIHdpZHRoPSIxMTIiIGhlaWdodD0iNDQiIHJ4PSI3IiBmaWxsPSIjMTYzODRmIi8+CiAgICA8cGF0aCBkPSJNLTU2IDggUS05NiA0IC0xMTAgMzAgTC01NiAzMCBaIiBmaWxsPSIjMTYzODRmIi8+CiAgICA8cmVjdCB4PSItNTYiIHk9IjAiIHdpZHRoPSIxMTIiIGhlaWdodD0iOSIgcng9IjQiIGZpbGw9IiMyZDVhNzgiLz4KICAgIDxyZWN0IHg9Ii0xMCIgeT0iMjI4IiB3aWR0aD0iMjAiIGhlaWdodD0iMzYiIHJ4PSI5IiBmaWxsPSIjMTI4MDVjIi8+CiAgPC9nPgoKICA8IS0tIFPDpGdlIC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDMzMCAxMjApIj4KICAgIDxwYXRoIGQ9Ik03MCAzNCBMNDcwIDEwIEw0NzAgOTIgTDcwIDcwIFoiIGZpbGw9InVybCgjc3RlZWwpIiBzdHJva2U9IiM4ZmEwYWIiIHN0cm9rZS13aWR0aD0iMiIvPgogICAgPHBhdGggZD0iTTcwIDcwIEw0NzAgOTIgTDQ3MCAxMDAgTDQ1MCA5MiBMNDMwIDEwMCBMNDEwIDkyIEwzOTAgMTAwIEwzNzAgOTIgTDM1MCAxMDAgTDMzMCA5MiBMMzEwIDEwMCBMMjkwIDkyIEwyNzAgMTAwIEwyNTAgOTIgTDIzMCAxMDAgTDIxMCA5MiBMMTkwIDEwMCBMMTcwIDkyIEwxNTAgMTAwIEwxMzAgOTIgTDExMCAxMDAgTDkwIDkyIEw3MCA5NiBaIiBmaWxsPSIjOGZhMGFiIi8+CiAgICA8cmVjdCB4PSIwIiB5PSIyNiIgd2lkdGg9Ijg2IiBoZWlnaHQ9Ijc2IiByeD0iMjYiIGZpbGw9IiMxMjgwNWMiLz4KICAgIDxlbGxpcHNlIGN4PSI0MiIgY3k9IjY0IiByeD0iMTgiIHJ5PSIxNiIgZmlsbD0iI2QzZTNkYiIvPgogICAgPHJlY3QgeD0iOCIgeT0iMzAiIHdpZHRoPSI3MCIgaGVpZ2h0PSIxMCIgcng9IjUiIGZpbGw9IiMxZDlhNzIiLz4KICA8L2c+CgogIDwhLS0gWmFuZ2UgLS0+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoODYwIDExMCkiPgogICAgPGcgdHJhbnNmb3JtPSJyb3RhdGUoLTkgNDAgMTIwKSI+CiAgICAgIDxyZWN0IHg9IjIyIiB5PSIxMDAiIHdpZHRoPSIyNiIgaGVpZ2h0PSIxNTAiIHJ4PSIxMyIgZmlsbD0iIzEyODA1YyIvPgogICAgICA8cGF0aCBkPSJNMjIgMTA4IEw0OCAxMDggTDY2IDQwIEw0MCAyOCBaIiBmaWxsPSIjOGZhMGFiIi8+CiAgICA8L2c+CiAgICA8ZyB0cmFuc2Zvcm09InJvdGF0ZSg5IDQwIDEyMCkiPgogICAgICA8cmVjdCB4PSIzMiIgeT0iMTAwIiB3aWR0aD0iMjYiIGhlaWdodD0iMTUwIiByeD0iMTMiIGZpbGw9IiMxNjM4NGYiLz4KICAgICAgPHBhdGggZD0iTTMyIDEwOCBMNTggMTA4IEw0MCAyOCBMMTQgNDAgWiIgZmlsbD0iI2FlYmFjMyIvPgogICAgPC9nPgogICAgPGNpcmNsZSBjeD0iNDUiIGN5PSIxMDgiIHI9IjkiIGZpbGw9IiNkY2U2ZWMiIHN0cm9rZT0iIzZmODE4ZCIgc3Ryb2tlLXdpZHRoPSIzIi8+CiAgPC9nPgoKICA8IS0tIFNjaHJhdWJlbnNjaGzDvHNzZWwgLS0+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoOTkwIDEyMCkgcm90YXRlKDE0KSI+CiAgICA8cmVjdCB4PSItMTQiIHk9IjU2IiB3aWR0aD0iMjgiIGhlaWdodD0iMjEwIiByeD0iMTMiIGZpbGw9IiM5ZmIwYmIiLz4KICAgIDxyZWN0IHg9Ii0xNCIgeT0iNTYiIHdpZHRoPSIxMCIgaGVpZ2h0PSIyMTAiIHJ4PSI1IiBmaWxsPSIjYzdkM2RhIi8+CiAgICA8Y2lyY2xlIGN4PSIwIiBjeT0iNDQiIHI9IjQyIiBmaWxsPSIjOWZiMGJiIi8+CiAgICA8Y2lyY2xlIGN4PSIwIiBjeT0iMzYiIHI9IjIwIiBmaWxsPSIjZDNlM2RiIi8+CiAgICA8cmVjdCB4PSItMjAiIHk9Ii0xMiIgd2lkdGg9IjQwIiBoZWlnaHQ9IjM2IiBmaWxsPSIjZDNlM2RiIi8+CiAgPC9nPgoKICA8IS0tIFdhc3NlcndhYWdlIC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDMzMCAzOTYpIj4KICAgIDxyZWN0IHdpZHRoPSI0NzAiIGhlaWdodD0iNTIiIHJ4PSIxMCIgZmlsbD0iI2U5Yjk0OSIvPgogICAgPHJlY3Qgd2lkdGg9IjQ3MCIgaGVpZ2h0PSIxMCIgcng9IjUiIGZpbGw9IiNmNGNmNzQiLz4KICAgIDxyZWN0IHg9IjE5MCIgeT0iMTIiIHdpZHRoPSI5MCIgaGVpZ2h0PSIyOCIgcng9IjE0IiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiNiOThhMWYiIHN0cm9rZS13aWR0aD0iMyIvPgogICAgPGVsbGlwc2UgY3g9IjIzNSIgY3k9IjI2IiByeD0iMTgiIHJ5PSI5IiBmaWxsPSIjMTI4MDVjIiBvcGFjaXR5PSIuODUiLz4KICAgIDxsaW5lIHgxPSIyMTUiIHkxPSIxMiIgeDI9IjIxNSIgeTI9IjQwIiBzdHJva2U9IiNiOThhMWYiIHN0cm9rZS13aWR0aD0iMiIvPgogICAgPGxpbmUgeDE9IjI1NSIgeTE9IjEyIiB4Mj0iMjU1IiB5Mj0iNDAiIHN0cm9rZT0iI2I5OGExZiIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjI2IiByPSI5IiBmaWxsPSIjZDI5ZDJhIi8+CiAgICA8Y2lyY2xlIGN4PSI0MTAiIGN5PSIyNiIgcj0iOSIgZmlsbD0iI2QyOWQyYSIvPgogIDwvZz4KCiAgPCEtLSBNYcOfYmFuZCAtLT4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg5MzYgNDA0KSI+CiAgICA8Y2lyY2xlIGN4PSIwIiBjeT0iMCIgcj0iNDYiIGZpbGw9IiNlOWI5NDkiIHN0cm9rZT0iIzE2Mzg0ZiIgc3Ryb2tlLXdpZHRoPSI3Ii8+CiAgICA8Y2lyY2xlIGN4PSIwIiBjeT0iMCIgcj0iMTciIGZpbGw9IiNkM2UzZGIiIHN0cm9rZT0iIzE2Mzg0ZiIgc3Ryb2tlLXdpZHRoPSI1Ii8+CiAgICA8cmVjdCB4PSIzNCIgeT0iNiIgd2lkdGg9IjQ0IiBoZWlnaHQ9IjI2IiByeD0iNiIgZmlsbD0iIzE2Mzg0ZiIvPgogICAgPHBhdGggZD0iTS0yOCAtMjYgQTQwIDQwIDAgMCAxIDI2IC0zMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZjRjZjc0IiBzdHJva2Utd2lkdGg9IjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDwvZz4KCiAgPCEtLSBXZXJrYmFuayAtLT4KICA8ZWxsaXBzZSBjeD0iNjAwIiBjeT0iNzUyIiByeD0iNTYwIiByeT0iMTgiIGZpbGw9IiNhOWJkYjIiIG9wYWNpdHk9Ii41NSIvPgogIDxyZWN0IHg9IjEwNCIgeT0iNTY2IiB3aWR0aD0iMzAiIGhlaWdodD0iMTgwIiBmaWxsPSIjOGE1ZDMwIi8+CiAgPHJlY3QgeD0iMTA2NiIgeT0iNTY2IiB3aWR0aD0iMzAiIGhlaWdodD0iMTgwIiBmaWxsPSIjOGE1ZDMwIi8+CiAgPHJlY3QgeD0iMTA0IiB5PSI1NjYiIHdpZHRoPSI5OTIiIGhlaWdodD0iMzgiIGZpbGw9IiM5YTZhM2EiLz4KICA8cmVjdCB4PSIxMDQiIHk9IjY5MCIgd2lkdGg9Ijk5MiIgaGVpZ2h0PSIyMiIgZmlsbD0iIzlhNmEzYSIvPgogIDxyZWN0IHg9IjYwIiB5PSI1MjAiIHdpZHRoPSIxMDgwIiBoZWlnaHQ9IjUyIiByeD0iMTAiIGZpbGw9InVybCgjYmVuY2gpIi8+CiAgPHJlY3QgeD0iNjAiIHk9IjUyMCIgd2lkdGg9IjEwODAiIGhlaWdodD0iMTAiIHJ4PSI1IiBmaWxsPSIjZGNiMDdjIi8+CiAgPHBhdGggZD0iTTE1MCA1NDggSDQyMCBNNTIwIDU1NCBIODYwIE05MDAgNTQ2IEgxMTAwIiBzdHJva2U9IiNhOTc4NDIiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBvcGFjaXR5PSIuNiIvPgoKICA8IS0tIFdlcmt6ZXVna2lzdGUgLS0+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTIwIDQyMCkiPgogICAgPHBhdGggZD0iTTYwIDE0IFE2MCAtMTQgMTEwIC0xNCBRMTYwIC0xNCAxNjAgMTQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE2Mzg0ZiIgc3Ryb2tlLXdpZHRoPSIxMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICA8cmVjdCB4PSIwIiB5PSIxMCIgd2lkdGg9IjIyMCIgaGVpZ2h0PSIxMDAiIHJ4PSIxNCIgZmlsbD0iIzEyODA1YyIvPgogICAgPHJlY3QgeD0iMCIgeT0iMTAiIHdpZHRoPSIyMjAiIGhlaWdodD0iMzQiIHJ4PSIxNCIgZmlsbD0iIzFkOWE3MiIvPgogICAgPHJlY3QgeD0iMCIgeT0iNDAiIHdpZHRoPSIyMjAiIGhlaWdodD0iOCIgZmlsbD0iIzBkNjI0NyIvPgogICAgPHJlY3QgeD0iOTIiIHk9IjM0IiB3aWR0aD0iMzYiIGhlaWdodD0iMjYiIHJ4PSI2IiBmaWxsPSIjZTliOTQ5Ii8+CiAgICA8Y2lyY2xlIGN4PSIxMTAiIGN5PSI0NyIgcj0iNCIgZmlsbD0iIzE2Mzg0ZiIvPgogIDwvZz4KCiAgPCEtLSBIb2JlbCAtLT4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0NzAgNDcwKSI+CiAgICA8cmVjdCB4PSIwIiB5PSIyMiIgd2lkdGg9IjI2MCIgaGVpZ2h0PSIzMCIgcng9IjgiIGZpbGw9IiMxNjM4NGYiLz4KICAgIDxwYXRoIGQ9Ik03MCAyMiBMMTMwIC04IEwxNjggLTggTDE0MCAyMiBaIiBmaWxsPSIjYzk5YTYyIi8+CiAgICA8cmVjdCB4PSIxMTgiIHk9Ii0xOCIgd2lkdGg9IjIyIiBoZWlnaHQ9IjM0IiByeD0iNSIgZmlsbD0idXJsKCNzdGVlbCkiIHRyYW5zZm9ybT0icm90YXRlKDE4IDEyOSAwKSIvPgogICAgPHBhdGggZD0iTTIwMCAyMiBRMjAwIC0xMiAyMjYgLTEyIFEyNTIgLTEyIDI1MiAyMiBaIiBmaWxsPSIjYzk5YTYyIi8+CiAgICA8cmVjdCB4PSIxMiIgeT0iOCIgd2lkdGg9IjYwIiBoZWlnaHQ9IjE2IiByeD0iOCIgZmlsbD0iI2M5OWE2MiIvPgogIDwvZz4KCiAgPCEtLSBTcMOkbmUgLS0+CiAgPGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZWNkMDlhIiBzdHJva2Utd2lkdGg9IjYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+CiAgICA8cGF0aCBkPSJNNzM2IDUwMCBxMjIgLTM0IDQ0IC02IHQ0NCAtMTQgdDM2IDE2Ii8+CiAgICA8cGF0aCBkPSJNNzUwIDUyMCBxMTggLTIyIDM0IC00IHQzMiAtOCIvPgogIDwvZz4KCiAgPCEtLSBIb2x6c3RhcGVsIC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDg1MCA0NDQpIj4KICAgIDxyZWN0IHg9IjAiIHk9IjQ4IiB3aWR0aD0iMjQwIiBoZWlnaHQ9IjI4IiByeD0iNCIgZmlsbD0iI2M3OTQ1NSIvPgogICAgPHJlY3QgeD0iMTQiIHk9IjIwIiB3aWR0aD0iMjIwIiBoZWlnaHQ9IjI4IiByeD0iNCIgZmlsbD0iI2RjYWU3MiIvPgogICAgPHJlY3QgeD0iMjYiIHk9Ii02IiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjI2IiByeD0iNCIgZmlsbD0iI2I4N2YzZiIvPgogICAgPHBhdGggZD0iTTE0IDYyIEgyMjYgTTI4IDM0IEgyMTQgTTQwIDggSDIwNiIgc3Ryb2tlPSIjYTk3MzNhIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgb3BhY2l0eT0iLjciLz4KICAgIDxlbGxpcHNlIGN4PSIyMjgiIGN5PSI2MiIgcng9IjYiIHJ5PSIxNCIgZmlsbD0iI2U2YzA4YSIvPgogICAgPGVsbGlwc2UgY3g9IjIyOCIgY3k9IjM0IiByeD0iNiIgcnk9IjE0IiBmaWxsPSIjZWZjZjlmIi8+CiAgPC9nPgo8L3N2Zz4K" alt=""><div class="np-float"><b>4,9 ★</b><span>212 Kundenbewertungen</span></div></div>
+        </div>
+        <div class="np-stats">
+          <div><b>37</b><span>Jahre Erfahrung</span></div>
+          <div><b>1.200+</b><span>Projekte umgesetzt</span></div>
+          <div><b>12</b><span>Fachkräfte im Team</span></div>
+          <div><b>48 h</b><span>bis zum Angebot</span></div>
+        </div>
+        <div class="np-cards">
+          <div class="np-card"><span class="ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg></span><b>Sanierung</b><span class="t">Dach, Fassade und Fenster fachgerecht erneuert.</span></div>
+          <div class="np-card"><span class="ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="4" rx="1"/><rect x="3" y="10" width="18" height="4" rx="1"/><rect x="3" y="15" width="18" height="4" rx="1"/></svg></span><b>Holzbau</b><span class="t">Terrassen, Carports und Dachstühle aus regionalem Holz.</span></div>
+          <div class="np-card"><span class="ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17L17 3l4 4L7 21z"/><path d="M8 12l2 2M11 9l2 2M14 6l2 2"/></svg></span><b>Ausbau nach Maß</b><span class="t">Treppen, Möbel und Innenausbau ganz nach Ihren Plänen.</span></div>
+        </div>
+      </div></div>
+      <span class="tag l">Nachher</span>
+      <span class="tag r">Vorher</span>
+      <input type="range" id="slider" min="0" max="100" value="50" aria-label="Vorher-Nachher-Vergleich verschieben">
+      <div class="divider"></div>
+    </div>
+  </div>
+
+  <section class="block" id="leistungen">
+    <h2>Was ich für Sie <em>umsetze</em></h2>
+    <p class="sub">Drei klare Leistungen, die Ihr Unternehmen nach vorne bringen.</p>
+    <div class="services">
+      <article class="service">
+        <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 9h18"/><path d="M7 6.5h.01M10 6.5h.01"/></svg></span>
+        <h3>Website-Bau</h3>
+        <p>Ihr Unternehmen bekommt eine Website, die zu Ihnen passt: individuell gestaltet, auf Handy und Computer überzeugend und so aufgebaut, dass aus Besuchern Anfragen werden.</p>
+        <span class="meta">Für Firmen ohne eigene Seite</span>
+      </article>
+      <article class="service">
+        <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 0 0-14.5-4.5L4 8"/><path d="M4 4v4h4"/><path d="M4 13a8 8 0 0 0 14.5 4.5L20 16"/><path d="M20 20v-4h-4"/></svg></span>
+        <h3>Website-Redesign</h3>
+        <p>Ihre Seite wirkt nicht mehr zeitgemäß? Ich gebe ihr ein modernes, übersichtliches Gesicht und bleibe dabei nah an Ihrem bestehenden Design, damit Ihr Unternehmen erkennbar Ihres bleibt.</p>
+        <span class="meta">Für bestehende Auftritte</span>
+      </article>
+      <article class="service">
+        <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1.2-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 11h7M8.5 14h4"/></svg></span>
+        <h3>Social-Media-Beratung</h3>
+        <p>Damit Ihre Kanäle Kunden erreichen: Ich analysiere Ihre Situation, entwickle mit Ihnen eine passende Strategie und richte Profile sowie Beitragsvorlagen ein. Die laufende Pflege liegt bei Ihnen, bei Fragen stehe ich Ihnen beratend zur Seite.</p>
+        <span class="meta">Einmalig, ohne Abo</span>
+      </article>
+    </div>
+    <p class="pkg-note">Für die meisten Unternehmen reicht mein Standardpaket. Haben Sie zusätzliche Wünsche, ist das kein Problem: Sie werden einzeln besprochen und extra berechnet.</p>
+  </section>
+
+  <section class="block" id="ueber-mich">
+    <div class="about">
+      <div class="about-copy">
+        <p class="eyebrow">Über mich</p>
+        <h2>Gelernt am <em>Technischen Gymnasium</em></h2>
+        <p class="sub">Ich bin Schüler an einem Technischen Gymnasium und habe mir dort meine Kenntnisse im Webdesign erarbeitet. Dieses Wissen setze ich jetzt für Unternehmen ein: mit frischen Ideen, moderner Technik und dem Anspruch, Ihre Website so sorgfältig zu bauen, wie ich es gelernt habe.</p>
+      </div>
+      <ul class="about-facts">
+        <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg></span><div><b>Technisches Gymnasium</b><span>Hier liegt die Grundlage für meine Webdesign-Kenntnisse.</span></div></li>
+        <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1.2-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 11h7M8.5 14h4"/></svg></span><div><b>Erfahrung mit Social Media</b><span>Für Vereine habe ich bereits Social-Media-Kanäle geführt.</span></div></li>
+        <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><b>Neben der Schule</b><span>Ich arbeite in meiner Freizeit an Ihrem Projekt, mit festen Absprachen und klaren Terminen.</span></div></li>
+        <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg></span><div><b>Direkt und persönlich</b><span>Sie sprechen immer direkt mit mir, ohne Umwege.</span></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" id="ablauf">
+    <h2>So arbeiten <em>wir</em> zusammen</h2>
+    <p class="sub">Ein klarer Weg von der ersten Idee bis zu Ihrem fertigen Auftritt.</p>
+    <ol class="steps">
+      <li>
+        <h3>Kennenlernen</h3>
+        <p>Wir sprechen in Ruhe über Ihr Unternehmen, Ihre Ziele und Ihre Wünsche. Das Erstgespräch ist unverbindlich.</p>
+      </li>
+      <li>
+        <h3>Entwurf</h3>
+        <p>Ich gestalte einen Entwurf, der zu Ihnen passt. Ihre Rückmeldung ist mir wichtig, wir feilen gemeinsam, bis Sie rundum zufrieden sind.</p>
+      </li>
+      <li>
+        <h3>Veröffentlichung</h3>
+        <p>Ihr Projekt geht online. Bei Fragen bin ich auch danach weiterhin für Sie da.</p>
+      </li>
+    </ol>
+  </section>
+
+  <section class="block" id="faq">
+    <h2>Häufige <em>Fragen</em></h2>
+    <p class="sub">Kurze Antworten auf das, was Unternehmen am häufigsten wissen wollen.</p>
+    <div class="faq-tabs" role="tablist" aria-label="Themen der Fragen"><button class="faq-tab" type="button" role="tab" id="tab-kosten" aria-controls="panel-kosten" aria-selected="true" data-tab="kosten">Kosten &amp; Ablauf</button><button class="faq-tab" type="button" role="tab" id="tab-start" aria-controls="panel-start" aria-selected="false" data-tab="start">Nach dem Start</button><button class="faq-tab" type="button" role="tab" id="tab-social" aria-controls="panel-social" aria-selected="false" data-tab="social">Social Media</button></div>
+    <div class="faq" role="tabpanel" id="panel-kosten" aria-labelledby="tab-kosten">
+      <details open>
+        <summary>Was kostet eine Website?</summary>
+        <p>Es gibt ein Standardpaket, das für die meisten Unternehmen ausreicht. Haben Sie zusätzliche Wünsche, sind diese möglich und werden extra berechnet. Den genauen Preis besprechen wir im unverbindlichen Erstgespräch.</p>
+      </details>
+      <details>
+        <summary>Wie lange dauert es bis zur fertigen Seite?</summary>
+        <p>Je nach Auftrag brauche ich etwa 2 bis 3 Wochen. Den genauen Zeitplan legen wir gemeinsam im Erstgespräch fest, damit Sie von Anfang an wissen, womit Sie rechnen können.</p>
+      </details>
+    </div>
+    <div class="faq" role="tabpanel" id="panel-start" aria-labelledby="tab-start" hidden>
+      <details>
+        <summary>Was passiert, wenn etwas nicht funktioniert?</summary>
+        <p>Treten nach dem Start Probleme oder Fehler auf, behebe ich diese kostenlos.</p>
+      </details>
+      <details>
+        <summary>Kann ich später Änderungen oder Erweiterungen bekommen?</summary>
+        <p>Ja. Änderungen und Erweiterungen, die zusätzliche Zeit brauchen, berechne ich nach vorheriger Absprache gesondert. Sie erfahren den Preis immer vorab.</p>
+      </details>
+    </div>
+    <div class="faq" role="tabpanel" id="panel-social" aria-labelledby="tab-social" hidden>
+      <details>
+        <summary>Was umfasst die Social-Media-Beratung?</summary>
+        <p>Ich analysiere Ihre Kanäle, entwickle mit Ihnen eine Strategie und richte Profile sowie Vorlagen für Ihre Beiträge ein. Danach setzen Sie die Beiträge selbst um, und bei Fragen berate ich Sie weiter.</p>
+      </details>
+      <details>
+        <summary>Übernehmen Sie die laufende Betreuung meiner Kanäle?</summary>
+        <p>Nein, die laufende Pflege übernehmen Sie selbst. Ich unterstütze Sie beim Start und berate Sie, damit Sie Ihre Kanäle sicher und regelmäßig bespielen können.</p>
+      </details>
+      <details>
+        <summary>Haben Sie Erfahrung mit Social Media?</summary>
+        <p>Ja. Ich habe bereits Social-Media-Kanäle für Vereine geführt und kenne die Abläufe aus der Praxis.</p>
+      </details>
+    </div>
+  </section>
+
+  <section class="block contact-wrap" id="kontakt">
+    <div class="cta-panel">
+      <h2>Schreiben Sie mir <em>Ihre Wünsche</em></h2>
+      <p class="sub">Eine kurze E-Mail genügt. Ich melde mich zeitnah persönlich bei Ihnen und nehme mir Zeit für Ihr Anliegen.</p>
+      <div class="mail-pill">
+        <span class="mail-addr" id="mailaddr">kontakt.mika.gertz@gmail.com</span>
+        <button class="copy-pill" type="button" id="copybtn">Kopieren</button>
+      </div>
+      <div class="cta-actions">
+        <a class="btn-white" href="mailto:kontakt.mika.gertz@gmail.com?subject=Anfrage%20zur%20Website">E-Mail schreiben</a>
+      </div>
+      <p class="copied" id="copied" role="status"></p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <span>© <span id="year">2026</span> Mika Gertz</span>
+      <div>
+        <button class="linkbtn" type="button" data-open="impressum">Impressum</button>
+        <button class="linkbtn" type="button" data-open="datenschutz">Datenschutz</button>
+      </div>
+    </div>
+
+    <div class="legal" id="impressum" hidden>
+      <h3>Impressum</h3>
+      <h4>Angaben gemäß § 5 DDG</h4>
+      <p>Mika Gertz<br>Weinbergstraße 33<br>73614 Schorndorf</p>
+      <h4>Kontakt</h4>
+      <p>E-Mail: kontakt.mika.gertz@gmail.com</p>
+      <h4>Verantwortlich für den Inhalt</h4>
+      <p>Mika Gertz, Anschrift wie oben</p>
+    </div>
+
+    <div class="legal" id="datenschutz" hidden>
+      <h3>Datenschutz</h3>
+      <h4>Verantwortlicher</h4>
+      <p>Mika Gertz, Weinbergstraße 33, 73614 Schorndorf, kontakt.mika.gertz@gmail.com</p>
+      <h4>Kontaktaufnahme</h4>
+      <p>Wenn Sie mir eine E-Mail schreiben, verarbeite ich Ihre Angaben ausschließlich zur Bearbeitung Ihrer Anfrage und lösche sie, sobald sie nicht mehr benötigt werden.</p>
+      <h4>Cookies und Tracking</h4>
+      <p>Diese Seite setzt keine Cookies und verwendet keine Analyse- oder Tracking-Dienste. Schriftarten werden von Google Fonts geladen, dabei wird Ihre IP-Adresse an Google übertragen.</p>
+      <h4>Ihre Rechte</h4>
+      <p>Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit und Widerspruch sowie auf Beschwerde bei einer Aufsichtsbehörde.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var cmp = document.getElementById('compare');
+  var slider = document.getElementById('slider');
+  function setP() { cmp.style.setProperty('--p', slider.value + '%'); }
+  slider.addEventListener('input', setP);
+  setP();
+
+  var copyBtn = document.getElementById('copybtn');
+  var note = document.getElementById('copied');
+  var addr = document.getElementById('mailaddr');
+  copyBtn.addEventListener('click', function () {
+    var text = addr.textContent.trim();
+    function fallback() {
+      var r = document.createRange();
+      r.selectNodeContents(addr);
+      var s = window.getSelection();
+      s.removeAllRanges();
+      s.addRange(r);
+      note.textContent = 'Adresse markiert. Mit Strg+C bzw. Cmd+C kopieren.';
+    }
+    try {
+      navigator.clipboard.writeText(text).then(function () {
+        note.textContent = 'Adresse kopiert.';
+      }, fallback);
+    } catch (e) { fallback(); }
+  });
+
+  document.querySelectorAll('[data-open]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var id = b.getAttribute('data-open');
+      ['impressum', 'datenschutz'].forEach(function (k) {
+        var el = document.getElementById(k);
+        el.hidden = (k !== id) ? true : !el.hidden;
+      });
+      var t = document.getElementById(id);
+      if (!t.hidden) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+})();
+</script>
+<script>
+(function () {
+  var cmp = document.getElementById('compare');
+  function fit() {
+    var k = cmp.clientWidth / 960;
+    cmp.style.setProperty('--k', k);
+    cmp.style.height = (620 * k) + 'px';
+  }
+  fit();
+  window.addEventListener('resize', fit);
+  if (window.ResizeObserver) new ResizeObserver(fit).observe(cmp);
+})();
+</script>
+<script>
+(function () {
+  var tabs = document.querySelectorAll('.faq-tab');
+  tabs.forEach(function (t) {
+    t.addEventListener('click', function () {
+      tabs.forEach(function (x) {
+        var on = x === t;
+        x.setAttribute('aria-selected', on ? 'true' : 'false');
+        document.getElementById('panel-' + x.getAttribute('data-tab')).hidden = !on;
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>
