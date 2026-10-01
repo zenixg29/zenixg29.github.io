@@ -811,6 +811,8 @@ section.contact-wrap { border-top: 0; padding-block: 40px 88px; }
 (function () {
   var REVIEWS = [];
   var MAIL = "kontakt.mika.gertz@gmail.com";
+  /* Formspree-Link hier einfügen, z. B. "https://formspree.io/f/abcdwxyz". Leer = E-Mail-Programm öffnen. */
+  var FORM_URL = "https://formspree.io/f/mvkgnnkg";
 
   function esc(t) { return String(t).replace(/[&<>"']/g, function (c) { return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
   function stars(n) { var o = ""; for (var i = 1; i <= 5; i++) o += i <= n ? "★" : '<span class="off">★</span>'; return o; }
@@ -849,8 +851,23 @@ section.contact-wrap { border-top: 0; padding-block: 40px 88px; }
     if (!firma || !st || !text) { note.className = "rev-note err"; note.textContent = "Bitte Firmenname, Sterne und Kommentar ausfüllen."; return; }
     if (!document.getElementById("rev-ok").checked) { note.className = "rev-note err"; note.textContent = "Bitte stimmen Sie der Veröffentlichung zu."; return; }
     var body = "Firma: " + firma + "\nSterne: " + st.value + " von 5\n\nKommentar:\n" + text + "\n\nIch bin mit der Veröffentlichung einverstanden.";
-    window.location.href = "mailto:" + MAIL + "?subject=" + encodeURIComponent("Bewertung für Mika Gertz") + "&body=" + encodeURIComponent(body);
-    note.textContent = "Ihr E-Mail-Programm öffnet sich mit Ihrer Bewertung. Bitte senden Sie die Mail ab. Nach kurzer Prüfung erscheint sie hier.";
+    function viaMail() {
+      window.location.href = "mailto:" + MAIL + "?subject=" + encodeURIComponent("Bewertung für Mika Gertz") + "&body=" + encodeURIComponent(body);
+      note.className = "rev-note";
+      note.textContent = "Ihr E-Mail-Programm öffnet sich mit Ihrer Bewertung. Bitte senden Sie die Mail ab. Nach kurzer Prüfung erscheint sie hier.";
+    }
+    if (!FORM_URL) { viaMail(); return; }
+    var btn = form.querySelector("button[type=submit]");
+    btn.disabled = true; note.textContent = "Wird gesendet …";
+    fetch(FORM_URL, { method: "POST", headers: { "Accept": "application/json", "Content-Type": "application/json" },
+      body: JSON.stringify({ firma: firma, sterne: st.value, kommentar: text, _subject: "Neue Bewertung für Mika Gertz" }) })
+      .then(function (r) {
+        if (!r.ok) throw new Error("fail");
+        form.reset(); note.className = "rev-note";
+        note.textContent = "Vielen Dank! Ihre Bewertung ist angekommen und erscheint nach kurzer Prüfung hier.";
+      })
+      .catch(function () { viaMail(); })
+      .then(function () { btn.disabled = false; });
   });
 })();
 </script>
