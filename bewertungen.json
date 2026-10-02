@@ -1,1 +1,3 @@
-[]
+[
+  { "firma": "Das ist ein Test", "sterne": 5, "text": "Hallo", "datum": "2026-10-02" }
+]
