@@ -3,6 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#070707" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#fbfaf9" media="(prefers-color-scheme: light)">
 <meta name="description" content="Gertz Digital von Mika Gertz: Websites, Social Media und mehr für Unternehmen. Modern, klar und persönlich betreut. Jetzt Erstgespräch anfragen.">
 <title>Gertz Digital – Websites, Social Media und mehr für Unternehmen</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 512 512%22%3E%3Crect width=%22512%22 height=%22512%22 rx=%22112%22 fill=%22%23000%22/%3E%3Cg transform=%22translate%28256 256%29 scale%28.42%29 translate%28-627 -637%29%22%3E%3Cpath fill=%22%23fb0000%22 d=%22M628 345 H372 C190 345 71 480 71 650 C71 820 190 921 372 921 H505 V757 C460 790 420 812 372 812 C270 812 190 740 190 640 C190 540 270 453 372 453 H523 Z%22/%3E%3Cpath fill=%22%23fb0000%22 d=%22M392 582 H663 V808 L538 929 V682 H295 Z%22/%3E%3Cpath fill=%22%23fff%22 d=%22M620 411 H830 C875 411 910 440 935 487 H868 V509 H1005 V538 H915 V565 H1115 V598 H975 V641 H1060 V676 H975 V704 H1020 V762 H983 V803 H1078 V832 H863 V853 H935 C910 895 870 929 790 929 H585 L665 832 H760 C850 832 905 760 905 668 C905 570 850 505 760 505 H537 Z%22/%3E%3Cg fill=%22%23fff%22%3E%3Crect x=%221051%22 y=%22455%22 width=%2240%22 height=%2241%22/%3E%3Crect x=%221139%22 y=%22529%22 width=%2231%22 height=%2231%22/%3E%3Crect x=%221097%22 y=%22634%22 width=%2240%22 height=%2240%22/%3E%3Crect x=%221048%22 y=%22742%22 width=%22136%22 height=%2233%22/%3E%3Crect x=%22977%22 y=%22875%22 width=%2250%22 height=%2249%22/%3E%3Crect x=%22930%22 y=%22890%22 width=%2220%22 height=%2220%22/%3E%3Crect x=%221111%22 y=%22826%22 width=%2216%22 height=%2214%22/%3E%3Crect x=%22922%22 y=%22735%22 width=%2264%22 height=%2222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E">
@@ -473,6 +476,60 @@ section.contact-wrap { border-top: 0; padding-block: 40px 88px; }
 .rev-note.err { color: #ff8a9a; }
 .hp { position: absolute; left: -9999px; }
 @media (max-width: 860px) { .rev-grid { grid-template-columns: minmax(0,1fr); } }
+
+/* Lightmode: folgt der Geräteeinstellung */
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #fbfaf9;
+    --surface: rgba(255,255,255,.82);
+    --line: #e1dfdc;
+    --fg: #111114;
+    --muted: #55555e;
+    color-scheme: light;
+  }
+  body {
+    background:
+      radial-gradient(900px 640px at 96% 0%, rgba(251,0,0,.13), transparent 70%),
+      radial-gradient(800px 800px at 0% 38%, rgba(251,0,0,.06), transparent 70%),
+      radial-gradient(900px 700px at 100% 68%, rgba(251,0,0,.07), transparent 70%),
+      var(--bg);
+    background-repeat: no-repeat;
+  }
+  .brand-mark [fill="#fff"], .brand-mark [fill="#ffffff"] { fill: #111114; }
+  .top nav a { color: #3a3a42; }
+  .top nav a:hover { color: #000; }
+  .top nav a.keep, .top nav a.keep:hover { color: #fff; }
+  .btn { box-shadow: 0 8px 26px rgba(251,0,0,.28); }
+  .btn.ghost { box-shadow: none; border-color: #c4c2be; }
+  .top nav a.keep { box-shadow: 0 6px 18px rgba(251,0,0,.25); }
+  .services .service, .services .service:last-child {
+    border-color: rgba(0,0,0,.09);
+    background: linear-gradient(160deg, #ffffff 0%, #f4f2f0 100%);
+    box-shadow: 0 1px 2px rgba(0,0,0,.04);
+  }
+  .services .service:hover { border-color: rgba(0,0,0,.2); background: linear-gradient(160deg, #ffffff 0%, #efedea 100%); box-shadow: 0 12px 30px rgba(0,0,0,.08); }
+  .ico { color: #111114; background: rgba(0,0,0,.05); border-color: rgba(0,0,0,.1); }
+  .service .meta { color: #6e6e76; }
+  .about { border-color: rgba(0,0,0,.09); background: linear-gradient(160deg, #ffffff 0%, #f4f2f0 100%); }
+  .about-facts li, .faq details, .pkg-note { background: rgba(0,0,0,.03); border-color: rgba(0,0,0,.09); }
+  .faq details:hover { border-color: rgba(0,0,0,.25); }
+  .faq details[open] { background: rgba(0,0,0,.05); }
+  .faq summary::after { background: rgba(0,0,0,.07); }
+  .faq-tab { border-color: rgba(0,0,0,.18); }
+  .faq-tab:hover { color: var(--fg); border-color: rgba(0,0,0,.4); }
+  .faq-tab[aria-selected="true"] { background: #111114; color: #fff; border-color: #111114; }
+  .rev-sum b, .rev-empty b { color: #111114; }
+  .stars .off { color: #d3d1cd; }
+  .rev time { color: #7b7b83; }
+  .rev { box-shadow: 0 1px 2px rgba(0,0,0,.04); }
+  .rev-form input[type=text], .rev-form textarea { background: #fff; color: #111114; }
+  .star-pick label { color: #d3d1cd; }
+  .star-pick input:focus-visible + label { outline-color: #111114; }
+  .rev-note.err { color: #c4001a; }
+  .mail-card { border-color: rgba(0,0,0,.15); }
+  .linkbtn:hover { color: #000; }
+  .compare { box-shadow: 0 10px 40px rgba(0,0,0,.08); }
+}
 </style>
 </head>
 <body>
