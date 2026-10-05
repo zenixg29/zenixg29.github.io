@@ -545,14 +545,25 @@ h1 em::before {
   function setP() { cmp.style.setProperty('--p', slider.value + '%'); }
   slider.addEventListener('input', setP);
   setP();
+  var lastW = -1, queued = false;
   function fit() {
-    var k = cmp.clientWidth / 960;
+    queued = false;
+    var w = cmp.clientWidth;
+    if (w === lastW) return;
+    lastW = w;
+    var k = w / 960;
     cmp.style.setProperty('--k', k);
     cmp.style.height = (620 * k) + 'px';
   }
+  /* Erst im nächsten Bild anpassen, sonst meldet der Browser eine ResizeObserver-Schleife. */
+  function later() {
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(fit);
+  }
   fit();
-  window.addEventListener('resize', fit);
-  if (window.ResizeObserver) new ResizeObserver(fit).observe(cmp);
+  window.addEventListener('resize', later);
+  if (window.ResizeObserver) new ResizeObserver(later).observe(cmp);
 })();
 </script>
 <script>
@@ -680,6 +691,61 @@ h1 em::before {
   }
   ta.addEventListener('input', grow);
   document.getElementById('rev-form').addEventListener('reset', function () { setTimeout(function () { ta.style.height = ''; }, 0); });
+})();
+</script>
+<script>
+(function () {
+  /* Menü-Links und Buttons: Abschnitt mittig im sichtbaren Bereich anzeigen.
+     Ist ein Abschnitt höher als der Bildschirm, beginnt er direkt unter der Kopfzeile. */
+  var header = document.querySelector('.top');
+  var calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function go(el, smooth) {
+    var hh = header ? header.offsetHeight : 0;
+    var cs = getComputedStyle(el);
+    var pt = parseFloat(cs.paddingTop) || 0, pb = parseFloat(cs.paddingBottom) || 0;
+    var r = el.getBoundingClientRect();
+    var h = r.height - pt - pb;
+    var top = r.top + window.pageYOffset + pt;
+    var free = window.innerHeight - hh;
+    var y = h <= free - 24 ? top - hh - (free - h) / 2 : top - hh - Math.min(pt, 20) - (pt ? 0 : 20);
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    window.scrollTo({ top: Math.max(0, Math.min(y, max)), behavior: smooth && !calm ? 'smooth' : 'auto' });
+  }
+  /* Letzter Abschnitt: auf hohen Bildschirmen endet die Seite zu früh, um ihn mittig zu zeigen.
+     Dann bekommt er unten so viel Platz, wie dafür fehlt. */
+  function room() {
+    var el = document.getElementById('kontakt');
+    if (!el) return;
+    el.style.paddingBottom = '';
+    var hh = header ? header.offsetHeight : 0;
+    var cs = getComputedStyle(el);
+    var pt = parseFloat(cs.paddingTop) || 0, pb = parseFloat(cs.paddingBottom) || 0;
+    var h = el.offsetHeight - pt - pb;
+    var free = window.innerHeight - hh;
+    if (h > free - 24) return;
+    var bottom = el.getBoundingClientRect().bottom + window.pageYOffset;
+    var below = pb + document.documentElement.scrollHeight - bottom;
+    var need = (free - h) / 2;
+    if (need > below) el.style.paddingBottom = Math.ceil(pb + need - below) + 'px';
+  }
+  room();
+  window.addEventListener('load', room);
+  window.addEventListener('resize', room);
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest ? e.target.closest('a[href^="#"]') : null;
+    if (!a) return;
+    var id = a.getAttribute('href').slice(1);
+    var el = id ? document.getElementById(id) : null;
+    if (!el) return;
+    e.preventDefault();
+    room();
+    go(el, true);
+    if (history.pushState) history.pushState(null, '', '#' + id);
+  });
+  window.addEventListener('load', function () {
+    var el = location.hash.length > 1 ? document.getElementById(location.hash.slice(1)) : null;
+    if (el) setTimeout(function () { go(el, false); }, 60);
+  });
 })();
 </script>
 </body>
