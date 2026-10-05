@@ -210,6 +210,8 @@ html { scroll-behavior: smooth; }
 .rev-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 8px; }
 .rev p { margin: 0; color: var(--fg); overflow-wrap: anywhere; }
 .rev time { display: block; margin-top: 10px; font-size: 0.85rem; color: var(--fg); }
+.rev-more { margin-top: 18px; }
+.rev-more[hidden] { display: none; }
 .rev-empty { margin: 0; padding: 30px 26px; border: 1px dashed #5a5a5f; border-radius: 12px; color: var(--fg); }
 .rev-form .win-body { display: grid; gap: 18px; }
 .rev-form h3 { margin: 0; }
@@ -464,6 +466,7 @@ h1 em::before {
         <div class="rev-sum" id="rev-sum" hidden><b id="rev-avg"></b><span><span class="stars" id="rev-avg-stars" aria-hidden="true"></span><br><span id="rev-count"></span></span></div>
         <ul class="rev-list" id="rev-list"></ul>
         <p class="rev-empty" id="rev-empty">Bisher gibt es noch keine Bewertungen.</p>
+        <a class="btn ghost rev-more" id="rev-more" href="bewertungen.html" hidden>Alle Bewertungen anzeigen</a>
       </div>
       <form class="win rev-form" id="rev-form" novalidate>
         <div class="win-bar" aria-hidden="true"><i></i><i></i><i></i></div>
@@ -614,6 +617,11 @@ h1 em::before {
     });
   });
   document.getElementById('year').textContent = new Date().getFullYear();
+  var h = location.hash.slice(1);
+  if (h === 'impressum' || h === 'datenschutz') {
+    var btn = document.querySelector('[data-open="' + h + '"]');
+    if (btn) setTimeout(function () { btn.click(); }, 80);
+  }
 })();
 </script>
 <script>
@@ -628,18 +636,25 @@ h1 em::before {
   function fmt(d) { try { return new Date(d).toLocaleDateString("de-DE", { year: "numeric", month: "long" }); } catch (e) { return ""; } }
 
   var list = document.getElementById("rev-list"), empty = document.getElementById("rev-empty"), sum = document.getElementById("rev-sum");
+  var TOP = 3;
+  /* Beste zuerst: mehr Sterne, bei Gleichstand die neuere Bewertung */
+  function best(a, b) { return (b.sterne - a.sterne) || String(b.datum || "").localeCompare(String(a.datum || "")); }
   function render() {
   if (REVIEWS.length) {
     empty.hidden = true; sum.hidden = false;
     var total = 0;
-    list.innerHTML = REVIEWS.map(function (r) {
-      total += r.sterne;
+    REVIEWS.forEach(function (r) { total += r.sterne; });
+    var top = REVIEWS.slice().sort(best).slice(0, TOP);
+    list.innerHTML = top.map(function (r) {
       return '<li class="rev"><div class="rev-head"><b>' + esc(r.firma) + '</b><span class="stars" role="img" aria-label="' + r.sterne + ' von 5 Sternen">' + stars(r.sterne) + '</span></div><p>' + esc(r.text) + '</p>' + (r.datum ? '<time datetime="' + esc(r.datum) + '">' + fmt(r.datum) + '</time>' : '') + '</li>';
     }).join("");
     var avg = total / REVIEWS.length;
     document.getElementById("rev-avg").textContent = avg.toFixed(1).replace(".", ",");
     document.getElementById("rev-avg-stars").innerHTML = stars(Math.round(avg));
     document.getElementById("rev-count").textContent = REVIEWS.length + (REVIEWS.length === 1 ? " Bewertung" : " Bewertungen");
+    var more = document.getElementById("rev-more");
+    more.hidden = REVIEWS.length <= TOP;
+    more.textContent = "Alle " + REVIEWS.length + " Bewertungen anzeigen";
   }
   }
   fetch("bewertungen.json?v=" + Date.now(), { cache: "no-store" })
