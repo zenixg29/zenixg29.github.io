@@ -3,338 +3,80 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="dark light">
-<meta name="theme-color" content="#070707" media="(prefers-color-scheme: dark)">
-<meta name="theme-color" content="#fbfaf9" media="(prefers-color-scheme: light)">
-<meta name="description" content="Gertz Digital von Mika Gertz: Websites, Social Media und mehr für Unternehmen. Modern, klar und persönlich betreut. Jetzt Erstgespräch anfragen.">
-<title>Gertz Digital – Websites, Social Media und mehr für Unternehmen</title>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 512 512%22%3E%3Crect width=%22512%22 height=%22512%22 rx=%22112%22 fill=%22%23000%22/%3E%3Cg transform=%22translate%28256 256%29 scale%28.42%29 translate%28-627 -637%29%22%3E%3Cpath fill=%22%23fb0000%22 d=%22M628 345 H372 C190 345 71 480 71 650 C71 820 190 921 372 921 H505 V757 C460 790 420 812 372 812 C270 812 190 740 190 640 C190 540 270 453 372 453 H523 Z%22/%3E%3Cpath fill=%22%23fb0000%22 d=%22M392 582 H663 V808 L538 929 V682 H295 Z%22/%3E%3Cpath fill=%22%23fff%22 d=%22M620 411 H830 C875 411 910 440 935 487 H868 V509 H1005 V538 H915 V565 H1115 V598 H975 V641 H1060 V676 H975 V704 H1020 V762 H983 V803 H1078 V832 H863 V853 H935 C910 895 870 929 790 929 H585 L665 832 H760 C850 832 905 760 905 668 C905 570 850 505 760 505 H537 Z%22/%3E%3Cg fill=%22%23fff%22%3E%3Crect x=%221051%22 y=%22455%22 width=%2240%22 height=%2241%22/%3E%3Crect x=%221139%22 y=%22529%22 width=%2231%22 height=%2231%22/%3E%3Crect x=%221097%22 y=%22634%22 width=%2240%22 height=%2240%22/%3E%3Crect x=%221048%22 y=%22742%22 width=%22136%22 height=%2233%22/%3E%3Crect x=%22977%22 y=%22875%22 width=%2250%22 height=%2249%22/%3E%3Crect x=%22930%22 y=%22890%22 width=%2220%22 height=%2220%22/%3E%3Crect x=%221111%22 y=%22826%22 width=%2216%22 height=%2214%22/%3E%3Crect x=%22922%22 y=%22735%22 width=%2264%22 height=%2222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#000000">
+<meta name="description" content="Visible Digital: Webdesign, Social Media &amp; Werbung für Unternehmen.">
+<title>Visible Digital</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 512 512%22%3E%3Crect width=%22512%22 height=%22512%22 rx=%22112%22 fill=%22%23000%22/%3E%3Cg transform=%22translate%28256 256%29 scale%28.4%29 translate%28-741 -602%29%22%3E%3Cpath fill=%22%23fb0000%22 d=%22M163 320 H310 L462 594 L616 320 H759 L462 879 Z%22/%3E%3Cpath class=%22d%22 fill=%22%23fff%22 fill-rule=%22evenodd%22 d=%22M790 320 H910 C995 320 1048 376 1073 437 H981 V453 H1132 V492 H1040 V517 H1238 V558 H1098 V595 H1191 V634 H1096 V660 H1144 V725 H1107 V757 H1205 V789 H990 V805 H1065 C1032 856 985 884 910 884 H610 V668 L690 517 H758 V773 H850 C940 773 995 700 995 605 C995 510 940 438 850 438 H728 Z M1033 694 H1102 V710 H1033 Z%22/%3E%3Cg class=%22d%22 fill=%22%23fff%22%3E%3Crect x=%221152%22 y=%22383%22 width=%2253%22 height=%2257%22/%3E%3Crect x=%221256%22 y=%22471%22 width=%2243%22 height=%2242%22/%3E%3Crect x=%221222%22 y=%22590%22 width=%2249%22 height=%2246%22/%3E%3Crect x=%221166%22 y=%22697%22 width=%22153%22 height=%2238%22/%3E%3Crect x=%221232%22 y=%22784%22 width=%2224%22 height=%2219%22/%3E%3Crect x=%221090%22 y=%22833%22 width=%2252%22 height=%2252%22/%3E%3Crect x=%221036%22 y=%22853%22 width=%2226%22 height=%2225%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
 <style>
-/* Layout: ein ruhiger, einspaltiger Auftritt. Die Kante sitzt im Hero:
-   ein Vorher/Nachher-Regler, der zeigt, was ein Redesign bewirkt. */
+/* Visible Digital. Rohfassung: nur Kopfzeile und Überschrift. Schwarz, Weiß, Rot. */
 :root {
-  --bg: #070707;
-  --surface: rgba(24,24,28,.72);
-  --line: #34343a;
+  --bg: #000000;
   --fg: #ffffff;
-  --muted: #c6c6cc;
+  --line: #2a2a2a;
   --red: #fb0000;
-  --red-deep: #c00000;
-  --font-display: "Plus Jakarta Sans", "Segoe UI", Helvetica, Arial, sans-serif;
-  --font-body: "Plus Jakarta Sans", "Segoe UI", Helvetica, Arial, sans-serif;
+  --font: "Plus Jakarta Sans", "Segoe UI", Helvetica, Arial, sans-serif;
   color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  margin: 0;
-  background:
-    radial-gradient(900px 640px at 96% 0%, rgba(251,0,0,.42), transparent 70%),
-    radial-gradient(800px 800px at 0% 38%, rgba(251,0,0,.22), transparent 70%),
-    radial-gradient(900px 700px at 100% 68%, rgba(251,0,0,.2), transparent 70%),
-    var(--bg);
-  background-repeat: no-repeat;
-  color: var(--fg);
-  font-family: var(--font-body);
-  font-size: 17px;
-  line-height: 1.65;
-  padding-inline: 20px;
-  padding-block: 0;
-  -webkit-font-smoothing: antialiased;
-}
-a { color: inherit; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 400 17px/1.65 var(--font); -webkit-font-smoothing: antialiased; }
 :focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
-
-.wrap { max-width: 1040px; margin-inline: auto; min-width: 0; }
+.wrap { max-width: 1080px; margin-inline: auto; padding-inline: 20px; }
 
 /* Kopfzeile */
-header.top {
-  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
-  background: var(--bg);
-  border-bottom: 1px solid var(--line);
-  margin-inline: -20px; padding-inline: 20px;
-}
-.top-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 68px; }
-.brand { font-family: var(--font-display); font-weight: 800; font-size: 1.25rem; text-decoration: none; letter-spacing: -0.01em; }
-.brand { display: inline-flex; align-items: center; gap: 12px; }
-.brand-mark { height: 40px; width: auto; flex: none; }
+.top { position: sticky; top: 0; z-index: 30; background: var(--bg); border-bottom: 1px solid var(--line); }
+.top-inner { display: flex; align-items: center; height: 68px; }
+.brand { display: inline-flex; align-items: center; gap: 12px; color: inherit; text-decoration: none; font-weight: 800; font-size: 1.3rem; letter-spacing: -0.02em; white-space: nowrap; }
+.brand-mark { height: 34px; width: auto; flex: none; }
 .brand b { color: var(--red); font-weight: 800; }
-.top nav { display: flex; gap: 28px; }
-.top nav a { text-decoration: none; font-size: 0.78rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); transition: color .2s; }
-.top nav a:hover { color: var(--fg); }
 
-/* Hero */
-.hero { padding-block: 84px 72px; }
-.eyebrow { font-size: 0.75rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--red); font-weight: 600; margin: 0 0 22px; }
-h1 {
-  font-family: var(--font-display); font-weight: 700;
-  font-size: clamp(2.8rem, 7.4vw, 5.6rem);
-  line-height: 1.02; letter-spacing: -0.035em; font-weight: 800; margin: 0; max-width: 14ch; text-wrap: balance;
-}
-em { font-style: normal; }
-h1 em { color: var(--red); }
-.lead { max-width: 54ch; color: var(--muted); font-size: 1.12rem; margin: 28px 0 38px; }
-.btn-row { display: flex; gap: 14px; flex-wrap: wrap; }
-.btn {
-  display: inline-block; padding: 15px 30px; font: 600 0.8rem/1 var(--font-body);
-  letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; cursor: pointer;
-  background: var(--red); color: #fff; border: 1px solid var(--red); box-shadow: 0 0 30px rgba(251,0,0,.5); transition: background .2s, border-color .2s;
-}
-.btn:hover { background: var(--red-deep); border-color: var(--red-deep); }
-.btn.ghost { box-shadow: none; background: transparent; border-color: #4a4a4d; color: var(--fg); }
-.btn.ghost:hover { border-color: var(--red); background: transparent; }
+/* Einstieg */
+.hero { padding-block: 72px 72px; }
+h1 { margin: 0; text-align: center; color: var(--fg); font-weight: 800; font-size: clamp(3.2rem, 13.5vw, 8.2rem); line-height: 0.94; letter-spacing: -0.04em; }
+h1 em { font-style: normal; color: var(--red); }
+
+.hero-sub { margin: 28px 0 0; text-align: center; font-size: 1.2rem; line-height: 1.55; color: var(--fg); }
+
+/* Laptop von vorne. Auf dem Bildschirm läuft der Vorher-Nachher-Vergleich. */
+.laptop { max-width: 880px; margin: 56px auto 0; }
+.laptop-lid { position: relative; padding: 16px 14px 14px; background: #0c0c0e; border: 1.5px solid #9a9aa0; border-bottom: 0; border-radius: 18px 18px 0 0; }
+.laptop-lid::before { content: ""; position: absolute; top: 6px; left: 50%; width: 5px; height: 5px; margin-left: -2.5px; border-radius: 50%; background: #2c2c30; }
+.laptop-base { position: relative; height: 16px; background: linear-gradient(#e3e3e8, #b9b9c0 50%, #85858c); }
+.laptop-base::before { content: ""; position: absolute; top: 0; left: 50%; width: 100px; height: 7px; margin-left: -50px; border-radius: 0 0 5px 5px; background: #8a8a91; }
 
 /* Vorher / Nachher */
-.compare-sec { padding-bottom: 88px; }
-.compare-cap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 14px; font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
-.compare-cap b { color: var(--fg); font-weight: 600; }
-.compare {
-  --p: 50%;
-  position: relative; height: 360px; border: 1px solid var(--line); overflow: hidden; user-select: none;
-}
-.layer { position: absolute; inset: 0; padding: 20px 24px; overflow: hidden; }
-
-/* alte Seite */
-.old { background: #ececdf; color: #222; font-family: "Times New Roman", Times, serif; font-size: 15px; line-height: 1.35; }
-.old .o-bar { background: #000080; color: #ffff66; padding: 6px 10px; font-weight: bold; font-size: 13px; margin: -20px -24px 14px; }
-.old h4 { margin: 0 0 6px; font-size: 26px; color: #800000; font-weight: bold; }
-.old p { margin: 0 0 8px; }
-.old a { color: #0000ee; text-decoration: underline; }
-.old .o-row { display: flex; gap: 10px; flex-wrap: wrap; margin: 10px 0; }
-.old .o-box { border: 2px outset #999; background: #d4d0c8; padding: 6px 10px; font-size: 13px; font-family: Arial, sans-serif; }
-.old .o-count { font-size: 12px; margin-top: 12px; }
-
-/* neue Seite */
-.new { background: #0f0f10; color: var(--fg); font-family: var(--font-body); clip-path: inset(0 calc(100% - var(--p)) 0 0); }
-.new .n-bar { display: flex; justify-content: space-between; align-items: center; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 38px; }
-.new .n-bar b { font-family: var(--font-display); font-size: 18px; font-weight: 700; letter-spacing: 0; text-transform: none; color: var(--fg); }
-.new h4 { font-family: var(--font-display); font-weight: 800; letter-spacing: -0.03em; font-size: 40px; line-height: 1.05; margin: 0 0 14px; max-width: 12ch; }
-.new h4 em { color: var(--red); }
-.new p { color: var(--muted); margin: 0 0 20px; max-width: 34ch; font-size: 14px; }
-.new .n-btn { display: inline-block; background: var(--red); color: #fff; padding: 11px 20px; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; font-weight: 600; }
-
-.divider { position: absolute; top: 0; bottom: 0; left: var(--p); width: 2px; background: var(--red); transform: translateX(-1px); pointer-events: none; }
-.divider::after {
-  content: "↔"; position: absolute; top: 50%; left: 50%; width: 42px; height: 42px; transform: translate(-50%, -50%);
-  display: grid; place-items: center; background: var(--red); color: #fff; border-radius: 50%; font-size: 18px;
-}
-.compare input[type=range] { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: ew-resize; margin: 0; }
-.compare input[type=range]:focus-visible + .divider::after { outline: 2px solid #fff; outline-offset: 2px; }
-.tag { position: absolute; top: 12px; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; padding: 4px 9px; font-family: var(--font-body); font-weight: 600; z-index: 2; pointer-events: none; }
-.tag.l { left: 12px; background: var(--red); color: #fff; }
-.tag.r { right: 12px; background: #000; color: #fff; }
-
-/* Abschnitte */
-section.block { padding-block: 88px; border-top: 1px solid var(--line); }
-h2 { font-family: var(--font-display); font-weight: 700; font-size: clamp(2.1rem, 4.6vw, 3.2rem); line-height: 1.08; letter-spacing: -0.03em; margin: 0 0 14px; text-wrap: balance; max-width: 18ch; }
-h2 em { color: var(--red); }
-.sub { color: var(--muted); max-width: 54ch; margin: 0 0 48px; }
-
-.services { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border: 1px solid var(--line); background: var(--surface); }
-.service { padding: 36px 30px 40px; border-right: 1px solid var(--line); min-width: 0; transition: background .25s; }
-.service:last-child { border-right: 0; }
-.service:hover { background: var(--red); }
-.service:hover p { color: #fff; }
-.service:hover .mark { background: #fff; }
-.service h3 { font-family: var(--font-display); font-weight: 700; font-size: 1.5rem; line-height: 1.15; letter-spacing: -0.02em; margin: 0 0 14px; }
-.service p { margin: 0; color: var(--muted); font-size: 0.98rem; }
-.service .mark { display: block; width: 28px; height: 3px; background: var(--red); margin-bottom: 26px; }
-
-.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; counter-reset: s; }
-.steps li { counter-increment: s; border-top: 1px solid var(--line); padding-top: 22px; min-width: 0; }
-.steps li::before { content: "Schritt " counter(s); display: block; font-size: 0.74rem; letter-spacing: .2em; text-transform: uppercase; color: var(--red); font-weight: 600; margin-bottom: 12px; }
-.steps h3 { font-family: var(--font-display); font-weight: 700; font-size: 1.3rem; letter-spacing: -0.02em; margin: 0 0 8px; }
-.steps p { margin: 0; color: var(--muted); font-size: 0.98rem; }
-
-/* Kontakt */
-.alt { background: var(--surface); margin-inline: -20px; padding-inline: 20px; }
-.contact { background: var(--red); margin-inline: -20px; padding-inline: 20px; border-top: 0 !important; }
-.contact h2 em { color: #070707; }
-.contact .sub { color: #fff; }
-.contact-box { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 56px; align-items: center; }
-.mail-card { border: 1px solid #000; background: var(--bg); padding: 28px; }
-.mail-label { font-size: 0.74rem; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; }
-.mail-addr { font-size: 1.1rem; font-weight: 600; word-break: break-all; margin: 0 0 20px; user-select: all; }
-.mail-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
-.copied { font-size: 0.85rem; color: var(--muted); min-height: 1.4em; }
-
-/* Fuß */
-footer { padding-block: 34px 44px; color: var(--muted); font-size: 0.86rem; }
-.foot { display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
-.foot div { display: flex; gap: 22px; }
-.linkbtn { background: none; border: 0; padding: 0; font: inherit; color: inherit; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
-.linkbtn:hover { color: var(--fg); }
-
-.legal { border-top: 1px solid var(--line); padding-block: 44px 10px; max-width: 70ch; }
-.legal h3 { font-family: var(--font-display); font-weight: 700; font-size: 1.6rem; margin: 0 0 16px; }
-.legal h4 { font-size: 0.78rem; letter-spacing: .16em; text-transform: uppercase; color: var(--fg); margin: 24px 0 6px; }
-.legal p { margin: 0 0 8px; color: var(--muted); font-size: 0.95rem; }
-
-@media (max-width: 820px) {
-  body { font-size: 16px; }
-  .top nav { gap: 18px; }
-  .hero { padding-block: 56px 48px; }
-  .services, .steps, .contact-box { grid-template-columns: minmax(0, 1fr); }
-  .service { border-right: 0; border-bottom: 1px solid var(--line); }
-  .service:last-child { border-bottom: 0; }
-  .steps { gap: 28px; }
-  .contact-box { gap: 36px; }
-  section.block { padding-block: 64px; }
-  .compare { height: 320px; }
-  .new h4 { font-size: 30px; }
-  .layer { padding: 16px; }
-  .old .o-bar { margin: -16px -16px 12px; }
-}
-@media (max-width: 520px) {
-  .top nav a:not(.keep) { display: none; }
-}
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  * { transition: none !important; }
-}
-
-/* Bilder im Redesign-Beispiel */
-.new { display: flex; flex-direction: column; }
-.new .n-bar { margin-bottom: 22px; }
-.n-main { flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px; align-items: stretch; }
-.n-text { align-self: center; min-width: 0; }
-.n-imgs { display: grid; grid-template-columns: 1.15fr 1fr; grid-template-rows: 1fr 1fr; gap: 10px; min-height: 0; }
-.ph { position: relative; overflow: hidden; min-height: 0; }
-.ph svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
-.ph1 { grid-row: 1 / span 2; }
-.ph3 { background: #fb0000; color: #fff; display: flex; flex-direction: column; justify-content: center; padding: 10px 14px; }
-.ph3 b { font-size: 34px; font-weight: 800; line-height: 1; letter-spacing: -0.03em; }
-.ph3 span { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; margin-top: 4px; font-weight: 600; }
-.o-imgs { position: absolute; right: 24px; top: 72px; display: flex; flex-direction: column; gap: 8px; width: 38%; max-width: 230px; }
-.o-img { border: 2px inset #999; background: #d4d0c8; padding: 14px 8px; font: 11px Arial, sans-serif; color: #333; display: flex; align-items: center; gap: 8px; }
-.old h4, .old p { max-width: 56%; }
-@media (max-width: 820px) {
-  .n-main { gap: 16px; }
-  .ph3 b { font-size: 26px; }
-}
-@media (max-width: 520px) {
-  .new .n-bar span { display: none; }
-  .new h4 { font-size: 22px; }
-  .new p { display: none; }
-  .ph3 span { font-size: 9px; }
-  .o-imgs { right: 12px; width: 44%; }
-}
-
-/* Beispiel "Nachher": eigenes, helles Design */
-.new { background: #ffffff; color: #16384f; }
-.new .n-bar { color: #5b6f7c; }
-.new .n-bar b { font-family: Georgia, "Times New Roman", serif; font-weight: 700; color: #16384f; display: inline-flex; align-items: center; gap: 8px; }
-.new .dot { width: 14px; height: 14px; border-radius: 50%; background: #12805c; display: inline-block; }
-.new h4 { font-family: Georgia, "Times New Roman", serif; font-weight: 700; letter-spacing: -0.01em; color: #16384f; }
-.new h4 em { color: #12805c; font-style: italic; }
-.new p { color: #4a5e6b; }
-.new .n-btn { background: #12805c; color: #fff; border-radius: 999px; padding: 12px 22px; }
-.ph { border-radius: 14px; }
-.ph3 { background: #dff1e8; color: #16384f; }
-.ph3 b { font-family: Georgia, "Times New Roman", serif; color: #12805c; }
-
-/* Ablauf: Zeitachse ohne Kasten */
-.steps li { position: relative; border-top: 1px solid var(--line); padding-top: 30px; }
-.steps li::after { content: ""; position: absolute; top: -6px; left: 0; width: 11px; height: 11px; border-radius: 50%; background: var(--red); box-shadow: 0 0 16px 2px rgba(251,0,0,.65); }
-.steps li::before { margin-bottom: 10px; }
-
-/* Ablauf: Fortschrittsbalken */
-.steps li { border-top: 0; padding-top: 34px; background: linear-gradient(var(--line), var(--line)) top left / 100% 4px no-repeat; }
-.steps li::after { top: 0; left: 0; width: var(--w); height: 4px; border-radius: 4px; background: var(--red); box-shadow: 0 0 14px rgba(251,0,0,.7); }
-.steps li:nth-child(1) { --w: 18%; }
-.steps li:nth-child(2) { --w: 52%; }
-.steps li:nth-child(3) { --w: 100%; }
-
-/* Kontakt: runde Fläche mit Verlauf */
-section.contact-wrap { border-top: 0; padding-block: 40px 88px; }
-.cta-panel {
-  position: relative; overflow: hidden; text-align: center;
-  border-radius: 40px; padding: 84px 32px 76px;
-  background: radial-gradient(130% 150% at 15% 0%, #ff2a1a 0%, #fb0000 50%, #d40000 100%);
-  box-shadow: 0 30px 90px rgba(251,0,0,.38);
-}
-.cta-panel::before, .cta-panel::after { content: ""; position: absolute; border-radius: 50%; border: 1px solid rgba(255,255,255,.2); pointer-events: none; }
-.cta-panel::before { width: 520px; height: 520px; right: -160px; top: -240px; }
-.cta-panel::after { width: 380px; height: 380px; left: -120px; bottom: -200px; }
-.cta-panel > * { position: relative; z-index: 1; }
-.cta-panel h2 { margin: 0 auto 16px; max-width: 16ch; color: #fff; }
-.cta-panel h2 em { color: #070707; }
-.cta-panel .sub { margin: 0 auto 36px; color: rgba(255,255,255,.92); max-width: 46ch; }
-.mail-pill {
-  display: inline-flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 10px;
-  max-width: 100%; padding: 8px 8px 8px 26px; border-radius: 999px;
-  background: rgba(7,7,7,.5); border: 1px solid rgba(255,255,255,.25);
-}
-.mail-pill .mail-addr { margin: 0; font-size: 1.05rem; font-weight: 600; color: #fff; min-width: 0; }
-.copy-pill {
-  border: 0; border-radius: 999px; padding: 12px 20px; cursor: pointer;
-  background: rgba(255,255,255,.16); color: #fff; font: 600 0.78rem/1 var(--font-body);
-  letter-spacing: .14em; text-transform: uppercase; transition: background .2s;
-}
-.copy-pill:hover { background: rgba(255,255,255,.3); }
-.cta-actions { margin-top: 22px; }
-.btn-white {
-  display: inline-block; padding: 17px 38px; border-radius: 999px; text-decoration: none;
-  background: #fff; color: #c8001f; font: 700 0.85rem/1 var(--font-body);
-  letter-spacing: .14em; text-transform: uppercase; box-shadow: 0 10px 30px rgba(0,0,0,.25);
-  transition: transform .2s;
-}
-.btn-white:hover { transform: translateY(-2px); }
-.cta-panel .copied { color: #fff; margin: 16px 0 0; }
-@media (max-width: 520px) {
-  .cta-panel { border-radius: 28px; padding: 56px 20px 52px; }
-  .mail-pill { border-radius: 26px; padding: 14px; flex-direction: column; }
-}
-
-/* Leistungen: ruhige, helle Kacheln ohne Rot */
-.services { border: 0; background: none; gap: 20px; }
-.services .service, .services .service:last-child {
-  position: relative; display: flex; flex-direction: column;
-  padding: 34px 30px 30px; border: 1px solid rgba(255,255,255,.13); border-radius: 26px;
-  background: linear-gradient(160deg, rgba(255,255,255,.085) 0%, rgba(255,255,255,.025) 60%);
-  transition: transform .25s, border-color .25s, background .25s;
-}
-.services .service:hover {
-  transform: translateY(-4px); border-color: rgba(255,255,255,.3);
-  background: linear-gradient(160deg, rgba(255,255,255,.12) 0%, rgba(255,255,255,.04) 60%);
-}
-.services .service:hover p { color: var(--muted); }
-.ico {
-  width: 54px; height: 54px; border-radius: 17px; display: grid; place-items: center; margin-bottom: 28px;
-  color: #fff; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.16);
-}
-.ico svg { width: 26px; height: 26px; }
-.service .meta {
-  margin-top: auto; padding-top: 18px; font-size: 0.74rem; letter-spacing: .14em; text-transform: uppercase; color: #9d9da6;
-}
-.service p { margin-bottom: 26px; }
-
-/* Redesign-Beispiel: skalierbare Miniatur-Seite */
-.compare { height: auto; }
-.compare-sec { max-width: 720px; margin-inline: auto; }
+.compare { --p: 50%; position: relative; overflow: hidden; border: 1px solid var(--line); border-radius: 22px; user-select: none; box-shadow: 0 30px 90px rgba(251,0,0,.14); }
+.layer { position: absolute; inset: 0; overflow: hidden; }
 .page { position: absolute; left: 0; top: 0; width: 960px; height: 620px; transform-origin: 0 0; transform: scale(var(--k, 1)); overflow: hidden; }
-.layer.s-old, .layer.s-new { padding: 0; }
-.layer.s-old { background: #ececdf; color: #1a1a1a; font-family: "Times New Roman", Times, serif; font-size: 14px; line-height: 1.3; }
-.so-banner { background: #000080; color: #ffff66; font-weight: 700; padding: 9px 10px; text-align: center; font-size: 16px; }
+.divider { position: absolute; top: 0; bottom: 0; left: var(--p); width: 2px; background: var(--red); transform: translateX(-1px); pointer-events: none; }
+.divider::after { content: ""; position: absolute; top: 50%; left: 50%; width: 44px; height: 44px; transform: translate(-50%, -50%); border-radius: 50%; box-shadow: 0 0 22px rgba(251,0,0,.5); background: var(--red) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Cpath d='M12.5 22H31.5M18 16.5l-5.5 5.5 5.5 5.5M26 16.5l5.5 5.5-5.5 5.5' fill='none' stroke='%23fff' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 100% 100% no-repeat; }
+.compare input[type=range] { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: ew-resize; }
+.compare input[type=range]:focus-visible + .divider::after { outline: 2px solid #fff; outline-offset: 2px; }
+.tag { position: absolute; bottom: 14px; z-index: 2; padding: 5px 11px; border-radius: 999px; font-size: 0.78rem; font-weight: 700; line-height: 1.3; pointer-events: none; }
+.tag.l { left: 14px; background: var(--red); color: #fff; }
+.tag.r { right: 14px; background: #000; color: #fff; }
+
+.layer.s-old { background: #1c1c24; color: #d8d8d8; font-family: "Times New Roman", Times, serif; font-size: 14px; line-height: 1.3; }
+.so-banner { background: #1a1ab0; color: #ffff66; font-weight: 700; padding: 9px 10px; text-align: center; font-size: 16px; }
 .so-cols { display: grid; grid-template-columns: 150px 1fr 200px; gap: 14px; padding: 14px; }
 .so-nav { display: flex; flex-direction: column; gap: 6px; }
-.so-btn { border: 2px outset #999; background: #d4d0c8; padding: 6px 8px; font: 13px Arial, sans-serif; }
-.so-mid h4 { margin: 0 0 8px; font-size: 28px; color: #800000; font-weight: 700; }
+.so-btn { border: 2px outset #6a6a74; background: #3a3a42; color: #e6e6e6; padding: 6px 8px; font: 13px Arial, sans-serif; }
+.so-mid h4 { margin: 0 0 8px; font-size: 28px; color: #ff9a3c; font-weight: 700; }
 .so-mid p { margin: 0 0 9px; }
 .so-mid ul { margin: 0 0 9px 20px; padding: 0; }
-.so-mid .hot { color: #d00000; font-weight: 700; text-decoration: underline; }
-.so-mid .lnk { color: #0000ee; text-decoration: underline; }
+.so-mid .hot { color: #ff5555; font-weight: 700; text-decoration: underline; }
+.so-mid .lnk { color: #6c9cff; text-decoration: underline; }
 .so-side { display: flex; flex-direction: column; gap: 9px; }
-.so-img { border: 2px inset #999; background: #d4d0c8; padding: 12px 8px; font: 11px Arial, sans-serif; display: flex; gap: 8px; align-items: center; min-height: 78px; }
-.so-star { background: #ffff00; border: 2px solid #d00000; transform: rotate(-6deg); font: 700 16px Arial, sans-serif; text-align: center; padding: 14px 8px; }
+.so-img { border: 2px inset #6a6a74; background: #3a3a42; color: #cfcfcf; padding: 12px 8px; font: 11px Arial, sans-serif; display: flex; gap: 8px; align-items: center; min-height: 78px; }
+.so-star { background: #ffff00; color: #111; border: 2px solid #d00000; transform: rotate(-6deg); font: 700 16px Arial, sans-serif; text-align: center; padding: 14px 8px; }
 .so-count { background: #000; color: #00ff00; font: 12px "Courier New", monospace; text-align: center; padding: 5px; border: 2px inset #999; }
-.so-foot { position: absolute; left: 0; right: 0; bottom: 0; background: #000080; color: #ccc; font: 12px Arial, sans-serif; padding: 8px 10px; text-align: center; }
+.so-foot { position: absolute; left: 0; right: 0; bottom: 0; background: #1a1ab0; color: #dcdcdc; font: 12px Arial, sans-serif; padding: 8px 10px; text-align: center; }
 
-.layer.s-new { background: #0b1418; color: #eaf2f0; font-family: system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; clip-path: inset(0 calc(100% - var(--p)) 0 0); }
+.layer.s-new { background: #0b1418; color: #eaf2f0; font-family: system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; line-height: 1.65; clip-path: inset(0 calc(100% - var(--p)) 0 0); }
 .np { display: flex; flex-direction: column; gap: 18px; padding: 0 44px; }
 .np-nav { height: 68px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #1d2c33; }
 .np-logo { font-family: Georgia, "Times New Roman", serif; font-size: 20px; display: flex; align-items: center; gap: 10px; font-weight: 700; }
@@ -364,205 +106,202 @@ section.contact-wrap { border-top: 0; padding-block: 40px 88px; }
 .np-card .ic { width: 34px; height: 34px; border-radius: 10px; background: #143028; color: #34d3a3; display: grid; place-items: center; margin-bottom: 10px; }
 .np-card b { font-size: 15px; display: block; margin-bottom: 4px; color: #fff; }
 .np-card .t { font-size: 12.5px; color: #8fa6ad; line-height: 1.45; display: block; }
-.np-cta { display: flex; align-items: center; justify-content: space-between; background: linear-gradient(90deg, #143028, #0f2a3a); border: 1px solid #1f3d48; border-radius: 16px; padding: 12px 12px 12px 22px; font-family: Georgia, "Times New Roman", serif; font-size: 18px; }
+.laptop .compare { border: 0; border-radius: 5px; box-shadow: none; }
 
-/* Vorher-Seite im Dunkelmodus (retro) */
-.layer.s-old { background: #1c1c24; color: #d8d8d8; }
-.so-banner { background: #1a1ab0; color: #ffff66; }
-.so-btn { border-color: #6a6a74; background: #3a3a42; color: #e6e6e6; }
-.so-mid h4 { color: #ff9a3c; }
-.so-mid .hot { color: #ff5555; }
-.so-mid .lnk { color: #6c9cff; }
-.so-img { border-color: #6a6a74; background: #3a3a42; color: #cfcfcf; }
-.so-star { color: #111; }
-.so-foot { background: #1a1ab0; color: #dcdcdc; }
+/* Die drei Leistungen */
+.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.services { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; padding-bottom: 96px; }
+/* Jede Leistung sieht aus wie ein Programmfenster: Leiste mit drei Punkten, darunter der Inhalt */
+.win { overflow: hidden; border: 1px solid #3a3a3e; border-radius: 12px; background: #0b0b0c; }
+.win-bar { display: flex; align-items: center; gap: 7px; height: 36px; padding: 0 14px; background: #1a1a1d; border-bottom: 1px solid #3a3a3e; }
+.win-bar i { width: 11px; height: 11px; border-radius: 50%; background: #56565c; }
+.win-bar i:first-child { background: var(--red); }
+.win-body { padding: 26px 24px 30px; }
+.win h3 { margin: 0 0 12px; font-weight: 800; font-size: 1.6rem; line-height: 1.15; letter-spacing: -0.02em; color: var(--fg); }
+.win p { margin: 0; color: var(--fg); }
 
-/* Über mich */
-.about {
-  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 48px; align-items: center;
-  padding: 52px; border: 1px solid rgba(255,255,255,.13); border-radius: 32px;
-  background: linear-gradient(160deg, rgba(255,255,255,.085) 0%, rgba(255,255,255,.025) 60%);
-}
-.about h2 { max-width: 14ch; }
-.about .sub { margin: 0; }
-.about-facts { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
-.about-facts li { display: flex; gap: 18px; align-items: center; padding: 18px 20px; border-radius: 22px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); }
-.about-facts .ico { flex: none; width: 48px; height: 48px; margin: 0; border-radius: 15px; }
-.about-facts b { display: block; font-size: 1.02rem; margin-bottom: 2px; }
-.about-facts li div span { color: var(--muted); font-size: 0.92rem; line-height: 1.5; display: block; }
-@media (max-width: 820px) {
-  .about { grid-template-columns: minmax(0, 1fr); gap: 32px; padding: 30px 22px; border-radius: 26px; }
-}
-@media (max-width: 640px) {
-  .top nav a[href="#ueber-mich"] { display: none; }
-}
+/* Ablauf: drei Schritte, verbunden durch eine Linie */
+h2 { margin: 0; text-align: center; font-weight: 800; font-size: clamp(2rem, 4.6vw, 3.2rem); line-height: 1.08; letter-spacing: -0.035em; color: var(--fg); }
+.process { padding-bottom: 104px; }
+.steps { list-style: none; margin: 56px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; counter-reset: schritt; text-align: center; }
+.steps li { position: relative; counter-increment: schritt; }
+.steps li::before { content: counter(schritt); display: grid; place-items: center; width: 48px; height: 48px; margin: 0 auto 22px; border-radius: 50%; background: var(--red); color: #fff; font-weight: 800; font-size: 1.25rem; line-height: 1; }
+.steps li:not(:last-child)::after { content: ""; position: absolute; top: 23px; left: calc(50% + 38px); width: calc(100% + 32px - 76px); height: 2px; background: #4a4a4f; }
+.steps h3 { margin: 0 0 10px; font-weight: 800; font-size: 1.45rem; line-height: 1.2; letter-spacing: -0.02em; color: var(--fg); }
+.steps p { margin: 0; color: var(--fg); }
 
-/* Häufige Fragen */
-.faq { display: flex; flex-direction: column; gap: 12px; max-width: 820px; }
-.faq details { border-radius: 22px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); padding: 0 24px; transition: border-color .2s, background .2s; }
-.faq details:hover { border-color: rgba(255,255,255,.26); }
-.faq details[open] { background: rgba(255,255,255,.07); }
-.faq summary { cursor: pointer; list-style: none; padding: 20px 0; font-weight: 600; font-size: 1.05rem; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
-.faq summary::-webkit-details-marker { display: none; }
-.faq summary::after { content: "+"; flex: none; width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; background: rgba(255,255,255,.1); font-size: 1.2rem; font-weight: 500; }
-.faq details[open] summary::after { content: "\2013"; }
-.faq details p { margin: 0 0 22px; color: var(--muted); max-width: 62ch; }
-
-.pkg-note { margin: 20px 0 0; padding: 20px 26px; border-radius: 22px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); color: var(--muted); max-width: 820px; }
-
-/* FAQ-Themen */
-.faq-tabs { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 22px; }
-.faq-tab {
-  border: 1px solid rgba(255,255,255,.16); background: transparent; color: var(--muted); cursor: pointer;
-  border-radius: 999px; padding: 11px 22px; font: 600 0.85rem/1 var(--font-body); letter-spacing: .03em;
-  transition: background .2s, color .2s, border-color .2s;
-}
-.faq-tab:hover { color: var(--fg); border-color: rgba(255,255,255,.4); }
-.faq-tab[aria-selected="true"] { background: #fff; color: #0b0b0c; border-color: #fff; }
 @media (max-width: 760px) {
-  .top nav a[href="#faq"], .top nav a[href="#bewertungen"] { display: none; }
+  .process { padding-bottom: 76px; }
+  .steps { grid-template-columns: minmax(0, 1fr); gap: 40px; margin-top: 40px; }
+  .steps li:not(:last-child)::after { top: auto; bottom: -30px; left: 50%; width: 2px; height: 20px; margin-left: -1px; }
+  .services { grid-template-columns: minmax(0, 1fr); gap: 18px; padding-bottom: 72px; }
+  .hero { padding-block: 48px 64px; }
+  .laptop { margin-top: 40px; }
+  .laptop-lid { padding: 10px 7px 7px; border-radius: 12px 12px 0 0; }
+  .laptop-lid::before { top: 3px; width: 4px; height: 4px; }
+  .laptop-base { height: 10px; }
+  .laptop-base::before { width: 60px; height: 4px; margin-left: -30px; }
+  .tag { top: auto; bottom: 8px; padding: 3px 8px; font-size: 0.7rem; }
+  .tag.l { left: 8px; }
+  .tag.r { right: 8px; }
+}
+@media (max-width: 520px) {
+  .brand { font-size: 1.15rem; }
+  .brand-mark { height: 28px; }
 }
 
-/* Vertrauenszeile und Kontakt-Button in der Kopfzeile */
-.trust { list-style: none; display: flex; flex-wrap: wrap; gap: 10px 28px; margin: 34px 0 0; padding: 0; color: var(--muted); font-size: 0.92rem; }
-.trust li { display: flex; align-items: center; gap: 10px; }
-.trust li::before { content: "\2713"; color: var(--red); font-weight: 800; }
-.top nav a.keep { background: var(--red); color: #fff; padding: 11px 22px; border-radius: 999px; box-shadow: 0 0 22px rgba(251,0,0,.4); transition: background .2s; }
-.top nav a.keep:hover { background: var(--red-deep); color: #fff; }
-
-/* Kopfzeile: alle Links mittig ausrichten */
-.top nav { align-items: center; }
-.top nav a { display: inline-flex; align-items: center; line-height: 1; }
-
-/* hidden muss auch außerhalb von Claude greifen */
+/* ===== Ab hier: Menü, Buttons und die restlichen Abschnitte ===== */
+html { scroll-behavior: smooth; }
+[id] { scroll-margin-top: 84px; }
 [hidden] { display: none !important; }
 
-/* Kopfzeile: schärfere Schrift */
-.top nav a { font-size: 13px; font-weight: 500; color: #e2e2e6; letter-spacing: 0.14em; }
-.top nav a:hover { color: #fff; }
-.top nav a.keep { font-weight: 600; }
+/* Menü */
+.top-inner { justify-content: space-between; gap: 16px; }
+.top nav { display: flex; align-items: center; gap: 26px; }
+.top nav a { color: var(--fg); text-decoration: none; font-size: 0.95rem; font-weight: 500; }
+.top nav a:not(.btn):hover { text-decoration: underline; text-decoration-color: var(--red); text-decoration-thickness: 2px; text-underline-offset: 6px; }
+
+/* Buttons */
+.btn { display: inline-block; padding: 16px 30px; border: 1px solid var(--red); border-radius: 999px; cursor: pointer; font: 700 1rem/1 var(--font); text-decoration: none; background: var(--red); color: #fff; transition: background .2s, border-color .2s; }
+.btn:hover { background: #c80000; border-color: #c80000; }
+.btn.small { padding: 11px 22px; font-size: 0.95rem; }
+.btn.ghost { background: transparent; border-color: #5a5a5f; color: var(--fg); }
+.btn.ghost:hover { background: transparent; border-color: var(--fg); }
+.btn[disabled] { opacity: .6; cursor: default; }
+.btn:focus-visible, .linkbtn:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+.hero-actions { margin-top: 30px; text-align: center; }
+.hero-actions p { margin: 14px 0 0; font-size: 0.95rem; color: var(--fg); }
+
+.sec-sub { max-width: 56ch; margin: 18px auto 0; text-align: center; color: var(--fg); }
+
+/* Über mich */
+.about { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: 56px; align-items: center; padding-bottom: 104px; }
+.about-photo { margin: 0; }
+.photo-ph { display: grid; place-items: center; aspect-ratio: 4 / 5; padding: 20px; text-align: center; font-size: 0.95rem; color: var(--fg); background: repeating-linear-gradient(135deg, #0b0b0c 0 14px, #131315 14px 28px); }
+.about-photo img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+.about h2 { text-align: left; }
+.about-text > p { margin: 22px 0 0; color: var(--fg); font-size: 1.08rem; }
+.facts { list-style: none; margin: 30px 0 0; padding: 0; display: grid; gap: 18px; }
+.facts li { position: relative; padding-left: 26px; color: var(--fg); }
+.facts li::before { content: ""; position: absolute; left: 0; top: 0.5em; width: 11px; height: 11px; border-radius: 50%; background: var(--red); }
+.facts b { display: block; font-weight: 700; }
+
+/* Häufige Fragen */
+.faq-sec { padding-bottom: 104px; }
+.topics { max-width: 820px; margin: 48px auto 0; border-top: 1px solid #3a3a3e; }
+.topic { border-bottom: 1px solid #3a3a3e; }
+.topic summary { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 24px 0; cursor: pointer; list-style: none; font-weight: 800; font-size: 1.35rem; letter-spacing: -0.02em; color: var(--fg); }
+.topic summary::-webkit-details-marker { display: none; }
+.topic summary::after { content: "+"; flex: none; display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: var(--red); color: #fff; font-weight: 700; font-size: 1.25rem; line-height: 1; }
+.topic[open] summary::after { content: "\2013"; }
+.qa { padding-bottom: 12px; }
+.qa h3 { margin: 0 0 6px; font-weight: 700; font-size: 1.08rem; line-height: 1.4; color: var(--fg); }
+.qa p { max-width: 64ch; margin: 0 0 22px; color: var(--fg); }
 
 /* Bewertungen */
-.rev-grid { display: grid; grid-template-columns: minmax(0,1.1fr) minmax(0,.9fr); gap: 40px; align-items: start; }
-.rev-sum { display: flex; align-items: baseline; gap: 14px; margin: 0 0 22px; color: var(--muted); font-size: .95rem; }
-.rev-sum b { font-size: 2.4rem; line-height: 1; color: #fff; letter-spacing: -.03em; }
-.stars { color: #ffb400; letter-spacing: .12em; white-space: nowrap; }
-.stars .off { color: #4a4a52; }
-.rev-list { display: grid; gap: 14px; margin: 0; padding: 0; list-style: none; }
-.rev { border: 1px solid var(--line); background: var(--surface); padding: 22px 24px; border-radius: 18px; }
-.rev-head { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; align-items: baseline; margin-bottom: 8px; }
-.rev-head b { font-size: 1rem; }
-.rev p { margin: 0; color: var(--muted); overflow-wrap: anywhere; }
-.rev time { display: block; margin-top: 10px; font-size: .78rem; color: #8d8d96; }
-.rev-empty { border-radius: 18px; border: 1px dashed var(--line); padding: 34px 26px; color: var(--muted); }
-.rev-empty b { color: #fff; display: block; margin-bottom: 6px; }
-.rev-form { border-radius: 18px; border: 1px solid var(--line); background: var(--surface); padding: 28px; display: grid; gap: 18px; }
-.rev-form h3 { margin: 0; font-size: 1.25rem; letter-spacing: -.01em; }
-.rev-form label, .rev-form legend { display: block; font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 8px; padding: 0; }
-.rev-form fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
-.rev-form input[type=text], .rev-form textarea { width: 100%; background: #0d0d10; color: #fff; border: 1px solid var(--line); padding: 14px 16px; font: inherit; border-radius: 12px; }
-.rev-form textarea { min-height: 120px; resize: vertical; }
+.reviews { padding-bottom: 104px; }
+.rev-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: 36px; align-items: start; margin-top: 48px; }
+.rev-sum { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; color: var(--fg); }
+.rev-sum b { font-weight: 800; font-size: 2.6rem; line-height: 1; letter-spacing: -0.03em; }
+.stars { color: #ffb400; letter-spacing: 0.12em; white-space: nowrap; }
+.stars .off { color: #4c4c52; }
+.rev-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.rev { padding: 22px 24px; border: 1px solid #3a3a3e; border-radius: 12px; background: #0b0b0c; }
+.rev-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 8px; }
+.rev p { margin: 0; color: var(--fg); overflow-wrap: anywhere; }
+.rev time { display: block; margin-top: 10px; font-size: 0.85rem; color: var(--fg); }
+.rev-empty { margin: 0; padding: 30px 26px; border: 1px dashed #5a5a5f; border-radius: 12px; color: var(--fg); }
+.rev-form .win-body { display: grid; gap: 18px; }
+.rev-form h3 { margin: 0; }
+.rev-form label, .rev-form legend { display: block; margin-bottom: 8px; padding: 0; font-size: 0.95rem; font-weight: 700; color: var(--fg); }
+.rev-form fieldset { min-width: 0; margin: 0; padding: 0; border: 0; }
+.rev-form input[type=text], .rev-form textarea { width: 100%; padding: 13px 15px; border: 1px solid #5a5a5f; border-radius: 8px; background: #000; color: var(--fg); font: inherit; }
+.rev-form textarea { display: block; min-height: 120px; resize: none; overflow: hidden; }
 .rev-form input[type=text]:focus, .rev-form textarea:focus { outline: 2px solid var(--red); outline-offset: 1px; border-color: var(--red); }
 .star-pick { display: inline-flex; flex-direction: row-reverse; gap: 4px; }
-.star-pick input { position: absolute; opacity: 0; width: 1px; height: 1px; }
-.star-pick label { margin: 0; font-size: 2rem; line-height: 1; color: #4a4a52; cursor: pointer; text-transform: none; letter-spacing: 0; transition: color .15s, transform .15s; }
+.star-pick input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.star-pick label { margin: 0; font-size: 2rem; line-height: 1; cursor: pointer; color: #4c4c52; }
 .star-pick label:hover, .star-pick label:hover ~ label, .star-pick input:checked ~ label { color: #ffb400; }
-.star-pick label:hover { transform: scale(1.12); }
 .star-pick input:focus-visible + label { outline: 2px solid #fff; outline-offset: 3px; }
-.rev-check { display: flex; gap: 10px; align-items: flex-start; font-size: .84rem; color: var(--muted); }
-.rev-check input { margin-top: 4px; accent-color: var(--red); }
-.rev-form .btn { justify-self: start; cursor: pointer; font: inherit; font-weight: 700; }
-.rev-note { margin: 0; font-size: .84rem; color: var(--muted); min-height: 1.2em; }
-.rev-note.err { color: #ff8a9a; }
+.rev-form .rev-check { display: flex; align-items: flex-start; gap: 10px; margin: 0; font-size: 0.9rem; font-weight: 400; }
+.rev-check input { margin-top: 5px; accent-color: var(--red); }
+.rev-form .btn { justify-self: start; }
+.rev-note { min-height: 1.3em; margin: 0; font-size: 0.9rem; color: var(--fg); }
+.rev-note.err { font-weight: 700; color: #ff5a5a; }
 .hp { position: absolute; left: -9999px; }
-@media (max-width: 860px) { .rev-grid { grid-template-columns: minmax(0,1fr); } }
 
-/* Lightmode: folgt der Geräteeinstellung */
-@media (prefers-color-scheme: light) {
-  :root {
-    --bg: #fbfaf9;
-    --surface: rgba(255,255,255,.82);
-    --line: #e1dfdc;
-    --fg: #111114;
-    --muted: #55555e;
-    color-scheme: light;
-  }
-  body {
-    background:
-      radial-gradient(900px 640px at 96% 0%, rgba(251,0,0,.13), transparent 70%),
-      radial-gradient(800px 800px at 0% 38%, rgba(251,0,0,.06), transparent 70%),
-      radial-gradient(900px 700px at 100% 68%, rgba(251,0,0,.07), transparent 70%),
-      var(--bg);
-    background-repeat: no-repeat;
-  }
-  .brand-mark [fill="#fff"], .brand-mark [fill="#ffffff"] { fill: #111114; }
-  .top nav a { color: #3a3a42; }
-  .top nav a:hover { color: #000; }
-  .top nav a.keep, .top nav a.keep:hover { color: #fff; }
-  .btn { box-shadow: 0 8px 26px rgba(251,0,0,.28); }
-  .btn.ghost { box-shadow: none; border-color: #c4c2be; }
-  .top nav a.keep { box-shadow: 0 6px 18px rgba(251,0,0,.25); }
-  .services .service, .services .service:last-child {
-    border-color: rgba(0,0,0,.09);
-    background: linear-gradient(160deg, #ffffff 0%, #f4f2f0 100%);
-    box-shadow: 0 1px 2px rgba(0,0,0,.04);
-  }
-  .services .service:hover { border-color: rgba(0,0,0,.2); background: linear-gradient(160deg, #ffffff 0%, #efedea 100%); box-shadow: 0 12px 30px rgba(0,0,0,.08); }
-  .ico { color: #111114; background: rgba(0,0,0,.05); border-color: rgba(0,0,0,.1); }
-  .service .meta { color: #6e6e76; }
-  .about { border-color: rgba(0,0,0,.09); background: linear-gradient(160deg, #ffffff 0%, #f4f2f0 100%); }
-  .about-facts li, .faq details, .pkg-note { background: rgba(0,0,0,.03); border-color: rgba(0,0,0,.09); }
-  .faq details:hover { border-color: rgba(0,0,0,.25); }
-  .faq details[open] { background: rgba(0,0,0,.05); }
-  .faq summary::after { background: rgba(0,0,0,.07); }
-  .faq-tab { border-color: rgba(0,0,0,.18); }
-  .faq-tab:hover { color: var(--fg); border-color: rgba(0,0,0,.4); }
-  .faq-tab[aria-selected="true"] { background: #111114; color: #fff; border-color: #111114; }
-  .rev-sum b, .rev-empty b { color: #111114; }
-  .stars .off { color: #d3d1cd; }
-  .rev time { color: #7b7b83; }
-  .rev { box-shadow: 0 1px 2px rgba(0,0,0,.04); }
-  .rev-form input[type=text], .rev-form textarea { background: #fff; color: #111114; }
-  .star-pick label { color: #d3d1cd; }
-  .star-pick input:focus-visible + label { outline-color: #111114; }
-  .rev-note.err { color: #c4001a; }
-  .mail-card { border-color: rgba(0,0,0,.15); }
-  .linkbtn:hover { color: #000; }
-  .compare { box-shadow: 0 10px 40px rgba(0,0,0,.08); }
+/* Kontakt */
+.contact { padding-bottom: 112px; text-align: center; }
+.mail-big { display: inline-block; max-width: 100%; margin-top: 36px; overflow-wrap: anywhere; color: var(--fg); font-weight: 800; font-size: clamp(1.25rem, 4.2vw, 2.6rem); line-height: 1.2; letter-spacing: -0.02em; text-decoration: underline; text-decoration-color: var(--red); text-decoration-thickness: 3px; text-underline-offset: 9px; }
+.mail-big:hover { text-decoration-color: var(--fg); }
+.contact-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 36px; }
+.copied { min-height: 1.4em; margin: 16px 0 0; font-size: 0.92rem; color: var(--fg); }
+
+/* Fuß */
+footer { border-top: 1px solid var(--line); padding-block: 30px 44px; font-size: 0.92rem; color: var(--fg); }
+.foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px; }
+.foot div { display: flex; gap: 22px; }
+.linkbtn { padding: 0; border: 0; background: none; font: inherit; color: inherit; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+.linkbtn:hover { text-decoration-color: var(--red); }
+.legal { max-width: 70ch; margin-top: 30px; padding-top: 34px; border-top: 1px solid var(--line); }
+.legal h3 { margin: 0 0 14px; font-size: 1.5rem; }
+.legal h4 { margin: 22px 0 4px; font-size: 1rem; }
+.legal p { margin: 0 0 8px; }
+
+@media (max-width: 900px) {
+  .top nav a:not(.btn) { display: none; }
+  .about { grid-template-columns: minmax(0, 1fr); gap: 36px; padding-bottom: 76px; }
+  .about-photo { max-width: 320px; margin-inline: auto; }
+  .about h2 { text-align: center; }
+  .rev-grid { grid-template-columns: minmax(0, 1fr); }
+  .faq-sec, .reviews { padding-bottom: 76px; }
+  .contact { padding-bottom: 84px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
+
+/* ===== Hintergrund =====
+   Hinter dem Wort „sichtbar." liegt ein weicher roter Lichtpunkt. Sonst bleibt die Seite schwarz. */
+main { overflow-x: hidden; overflow-x: clip; }
+.hero { position: relative; isolation: isolate; }
+h1 em { position: relative; display: inline-block; }
+h1 em::before {
+  content: ""; position: absolute; z-index: -1; left: 50%; top: 56%; width: 135%; height: 230%; pointer-events: none;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(ellipse closest-side, rgba(251,0,0,.42), rgba(251,0,0,.16) 50%, transparent 100%);
+  filter: blur(14px);
 }
 </style>
 </head>
 <body>
 <header class="top">
   <div class="wrap top-inner">
-    <a href="#top" class="brand" aria-label="Gertz Digital, zur Startseite"><svg class="brand-mark" viewBox="60 335 1135 604" aria-hidden="true" focusable="false"><path fill="#fb0000" d="M628 345 H372 C190 345 71 480 71 650 C71 820 190 921 372 921 H505 V757 C460 790 420 812 372 812 C270 812 190 740 190 640 C190 540 270 453 372 453 H523 Z"/><path fill="#fb0000" d="M392 582 H663 V808 L538 929 V682 H295 Z"/><path fill="#fff" d="M620 411 H830 C875 411 910 440 935 487 H868 V509 H1005 V538 H915 V565 H1115 V598 H975 V641 H1060 V676 H975 V704 H1020 V762 H983 V803 H1078 V832 H863 V853 H935 C910 895 870 929 790 929 H585 L665 832 H760 C850 832 905 760 905 668 C905 570 850 505 760 505 H537 Z"/><g fill="#fff"><rect x="1051" y="455" width="40" height="41"/><rect x="1139" y="529" width="31" height="31"/><rect x="1097" y="634" width="40" height="40"/><rect x="1048" y="742" width="136" height="33"/><rect x="977" y="875" width="50" height="49"/><rect x="930" y="890" width="20" height="20"/><rect x="1111" y="826" width="16" height="14"/><rect x="922" y="735" width="64" height="22"/></g></svg><span><b>Gertz</b> Digital</span></a>
-    <nav>
+    <a href="#top" class="brand" aria-label="Visible Digital, zur Startseite"><svg class="brand-mark" viewBox="150 305 1182 594" aria-hidden="true" focusable="false"><path fill="#fb0000" d="M163 320 H310 L462 594 L616 320 H759 L462 879 Z"/><path class="d" fill="#fff" fill-rule="evenodd" d="M790 320 H910 C995 320 1048 376 1073 437 H981 V453 H1132 V492 H1040 V517 H1238 V558 H1098 V595 H1191 V634 H1096 V660 H1144 V725 H1107 V757 H1205 V789 H990 V805 H1065 C1032 856 985 884 910 884 H610 V668 L690 517 H758 V773 H850 C940 773 995 700 995 605 C995 510 940 438 850 438 H728 Z M1033 694 H1102 V710 H1033 Z"/><g class="d" fill="#fff"><rect x="1152" y="383" width="53" height="57"/><rect x="1256" y="471" width="43" height="42"/><rect x="1222" y="590" width="49" height="46"/><rect x="1166" y="697" width="153" height="38"/><rect x="1232" y="784" width="24" height="19"/><rect x="1090" y="833" width="52" height="52"/><rect x="1036" y="853" width="26" height="25"/></g></svg><span><b>Visible</b> Digital</span></a>
+    <nav aria-label="Hauptnavigation">
       <a href="#leistungen">Leistungen</a>
-      <a href="#ueber-mich">Über mich</a>
       <a href="#ablauf">Ablauf</a>
-      <a href="#faq">Fragen</a>
+      <a href="#ueber-mich">Über mich</a>
+      <a href="#fragen">Fragen</a>
       <a href="#bewertungen">Bewertungen</a>
-      <a href="#kontakt" class="keep">Kontakt</a>
+      <a href="#kontakt" class="btn small">Kontakt</a>
     </nav>
   </div>
 </header>
 
-<main id="top" class="wrap">
-
-  <div class="hero">
-    <p class="eyebrow">Gertz Digital · Websites, Social Media und mehr für Unternehmen</p>
-    <h1>Ihr Auftritt im Netz verdient <em>mehr</em>.</h1>
-    <p class="lead">Sie führen Ihr Unternehmen mit Anspruch. Ich sorge dafür, dass Ihr Auftritt im Netz diesen Anspruch zeigt: modern, klar und so gestaltet, dass Kunden Ihnen vertrauen. Von der ersten Idee bis zur Veröffentlichung sind Sie bei mir in besten Händen, persönlich betreut und mit voller Aufmerksamkeit für Ihre Wünsche.</p>
-    <div class="btn-row">
-      <a class="btn" href="#kontakt">Erstgespräch anfragen</a>
-      <a class="btn ghost" href="#leistungen">Leistungen ansehen</a>
-    </div>
-    <ul class="trust"><li>Unverbindliches Erstgespräch</li><li>Persönliche Betreuung</li><li>Klare Absprachen</li></ul>
-  </div>
-
-  <div class="compare-sec">
-    <div class="compare-cap"><b>Beispiel: Redesign einer veralteten Firmenseite</b><span>Regler ziehen</span></div>
-    <div class="compare" id="compare">
+<main id="top">
+  <div class="hero" id="hero">
+    <div class="wrap hero-inner">
+      <h1>Werden Sie<br><em>sichtbar.</em></h1>
+      <p class="hero-sub">Webdesign, Social Media &amp; Werbung für Unternehmen</p>
+      <div class="hero-actions">
+        <a class="btn" href="#kontakt">Erstgespräch anfragen</a>
+        <p>Das Erstgespräch ist unverbindlich.</p>
+      </div>
+      <figure class="laptop">
+        <div class="laptop-lid">
+          <div class="compare" id="compare">
       <div class="layer s-old" aria-hidden="true"><div class="page">
         <div class="so-banner">*** Herzlich Willkommen auf der Homepage der Firma Müller &amp; Söhne GmbH ***</div>
         <div class="so-cols">
@@ -615,53 +354,40 @@ section.contact-wrap { border-top: 0; padding-block: 40px 88px; }
       <input type="range" id="slider" min="0" max="100" value="50" aria-label="Vorher-Nachher-Vergleich verschieben">
       <div class="divider"></div>
     </div>
+        </div>
+        <div class="laptop-base"></div>
+      </figure>
+    </div>
   </div>
 
-  <section class="block" id="leistungen">
-    <h2>Was ich für Sie <em>umsetze</em></h2>
-    <p class="sub">Drei klare Leistungen, die Ihr Unternehmen nach vorne bringen.</p>
-    <div class="services">
-      <article class="service">
-        <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 9h18"/><path d="M7 6.5h.01M10 6.5h.01"/></svg></span>
-        <h3>Website-Bau</h3>
-        <p>Ihr Unternehmen bekommt eine Website, die zu Ihnen passt: individuell gestaltet, auf Handy und Computer überzeugend und so aufgebaut, dass aus Besuchern Anfragen werden.</p>
-        <span class="meta">Für Firmen ohne eigene Seite</span>
-      </article>
-      <article class="service">
-        <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 0 0-14.5-4.5L4 8"/><path d="M4 4v4h4"/><path d="M4 13a8 8 0 0 0 14.5 4.5L20 16"/><path d="M20 20v-4h-4"/></svg></span>
-        <h3>Website-Redesign</h3>
-        <p>Ihre Seite wirkt nicht mehr zeitgemäß? Ich gebe ihr ein modernes, übersichtliches Gesicht und bleibe dabei nah an Ihrem bestehenden Design, damit Ihr Unternehmen erkennbar Ihres bleibt.</p>
-        <span class="meta">Für bestehende Auftritte</span>
-      </article>
-      <article class="service">
-        <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1.2-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 11h7M8.5 14h4"/></svg></span>
-        <h3>Social-Media-Beratung</h3>
-        <p>Damit Ihre Kanäle Kunden erreichen: Ich analysiere Ihre Situation, entwickle mit Ihnen eine passende Strategie und richte Profile sowie Beitragsvorlagen ein. Die laufende Pflege liegt bei Ihnen, bei Fragen stehe ich Ihnen beratend zur Seite.</p>
-        <span class="meta">Einmalig, ohne Abo</span>
-      </article>
-    </div>
-    <p class="pkg-note">Für die meisten Unternehmen reicht mein Standardpaket. Haben Sie zusätzliche Wünsche, ist das kein Problem: Sie werden einzeln besprochen und extra berechnet.</p>
-  </section>
-
-  <section class="block" id="ueber-mich">
-    <div class="about">
-      <div class="about-copy">
-        <p class="eyebrow">Über mich</p>
-        <h2>Gelernt am <em>Technischen Gymnasium</em></h2>
-        <p class="sub">Ich bin Schüler an einem Technischen Gymnasium und habe mir dort meine Kenntnisse im Webdesign erarbeitet. Dieses Wissen setze ich jetzt für Unternehmen ein: mit frischen Ideen, moderner Technik und dem Anspruch, Ihre Website so sorgfältig zu bauen, wie ich es gelernt habe.</p>
+  <div class="rest">
+  <section class="services wrap" id="leistungen" aria-labelledby="leistungen-titel">
+    <h2 class="sr-only" id="leistungen-titel">Leistungen</h2>
+    <article class="win">
+      <div class="win-bar" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="win-body">
+        <h3>Webdesign</h3>
+        <p>Sie bekommen eine neue Website oder ein Redesign Ihrer bestehenden Seite: individuell gestaltet, auf Handy und Computer gut lesbar und so aufgebaut, dass aus Besuchern Anfragen werden.</p>
       </div>
-      <ul class="about-facts">
-        <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg></span><div><b>Technisches Gymnasium</b><span>Hier liegt die Grundlage für meine Webdesign-Kenntnisse.</span></div></li>
-        <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1.2-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 11h7M8.5 14h4"/></svg></span><div><b>Erfahrung mit Social Media</b><span>Für Vereine habe ich bereits Social-Media-Kanäle geführt.</span></div></li>
-        <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><b>Neben der Schule</b><span>Ich arbeite in meiner Freizeit an Ihrem Projekt, mit festen Absprachen und klaren Terminen.</span></div></li>
-        <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg></span><div><b>Direkt und persönlich</b><span>Sie sprechen immer direkt mit mir, ohne Umwege.</span></div></li>
-      </ul>
-    </div>
+    </article>
+    <article class="win">
+      <div class="win-bar" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="win-body">
+        <h3>Social Media</h3>
+        <p>Ich analysiere Ihre Kanäle, entwickle mit Ihnen eine Strategie und richte Profile sowie Beitragsvorlagen ein. Die laufende Pflege übernehmen Sie selbst, bei Fragen berate ich Sie weiter.</p>
+      </div>
+    </article>
+    <article class="win">
+      <div class="win-bar" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="win-body">
+        <h3>Werbung</h3>
+        <p>Werbung im Stil Ihres Unternehmens: Anzeigen für Social Media sowie Flyer und Plakate, abgestimmt auf Ihre Website.</p>
+      </div>
+    </article>
   </section>
 
-  <section class="block" id="ablauf">
-    <h2>So arbeiten <em>wir</em> zusammen</h2>
-    <p class="sub">Ein klarer Weg von der ersten Idee bis zu Ihrem fertigen Auftritt.</p>
+  <section class="process wrap" id="ablauf">
+    <h2>So arbeiten wir zusammen</h2>
     <ol class="steps">
       <li>
         <h3>Kennenlernen</h3>
@@ -669,106 +395,117 @@ section.contact-wrap { border-top: 0; padding-block: 40px 88px; }
       </li>
       <li>
         <h3>Entwurf</h3>
-        <p>Ich gestalte einen Entwurf, der zu Ihnen passt. Ihre Rückmeldung ist mir wichtig, wir feilen gemeinsam, bis Sie rundum zufrieden sind.</p>
+        <p>Ich gestalte einen Entwurf, der zu Ihnen passt. Wir feilen gemeinsam daran, bis Sie zufrieden sind.</p>
       </li>
       <li>
         <h3>Veröffentlichung</h3>
-        <p>Ihr Projekt geht online. Bei Fragen bin ich auch danach weiterhin für Sie da.</p>
+        <p>Ihr Projekt geht online. Bei Fragen bin ich auch danach für Sie da.</p>
       </li>
     </ol>
   </section>
 
-  <section class="block" id="faq">
-    <h2>Häufige <em>Fragen</em></h2>
-    <p class="sub">Kurze Antworten auf das, was Unternehmen am häufigsten wissen wollen.</p>
-    <div class="faq-tabs" role="tablist" aria-label="Themen der Fragen"><button class="faq-tab" type="button" role="tab" id="tab-kosten" aria-controls="panel-kosten" aria-selected="true" data-tab="kosten">Kosten &amp; Ablauf</button><button class="faq-tab" type="button" role="tab" id="tab-start" aria-controls="panel-start" aria-selected="false" data-tab="start">Nach dem Start</button><button class="faq-tab" type="button" role="tab" id="tab-social" aria-controls="panel-social" aria-selected="false" data-tab="social">Social Media</button></div>
-    <div class="faq" role="tabpanel" id="panel-kosten" aria-labelledby="tab-kosten">
-      <details open>
-        <summary>Was kostet eine Website?</summary>
-        <p>Es gibt ein Standardpaket, das für die meisten Unternehmen ausreicht. Haben Sie zusätzliche Wünsche, sind diese möglich und werden extra berechnet. Den genauen Preis besprechen wir im unverbindlichen Erstgespräch.</p>
-      </details>
-      <details>
-        <summary>Wie lange dauert es bis zur fertigen Seite?</summary>
-        <p>Je nach Auftrag brauche ich etwa 2 bis 3 Wochen. Den genauen Zeitplan legen wir gemeinsam im Erstgespräch fest, damit Sie von Anfang an wissen, womit Sie rechnen können.</p>
-      </details>
+  <section class="about wrap" id="ueber-mich">
+    <figure class="win about-photo">
+      <div class="win-bar" aria-hidden="true"><i></i><i></i><i></i></div>
+      <!-- Foto einsetzen: die nächste Zeile durch <img src="foto.jpg" alt="Mika Gertz"> ersetzen -->
+      <div class="photo-ph">Platzhalter:<br>Foto von Mika Gertz im Anzug</div>
+    </figure>
+    <div class="about-text">
+      <h2>Wer hinter Visible Digital steht</h2>
+      <p>Ich bin Mika Gertz, Schüler an einem Technischen Gymnasium. Dort habe ich mir meine Kenntnisse im Webdesign erarbeitet. Dieses Wissen setze ich jetzt für Unternehmen ein und baue Ihren Auftritt so sorgfältig, wie ich es gelernt habe.</p>
+      <ul class="facts">
+        <li><b>Erfahrung mit Social Media</b>Für Vereine habe ich bereits Social-Media-Kanäle geführt.</li>
+        <li><b>Neben der Schule</b>Ich arbeite in meiner Freizeit an Ihrem Projekt, mit festen Absprachen und klaren Terminen.</li>
+        <li><b>Direkt und persönlich</b>Sie sprechen immer direkt mit mir, ohne Umwege.</li>
+      </ul>
     </div>
-    <div class="faq" role="tabpanel" id="panel-start" aria-labelledby="tab-start" hidden>
-      <details>
-        <summary>Was passiert, wenn etwas nicht funktioniert?</summary>
-        <p>Treten nach dem Start Probleme oder Fehler auf, behebe ich diese kostenlos.</p>
+  </section>
+
+  <section class="faq-sec wrap" id="fragen">
+    <h2>Häufige Fragen</h2>
+    <div class="topics">
+      <details class="topic">
+        <summary>Kosten und Ablauf</summary>
+        <div class="qa">
+          <h3>Was kostet eine Website?</h3>
+          <p>Es gibt ein Standardpaket, das für die meisten Unternehmen ausreicht. Haben Sie zusätzliche Wünsche, sind diese möglich und werden extra berechnet. Den genauen Preis besprechen wir im unverbindlichen Erstgespräch.</p>
+          <h3>Wie lange dauert es bis zur fertigen Seite?</h3>
+          <p>Je nach Auftrag brauche ich etwa 2 bis 3 Wochen. Den genauen Zeitplan legen wir gemeinsam im Erstgespräch fest, damit Sie von Anfang an wissen, womit Sie rechnen können.</p>
+        </div>
       </details>
-      <details>
-        <summary>Kann ich später Änderungen oder Erweiterungen bekommen?</summary>
-        <p>Ja. Änderungen und Erweiterungen, die zusätzliche Zeit brauchen, berechne ich nach vorheriger Absprache gesondert. Sie erfahren den Preis immer vorab.</p>
+      <details class="topic">
+        <summary>Nach dem Start</summary>
+        <div class="qa">
+          <h3>Was passiert, wenn etwas nicht funktioniert?</h3>
+          <p>Treten nach dem Start Probleme oder Fehler auf, behebe ich diese kostenlos.</p>
+          <h3>Kann ich später Änderungen oder Erweiterungen bekommen?</h3>
+          <p>Ja. Änderungen und Erweiterungen, die zusätzliche Zeit brauchen, berechne ich nach vorheriger Absprache gesondert. Sie erfahren den Preis immer vorab.</p>
+        </div>
       </details>
-    </div>
-    <div class="faq" role="tabpanel" id="panel-social" aria-labelledby="tab-social" hidden>
-      <details>
-        <summary>Was umfasst die Social-Media-Beratung?</summary>
-        <p>Ich analysiere Ihre Kanäle, entwickle mit Ihnen eine Strategie und richte Profile sowie Vorlagen für Ihre Beiträge ein. Danach setzen Sie die Beiträge selbst um, und bei Fragen berate ich Sie weiter.</p>
-      </details>
-      <details>
-        <summary>Übernehmen Sie die laufende Betreuung meiner Kanäle?</summary>
-        <p>Nein, die laufende Pflege übernehmen Sie selbst. Ich unterstütze Sie beim Start und berate Sie, damit Sie Ihre Kanäle sicher und regelmäßig bespielen können.</p>
-      </details>
-      <details>
-        <summary>Haben Sie Erfahrung mit Social Media?</summary>
-        <p>Ja. Ich habe bereits Social-Media-Kanäle für Vereine geführt und kenne die Abläufe aus der Praxis.</p>
+      <details class="topic">
+        <summary>Social Media</summary>
+        <div class="qa">
+          <h3>Was umfasst die Social-Media-Beratung?</h3>
+          <p>Ich analysiere Ihre Kanäle, entwickle mit Ihnen eine Strategie und richte Profile sowie Vorlagen für Ihre Beiträge ein. Danach setzen Sie die Beiträge selbst um, und bei Fragen berate ich Sie weiter.</p>
+          <h3>Übernehmen Sie die laufende Betreuung meiner Kanäle?</h3>
+          <p>Nein, die laufende Pflege übernehmen Sie selbst. Ich unterstütze Sie beim Start und berate Sie, damit Sie Ihre Kanäle sicher und regelmäßig bespielen können.</p>
+          <h3>Haben Sie Erfahrung mit Social Media?</h3>
+          <p>Ja. Ich habe bereits Social-Media-Kanäle für Vereine geführt und kenne die Abläufe aus der Praxis.</p>
+        </div>
       </details>
     </div>
   </section>
 
-  <section class="block" id="bewertungen">
-    <h2>Das sagen <em>Kunden</em></h2>
-    <p class="sub">Haben wir zusammengearbeitet? Dann freue ich mich über Ihre ehrliche Bewertung. Neue Beiträge erscheinen hier, sobald ich sie geprüft habe.</p>
+  <section class="reviews wrap" id="bewertungen">
+    <h2>Das sagen Kunden</h2>
+    <p class="sec-sub">Haben wir zusammengearbeitet? Dann freue ich mich über Ihre ehrliche Bewertung. Neue Beiträge erscheinen hier, sobald ich sie geprüft habe.</p>
     <div class="rev-grid">
       <div>
         <div class="rev-sum" id="rev-sum" hidden><b id="rev-avg"></b><span><span class="stars" id="rev-avg-stars" aria-hidden="true"></span><br><span id="rev-count"></span></span></div>
         <ul class="rev-list" id="rev-list"></ul>
-        <div class="rev-empty" id="rev-empty"><b>Noch keine Bewertungen</b>Seien Sie die erste Firma, die hier etwas hinterlässt.</div>
+        <p class="rev-empty" id="rev-empty">Bisher gibt es noch keine Bewertungen.</p>
       </div>
-      <form class="rev-form" id="rev-form" novalidate>
-        <h3>Ihre Bewertung</h3>
-        <div><label for="rev-firma">Firmenname</label><input type="text" id="rev-firma" name="firma" maxlength="80" autocomplete="organization" required></div>
-        <fieldset><legend>Sterne</legend>
-          <div class="star-pick" id="rev-stars">
-            <input type="radio" name="sterne" id="st5" value="5"><label for="st5" title="5 Sterne">★</label>
-            <input type="radio" name="sterne" id="st4" value="4"><label for="st4" title="4 Sterne">★</label>
-            <input type="radio" name="sterne" id="st3" value="3"><label for="st3" title="3 Sterne">★</label>
-            <input type="radio" name="sterne" id="st2" value="2"><label for="st2" title="2 Sterne">★</label>
-            <input type="radio" name="sterne" id="st1" value="1"><label for="st1" title="1 Stern">★</label>
-          </div>
-        </fieldset>
-        <div><label for="rev-text">Kommentar</label><textarea id="rev-text" name="kommentar" maxlength="600" required></textarea></div>
-        <div class="hp" aria-hidden="true"><label for="rev-web">Nicht ausfüllen</label><input type="text" id="rev-web" tabindex="-1" autocomplete="off"></div>
-        <label class="rev-check" style="text-transform:none;letter-spacing:0;font-weight:400"><input type="checkbox" id="rev-ok"><span>Ich bin damit einverstanden, dass mein Firmenname und mein Kommentar auf dieser Seite veröffentlicht werden.</span></label>
-        <button class="btn" type="submit">Bewertung absenden</button>
-        <p class="rev-note" id="rev-note" role="status"></p>
+      <form class="win rev-form" id="rev-form" novalidate>
+        <div class="win-bar" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="win-body">
+          <h3>Ihre Bewertung</h3>
+          <div><label for="rev-firma">Firmenname</label><input type="text" id="rev-firma" name="firma" maxlength="80" autocomplete="organization" required></div>
+          <fieldset><legend>Sterne</legend>
+            <div class="star-pick" id="rev-stars">
+              <input type="radio" name="sterne" id="st5" value="5"><label for="st5" title="5 Sterne">★</label>
+              <input type="radio" name="sterne" id="st4" value="4"><label for="st4" title="4 Sterne">★</label>
+              <input type="radio" name="sterne" id="st3" value="3"><label for="st3" title="3 Sterne">★</label>
+              <input type="radio" name="sterne" id="st2" value="2"><label for="st2" title="2 Sterne">★</label>
+              <input type="radio" name="sterne" id="st1" value="1"><label for="st1" title="1 Stern">★</label>
+            </div>
+          </fieldset>
+          <div><label for="rev-text">Kommentar</label><textarea id="rev-text" name="kommentar" maxlength="600" required></textarea></div>
+          <div class="hp" aria-hidden="true"><label for="rev-web">Nicht ausfüllen</label><input type="text" id="rev-web" tabindex="-1" autocomplete="off"></div>
+          <label class="rev-check"><input type="checkbox" id="rev-ok"><span>Ich bin damit einverstanden, dass mein Firmenname und mein Kommentar auf dieser Seite veröffentlicht werden.</span></label>
+          <button class="btn" type="submit">Bewertung absenden</button>
+          <p class="rev-note" id="rev-note" role="status"></p>
+        </div>
       </form>
     </div>
   </section>
 
-  <section class="block contact-wrap" id="kontakt">
-    <div class="cta-panel">
-      <h2>Schreiben Sie mir <em>Ihre Wünsche</em></h2>
-      <p class="sub">Eine kurze E-Mail genügt. Ich melde mich zeitnah persönlich bei Ihnen und nehme mir Zeit für Ihr Anliegen.</p>
-      <div class="mail-pill">
-        <span class="mail-addr" id="mailaddr">kontakt.mika.gertz@gmail.com</span>
-        <button class="copy-pill" type="button" id="copybtn">Kopieren</button>
-      </div>
-      <div class="cta-actions">
-        <a class="btn-white" href="mailto:kontakt.mika.gertz@gmail.com?subject=Anfrage%20zur%20Website">E-Mail schreiben</a>
-      </div>
-      <p class="copied" id="copied" role="status"></p>
+  <section class="contact wrap" id="kontakt">
+    <h2>Schreiben Sie mir</h2>
+    <p class="sec-sub">Eine kurze E-Mail genügt. Ich melde mich zeitnah persönlich bei Ihnen.</p>
+    <a class="mail-big" id="mailaddr" href="mailto:kontakt.mika.gertz@gmail.com?subject=Anfrage%20an%20Visible%20Digital">kontakt.mika.gertz@gmail.com</a>
+    <div class="contact-actions">
+      <a class="btn" href="mailto:kontakt.mika.gertz@gmail.com?subject=Anfrage%20an%20Visible%20Digital">E-Mail schreiben</a>
+      <button class="btn ghost" type="button" id="copybtn">Adresse kopieren</button>
     </div>
+    <p class="copied" id="copied" role="status"></p>
   </section>
-
+  </div>
 </main>
 
 <footer>
   <div class="wrap">
     <div class="foot">
-      <span>© <span id="year">2026</span> Gertz Digital · Mika Gertz</span>
+      <span>© <span id="year">2026</span> Visible Digital, Mika Gertz</span>
       <div>
         <button class="linkbtn" type="button" data-open="impressum">Impressum</button>
         <button class="linkbtn" type="button" data-open="datenschutz">Datenschutz</button>
@@ -778,7 +515,7 @@ section.contact-wrap { border-top: 0; padding-block: 40px 88px; }
     <div class="legal" id="impressum" hidden>
       <h3>Impressum</h3>
       <h4>Angaben gemäß § 5 DDG</h4>
-      <p>Mika Gertz<br>Weinbergstraße 33<br>73614 Schorndorf</p>
+      <p>Visible Digital<br>Mika Gertz<br>Weinbergstraße 33<br>73614 Schorndorf</p>
       <h4>Kontakt</h4>
       <p>E-Mail: kontakt.mika.gertz@gmail.com</p>
       <h4>Verantwortlich für den Inhalt</h4>
@@ -788,9 +525,11 @@ section.contact-wrap { border-top: 0; padding-block: 40px 88px; }
     <div class="legal" id="datenschutz" hidden>
       <h3>Datenschutz</h3>
       <h4>Verantwortlicher</h4>
-      <p>Mika Gertz, Weinbergstraße 33, 73614 Schorndorf, kontakt.mika.gertz@gmail.com</p>
+      <p>Mika Gertz, Visible Digital, Weinbergstraße 33, 73614 Schorndorf, kontakt.mika.gertz@gmail.com</p>
       <h4>Kontaktaufnahme</h4>
       <p>Wenn Sie mir eine E-Mail schreiben, verarbeite ich Ihre Angaben ausschließlich zur Bearbeitung Ihrer Anfrage und lösche sie, sobald sie nicht mehr benötigt werden.</p>
+      <h4>Bewertungen</h4>
+      <p>Wenn Sie eine Bewertung absenden, werden Firmenname, Sterne und Kommentar über den Dienst Formspree an mich übermittelt. Ich veröffentliche die Bewertung nur mit Ihrer Einwilligung und entferne sie auf Wunsch wieder.</p>
       <h4>Cookies und Tracking</h4>
       <p>Diese Seite setzt keine Cookies und verwendet keine Analyse- oder Tracking-Dienste. Schriftarten werden von Google Fonts geladen, dabei wird Ihre IP-Adresse an Google übertragen.</p>
       <h4>Ihre Rechte</h4>
@@ -806,25 +545,50 @@ section.contact-wrap { border-top: 0; padding-block: 40px 88px; }
   function setP() { cmp.style.setProperty('--p', slider.value + '%'); }
   slider.addEventListener('input', setP);
   setP();
-
+  function fit() {
+    var k = cmp.clientWidth / 960;
+    cmp.style.setProperty('--k', k);
+    cmp.style.height = (620 * k) + 'px';
+  }
+  fit();
+  window.addEventListener('resize', fit);
+  if (window.ResizeObserver) new ResizeObserver(fit).observe(cmp);
+})();
+</script>
+<script>
+(function () {
   var copyBtn = document.getElementById('copybtn');
   var note = document.getElementById('copied');
   var addr = document.getElementById('mailaddr');
   copyBtn.addEventListener('click', function () {
     var text = addr.textContent.trim();
-    function fallback() {
+    function done() { note.textContent = 'Adresse kopiert.'; }
+    /* Zweiter Weg für Browser, die das direkte Kopieren nicht erlauben (z. B. lokal geöffnete Datei) */
+    function viaField() {
+      var ok = false;
+      var f = document.createElement('textarea');
+      f.value = text;
+      f.setAttribute('readonly', '');
+      f.style.cssText = 'position:fixed;top:0;left:0;width:1px;height:1px;opacity:0;';
+      document.body.appendChild(f);
+      f.select();
+      f.setSelectionRange(0, text.length);
+      try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+      document.body.removeChild(f);
+      copyBtn.focus();
+      if (ok) { done(); return; }
       var r = document.createRange();
       r.selectNodeContents(addr);
-      var s = window.getSelection();
-      s.removeAllRanges();
-      s.addRange(r);
-      note.textContent = 'Adresse markiert. Mit Strg+C bzw. Cmd+C kopieren.';
+      var sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(r);
+      note.textContent = 'Kopieren wurde vom Browser blockiert. Die Adresse ist markiert: Strg+C bzw. Cmd+C drücken.';
     }
-    try {
-      navigator.clipboard.writeText(text).then(function () {
-        note.textContent = 'Adresse kopiert.';
-      }, fallback);
-    } catch (e) { fallback(); }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, viaField);
+    } else {
+      viaField();
+    }
   });
 
   document.querySelectorAll('[data-open]').forEach(function (b) {
@@ -838,33 +602,7 @@ section.contact-wrap { border-top: 0; padding-block: 40px 88px; }
       if (!t.hidden) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   });
-})();
-</script>
-<script>
-(function () {
-  var cmp = document.getElementById('compare');
-  function fit() {
-    var k = cmp.clientWidth / 960;
-    cmp.style.setProperty('--k', k);
-    cmp.style.height = (620 * k) + 'px';
-  }
-  fit();
-  window.addEventListener('resize', fit);
-  if (window.ResizeObserver) new ResizeObserver(fit).observe(cmp);
-})();
-</script>
-<script>
-(function () {
-  var tabs = document.querySelectorAll('.faq-tab');
-  tabs.forEach(function (t) {
-    t.addEventListener('click', function () {
-      tabs.forEach(function (x) {
-        var on = x === t;
-        x.setAttribute('aria-selected', on ? 'true' : 'false');
-        document.getElementById('panel-' + x.getAttribute('data-tab')).hidden = !on;
-      });
-    });
-  });
+  document.getElementById('year').textContent = new Date().getFullYear();
 })();
 </script>
 <script>
@@ -912,7 +650,7 @@ section.contact-wrap { border-top: 0; padding-block: 40px 88px; }
     if (!document.getElementById("rev-ok").checked) { note.className = "rev-note err"; note.textContent = "Bitte stimmen Sie der Veröffentlichung zu."; return; }
     var body = "Firma: " + firma + "\nSterne: " + st.value + " von 5\n\nKommentar:\n" + text + "\n\nIch bin mit der Veröffentlichung einverstanden.";
     function viaMail() {
-      window.location.href = "mailto:" + MAIL + "?subject=" + encodeURIComponent("Bewertung für Gertz Digital") + "&body=" + encodeURIComponent(body);
+      window.location.href = "mailto:" + MAIL + "?subject=" + encodeURIComponent("Bewertung für Visible Digital") + "&body=" + encodeURIComponent(body);
       note.className = "rev-note";
       note.textContent = "Ihr E-Mail-Programm öffnet sich mit Ihrer Bewertung. Bitte senden Sie die Mail ab. Nach kurzer Prüfung erscheint sie hier.";
     }
@@ -920,7 +658,7 @@ section.contact-wrap { border-top: 0; padding-block: 40px 88px; }
     var btn = form.querySelector("button[type=submit]");
     btn.disabled = true; note.textContent = "Wird gesendet …";
     fetch(FORM_URL, { method: "POST", headers: { "Accept": "application/json", "Content-Type": "application/json" },
-      body: JSON.stringify({ firma: firma, sterne: st.value, kommentar: text, _subject: "Neue Bewertung für Gertz Digital" }) })
+      body: JSON.stringify({ firma: firma, sterne: st.value, kommentar: text, _subject: "Neue Bewertung für Visible Digital" }) })
       .then(function (r) {
         if (!r.ok) throw new Error("fail");
         form.reset(); note.className = "rev-note";
@@ -929,6 +667,19 @@ section.contact-wrap { border-top: 0; padding-block: 40px 88px; }
       .catch(function () { viaMail(); })
       .then(function () { btn.disabled = false; });
   });
+})();
+</script>
+<script>
+(function () {
+  /* Kommentarfeld: fester Platz, wächst erst mit, wenn der Text nicht mehr hineinpasst */
+  var ta = document.getElementById('rev-text');
+  if (!ta) return;
+  function grow() {
+    ta.style.height = 'auto';
+    ta.style.height = (ta.scrollHeight + 2) + 'px';
+  }
+  ta.addEventListener('input', grow);
+  document.getElementById('rev-form').addEventListener('reset', function () { setTimeout(function () { ta.style.height = ''; }, 0); });
 })();
 </script>
 </body>
