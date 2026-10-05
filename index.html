@@ -420,8 +420,10 @@ h1 em::after { animation: drift 7s ease-in-out infinite; }
   :root:not([data-theme="light"]) .btn.ghost { background: var(--card); color: var(--ink); border-color: var(--line); }
   :root:not([data-theme="light"]) .btn.ghost:hover { border-color: var(--ink); background: var(--card); }
   :root:not([data-theme="light"]) .on-dark .btn { background: #fff; border-color: #fff; color: #0b0b0d; }
-  :root:not([data-theme="light"]) .pill { background: rgba(20,20,23,.78); border-color: rgba(255,255,255,.09); }
-  :root:not([data-theme="light"]) .nav { background: rgba(20,20,23,.97); border-color: rgba(255,255,255,.1); }
+  :root:not([data-theme="light"]) .theme-btn, :root:not([data-theme="light"]) .menu-btn { background: rgba(255,255,255,.07); }
+  :root:not([data-theme="light"]) .theme-btn:hover { background: rgba(255,255,255,.14); }
+  :root:not([data-theme="light"]) .pill { background: rgba(10,10,12,.72); border-color: rgba(255,255,255,.08); }
+  @media (max-width: 900px) { :root:not([data-theme="light"]) .nav { background: rgba(20,20,23,.97); border-color: rgba(255,255,255,.1); } }
   :root:not([data-theme="light"]) .hero::before { background-image: radial-gradient(circle, #34343b 1.2px, transparent 1.3px); }
   :root:not([data-theme="light"]) .frame { background: #141417; box-shadow: 0 50px 90px -30px rgba(0,0,0,.8), 0 0 0 1px rgba(255,255,255,.09); }
   :root:not([data-theme="light"]) .frame-bar { background: #1a1a1e; border-bottom-color: #26262c; }
@@ -462,8 +464,10 @@ h1 em::after { animation: drift 7s ease-in-out infinite; }
 :root[data-theme="dark"] .btn.ghost { background: var(--card); color: var(--ink); border-color: var(--line); }
 :root[data-theme="dark"] .btn.ghost:hover { border-color: var(--ink); background: var(--card); }
 :root[data-theme="dark"] .on-dark .btn { background: #fff; border-color: #fff; color: #0b0b0d; }
-:root[data-theme="dark"] .pill { background: rgba(20,20,23,.78); border-color: rgba(255,255,255,.09); }
-:root[data-theme="dark"] .nav { background: rgba(20,20,23,.97); border-color: rgba(255,255,255,.1); }
+:root[data-theme="dark"] .theme-btn, :root[data-theme="dark"] .menu-btn { background: rgba(255,255,255,.07); }
+:root[data-theme="dark"] .theme-btn:hover { background: rgba(255,255,255,.14); }
+:root[data-theme="dark"] .pill { background: rgba(10,10,12,.72); border-color: rgba(255,255,255,.08); }
+@media (max-width: 900px) { :root[data-theme="dark"] .nav { background: rgba(20,20,23,.97); border-color: rgba(255,255,255,.1); } }
 :root[data-theme="dark"] .hero::before { background-image: radial-gradient(circle, #34343b 1.2px, transparent 1.3px); }
 :root[data-theme="dark"] .frame { background: #141417; box-shadow: 0 50px 90px -30px rgba(0,0,0,.8), 0 0 0 1px rgba(255,255,255,.09); }
 :root[data-theme="dark"] .frame-bar { background: #1a1a1e; border-bottom-color: #26262c; }
