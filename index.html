@@ -20,7 +20,7 @@
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 512 512%22%3E%3Crect width=%22512%22 height=%22512%22 rx=%22112%22 fill=%22%23000%22/%3E%3Cg transform=%22translate%28256 256%29 scale%28.4%29 translate%28-741 -602%29%22%3E%3Cpath fill=%22%23fb0000%22 d=%22M163 320 H310 L462 594 L616 320 H759 L462 879 Z%22/%3E%3Cpath class=%22d%22 fill=%22%23fff%22 fill-rule=%22evenodd%22 d=%22M790 320 H910 C995 320 1048 376 1073 437 H981 V453 H1132 V492 H1040 V517 H1238 V558 H1098 V595 H1191 V634 H1096 V660 H1144 V725 H1107 V757 H1205 V789 H990 V805 H1065 C1032 856 985 884 910 884 H610 V668 L690 517 H758 V773 H850 C940 773 995 700 995 605 C995 510 940 438 850 438 H728 Z M1033 694 H1102 V710 H1033 Z%22/%3E%3Cg class=%22d%22 fill=%22%23fff%22%3E%3Crect x=%221152%22 y=%22383%22 width=%2253%22 height=%2257%22/%3E%3Crect x=%221256%22 y=%22471%22 width=%2243%22 height=%2242%22/%3E%3Crect x=%221222%22 y=%22590%22 width=%2249%22 height=%2246%22/%3E%3Crect x=%221166%22 y=%22697%22 width=%22153%22 height=%2238%22/%3E%3Crect x=%221232%22 y=%22784%22 width=%2224%22 height=%2219%22/%3E%3Crect x=%221090%22 y=%22833%22 width=%2252%22 height=%2252%22/%3E%3Crect x=%221036%22 y=%22853%22 width=%2226%22 height=%2225%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800;900&family=Sora:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800;900&family=Sora:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Manrope:wght@400;500;700&display=swap">
 <script>document.documentElement.className = 'js'; try { var t = localStorage.getItem('vd-theme'); if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch (e) {}</script>
 <style>
 :root {
@@ -142,75 +142,23 @@ h1 em::after { content: ""; display: inline-block; width: .1em; height: .1em; ma
 .so-count { background: #000; color: #00ff00; font: 12px "Courier New", monospace; text-align: center; padding: 5px; border: 2px inset #999; }
 .so-foot { position: absolute; left: 0; right: 0; bottom: 0; background: #1a1ab0; color: #dcdcdc; font: 12px Arial, sans-serif; padding: 8px 10px; text-align: center; }
 
-.layer.s-new { background: #fbfbf9; color: #16211c; font-family: var(--sans); line-height: 1.5; clip-path: inset(0 calc(100% - var(--p)) 0 0); }
-.np { display: flex; flex-direction: column; padding: 0 52px; text-align: left; }
-.np-nav { height: 72px; display: flex; align-items: center; justify-content: space-between; }
-.np-logo { font-size: 18px; display: flex; align-items: center; gap: 10px; font-weight: 650; letter-spacing: -.02em; }
-.np-logo i { width: 14px; height: 14px; border-radius: 4px; background: #1f6f54; display: block; }
-.np-links { display: flex; gap: 30px; font-size: 13px; color: #6b7770; }
-.np-pill { background: #16211c; color: #fff; font-weight: 600; font-size: 13px; padding: 10px 18px; border-radius: 999px; }
-.np-hero { display: grid; grid-template-columns: 1.15fr 1fr; gap: 48px; align-items: center; height: 276px; margin-top: 6px; }
-.np-eyebrow { color: #1f6f54; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; font-weight: 650; }
-.np-copy h4 { font-size: 46px; line-height: 1.02; margin: 12px 0 12px; font-weight: 650; letter-spacing: -.045em; color: #0f1a15; }
-.np-copy h4 em { font-style: normal; color: #1f6f54; }
-.np-copy p { margin: 0 0 18px; color: #6b7770; font-size: 14.5px; line-height: 1.5; max-width: 430px; }
-.np-btns { display: flex; gap: 10px; }
-.np-btn { display: inline-block; background: #1f6f54; color: #fff; font-weight: 600; font-size: 13px; padding: 13px 22px; border-radius: 999px; }
-.np-btn.ghost { background: transparent; color: #16211c; border: 1px solid #dde2dc; }
-.np-visual { height: 100%; border-radius: 26px; background: #eef3ef; padding: 30px 34px; display: flex; flex-direction: column; justify-content: center; gap: 22px; }
-.np-rate { display: grid; grid-template-columns: auto 1fr; column-gap: 16px; align-items: end; }
-.np-rate b { grid-row: 1 / 3; font-size: 64px; line-height: .9; font-weight: 650; letter-spacing: -.05em; color: #0f1a15; }
-.np-stars { font-size: 17px; letter-spacing: 3px; color: #e0a526; line-height: 1; }
-.np-sub { font-size: 12.5px; color: #6b7770; align-self: start; margin-top: 4px; }
-.np-bars { display: grid; gap: 9px; }
-.np-bars div { display: grid; grid-template-columns: 14px 1fr; gap: 12px; align-items: center; font-size: 12px; color: #6b7770; }
-.np-bars i { display: block; height: 6px; border-radius: 99px; background: #dbe5de; position: relative; overflow: hidden; }
-.np-bars i::after { content: ""; position: absolute; inset: 0 auto 0 0; width: var(--w); border-radius: 99px; background: #1f6f54; }
-.np-stats { display: grid; grid-template-columns: repeat(4, 1fr); height: 70px; margin-top: 14px; border-top: 1px solid #e8ebe6; border-bottom: 1px solid #e8ebe6; }
-.np-stats div { display: flex; flex-direction: column; justify-content: center; }
-.np-stats b { font-size: 24px; line-height: 1; font-weight: 650; letter-spacing: -.03em; color: #0f1a15; }
-.np-stats span { font-size: 12px; color: #6b7770; margin-top: 5px; }
-.np-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 18px; }
-.np-card { background: #fff; border: 1px solid #e8ebe6; border-radius: 18px; padding: 16px 20px; }
-.np-card .ic { width: 32px; height: 32px; border-radius: 10px; background: #e6f0ea; color: #1f6f54; display: grid; place-items: center; margin-bottom: 10px; }
-.np-card b { font-size: 14.5px; display: block; margin-bottom: 3px; color: #0f1a15; font-weight: 650; }
-.np-card .t { font-size: 12.5px; color: #6b7770; line-height: 1.45; display: block; }
-@media (prefers-color-scheme: dark) {
-:root:not([data-theme="light"]) .layer.s-new { background: #0c110f; color: #eef3f0; }
-:root:not([data-theme="light"]) .np-links { color: #8c9a93; }
-:root:not([data-theme="light"]) .np-pill { background: #eef3f0; color: #0c110f; }
-:root:not([data-theme="light"]) .np-logo i { background: #3ecf9b; }
-:root:not([data-theme="light"]) .np-eyebrow { color: #3ecf9b; }
-:root:not([data-theme="light"]) .np-copy h4 { color: #fff; }
-:root:not([data-theme="light"]) .np-copy h4 em { color: #3ecf9b; }
-:root:not([data-theme="light"]) .np-copy p, .np-sub, .np-stats span, .np-card .t, .np-bars div { color: #8c9a93; }
-:root:not([data-theme="light"]) .np-btn { background: #3ecf9b; color: #06241a; }
-:root:not([data-theme="light"]) .np-btn.ghost { background: transparent; color: #eef3f0; border-color: #26322d; }
-:root:not([data-theme="light"]) .np-visual { background: #131b17; }
-:root:not([data-theme="light"]) .np-rate b, .np-stats b, .np-card b { color: #fff; }
-:root:not([data-theme="light"]) .np-bars i { background: #22302a; }
-:root:not([data-theme="light"]) .np-bars i::after { background: #3ecf9b; }
-:root:not([data-theme="light"]) .np-stats { border-color: #1d2622; }
-:root:not([data-theme="light"]) .np-card { background: #121916; border-color: #1d2622; }
-:root:not([data-theme="light"]) .np-card .ic { background: #173026; color: #3ecf9b; }
-}
-:root[data-theme="dark"] .layer.s-new { background: #0c110f; color: #eef3f0; }
-:root[data-theme="dark"] .np-links { color: #8c9a93; }
-:root[data-theme="dark"] .np-pill { background: #eef3f0; color: #0c110f; }
-:root[data-theme="dark"] .np-logo i { background: #3ecf9b; }
-:root[data-theme="dark"] .np-eyebrow { color: #3ecf9b; }
-:root[data-theme="dark"] .np-copy h4 { color: #fff; }
-:root[data-theme="dark"] .np-copy h4 em { color: #3ecf9b; }
-:root[data-theme="dark"] .np-copy p, .np-sub, .np-stats span, .np-card .t, .np-bars div { color: #8c9a93; }
-:root[data-theme="dark"] .np-btn { background: #3ecf9b; color: #06241a; }
-:root[data-theme="dark"] .np-btn.ghost { background: transparent; color: #eef3f0; border-color: #26322d; }
-:root[data-theme="dark"] .np-visual { background: #131b17; }
-:root[data-theme="dark"] .np-rate b, .np-stats b, .np-card b { color: #fff; }
-:root[data-theme="dark"] .np-bars i { background: #22302a; }
-:root[data-theme="dark"] .np-bars i::after { background: #3ecf9b; }
-:root[data-theme="dark"] .np-stats { border-color: #1d2622; }
-:root[data-theme="dark"] .np-card { background: #121916; border-color: #1d2622; }
-:root[data-theme="dark"] .np-card .ic { background: #173026; color: #3ecf9b; }
+.layer.s-new { background: #0f2147; color: #f4efe6; font-family: "Manrope", system-ui, sans-serif; line-height: 1.5; clip-path: inset(0 calc(100% - var(--p)) 0 0); }
+.rs { text-align: left; background: radial-gradient(520px 420px at 22% 36%, #1a3366, rgba(26,51,102,0) 70%), #0f2147; }
+.rs::before { content: ""; position: absolute; inset: 0; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); opacity: .07; pointer-events: none; }
+.rs-photo { position: absolute; top: 0; right: 0; width: 560px; height: 620px; object-fit: cover; object-position: 30% 50%; -webkit-mask-image: linear-gradient(to right, transparent 0, #000 30%); mask-image: linear-gradient(to right, transparent 0, #000 30%); }
+.rs-nav { position: absolute; z-index: 1; left: 48px; right: 48px; top: 0; height: 76px; display: flex; align-items: center; gap: 24px; font-size: 14px; font-weight: 500; color: rgba(244,239,230,.78); }
+.rs-logo { font: 600 24px/1 "Fraunces", serif; color: #f4efe6; margin-right: auto; }
+.rs-logo small { display: block; font: 700 10.5px/1.2 "Manrope", sans-serif; letter-spacing: .02em; color: #f3c55a; margin-bottom: 3px; }
+.rs-nav .rs-res { color: #0f2147; background: #f3c55a; padding: 9px 16px; border-radius: 999px; font-weight: 700; }
+.rs-text { position: absolute; z-index: 1; left: 48px; top: 140px; width: 430px; }
+.rs-text h4 { margin: 0; font: 600 60px/1 "Fraunces", serif; font-variation-settings: "opsz" 144; letter-spacing: -.03em; color: #f4efe6; }
+.rs-text h4 span { display: block; color: #f3c55a; }
+.rs-text p { margin: 20px 0 26px; max-width: 340px; font-size: 16px; color: rgba(244,239,230,.78); }
+.rs-cta { display: flex; align-items: center; gap: 22px; font-size: 15px; font-weight: 700; }
+.rs-cta .a { background: #d8402a; color: #fff; padding: 14px 24px; border-radius: 999px; box-shadow: 0 10px 24px rgba(216,64,42,.35); }
+.rs-cta .b { border-bottom: 1.5px solid rgba(244,239,230,.55); padding-bottom: 2px; }
+.rs-dish { position: absolute; z-index: 1; left: 640px; top: 540px; transform: translateX(-50%); background: #f4efe6; color: #0f2147; padding: 9px 16px; border-radius: 999px; font-size: 13px; font-weight: 700; white-space: nowrap; box-shadow: 0 10px 24px rgba(0,0,0,.35); }
+.rs-dish b { font: 600 15px/1 "Fraunces", serif; color: #d8402a; margin-left: 8px; }
 
 .divider { background: var(--red); }
 
@@ -575,17 +523,17 @@ h3, .topic summary, .qa h3, .legal h4 { font-weight: 700; }
           <div class="frame-bar" aria-hidden="true"><i></i><i></i><i></i><span></span></div>
           <div class="compare" id="compare">
       <div class="layer s-old" aria-hidden="true"><div class="page">
-        <div class="so-banner">*** Herzlich Willkommen auf der Homepage der Firma Müller &amp; Söhne GmbH ***</div>
+        <div class="so-banner">*** Herzlich Willkommen auf der Homepage vom Gasthaus Beispiel ***</div>
         <div class="so-cols">
           <div class="so-nav">
-            <div class="so-btn">Startseite</div><div class="so-btn">Über uns</div><div class="so-btn">Unsere Produkte</div><div class="so-btn">Preise</div><div class="so-btn">Gästebuch</div><div class="so-btn">Links</div><div class="so-btn">Kontakt</div>
+            <div class="so-btn">Startseite</div><div class="so-btn">Über uns</div><div class="so-btn">Speisekarte (PDF)</div><div class="so-btn">Preise</div><div class="so-btn">Gästebuch</div><div class="so-btn">Links</div><div class="so-btn">Kontakt</div>
           </div>
           <div class="so-mid">
-            <h4>Müller &amp; Söhne GmbH</h4>
-            <p>Sehr geehrte Besucher, wir freuen uns, dass Sie den Weg auf unsere Homepage gefunden haben. Unsere Firma besteht bereits seit dem Jahr 1987 und ist in der Region bekannt für Qualität und Zuverlässigkeit.</p>
-            <p><span class="hot">!!! NEU !!! Jetzt auch Terrassen und Carports !!!</span></p>
-            <p>Wir bieten Ihnen folgende Leistungen an:</p>
-            <ul><li>Fenster und Türen</li><li>Dachstühle, Dachsanierung</li><li>Möbel nach Maß</li><li>Treppen, Geländer</li><li>und vieles mehr</li></ul>
+            <h4>Gasthaus Beispiel</h4>
+            <p>Sehr geehrte Besucher, wir freuen uns, dass Sie den Weg auf unsere Homepage gefunden haben. Unser Gasthaus besteht bereits seit dem Jahr 1987 und ist bekannt für gutbürgerliche Küche.</p>
+            <p><span class="hot">!!! NEU !!! Jetzt auch Schnitzel zum Mitnehmen !!!</span></p>
+            <p>Wir bieten Ihnen folgendes an:</p>
+            <ul><li>Schnitzel in 12 Variationen</li><li>Mittagstisch</li><li>Feiern bis 80 Personen</li><li>Partyservice</li><li>und vieles mehr</li></ul>
             <p>Rufen Sie uns einfach an oder schreiben Sie uns eine <span class="lnk">E-Mail</span>. Preise auf Anfrage. Bitte beachten Sie auch unsere <span class="lnk">Allgemeinen Geschäftsbedingungen</span> und unser <span class="lnk">Gästebuch</span>.</p>
             <p>Diese Seite wird ständig aktualisiert. Viel Spaß beim Stöbern!</p>
           </div>
@@ -598,31 +546,15 @@ h3, .topic summary, .qa h3, .legal h4 { font-weight: 700; }
         </div>
         <div class="so-foot">Letzte Änderung: 03.03.2009 &nbsp;|&nbsp; Optimiert für Internet Explorer 6, 800x600</div>
       </div></div>
-      <div class="layer s-new" aria-hidden="true"><div class="page np">
-        <div class="np-nav"><b class="np-logo"><i></i>Müller &amp; Söhne</b><span class="np-links"><span>Leistungen</span><span>Referenzen</span><span>Team</span><span>Kontakt</span></span><span class="np-pill">Angebot anfragen</span></div>
-        <div class="np-hero">
-          <div class="np-copy">
-            <span class="np-eyebrow">Meisterbetrieb · Seit 1987</span>
-            <h4>Handwerk mit <em>Haltung</em>.</h4>
-            <p>Wir planen, bauen und sanieren mit eigenen Teams. Transparent im Preis, zuverlässig im Termin.</p>
-            <div class="np-btns"><span class="np-btn">Projekt besprechen</span><span class="np-btn ghost">Referenzen ansehen</span></div>
-          </div>
-          <div class="np-visual">
-            <div class="np-rate"><b>4,9</b><span class="np-stars">★★★★★</span><span class="np-sub">212 Kundenbewertungen</span></div>
-            <div class="np-bars"><div><span>5</span><i style="--w:88%"></i></div><div><span>4</span><i style="--w:9%"></i></div><div><span>3</span><i style="--w:3%"></i></div></div>
-          </div>
+      <div class="layer s-new" aria-hidden="true"><div class="page rs">
+        <img class="rs-photo" src="beispiel-pasta.jpg" alt="" width="1000" height="819">
+        <div class="rs-nav"><b class="rs-logo"><small>Trattoria</small>beispiel</b><span>Speisekarte</span><span>Mittagstisch</span><span>Feiern</span><span class="rs-res">Tisch reservieren</span></div>
+        <div class="rs-text">
+          <h4>Frische Pasta.<span>Jeden Tag von Hand.</span></h4>
+          <p>Bei uns wird der Teig morgens geknetet und abends serviert. Dazu Tomatensauce, die stundenlang köchelt.</p>
+          <div class="rs-cta"><span class="a">Tisch reservieren</span><span class="b">Zur Speisekarte</span></div>
         </div>
-        <div class="np-stats">
-          <div><b>37</b><span>Jahre Erfahrung</span></div>
-          <div><b>1.200+</b><span>Projekte umgesetzt</span></div>
-          <div><b>12</b><span>Fachkräfte im Team</span></div>
-          <div><b>48 h</b><span>bis zum Angebot</span></div>
-        </div>
-        <div class="np-cards">
-          <div class="np-card"><span class="ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg></span><b>Sanierung</b><span class="t">Dach, Fassade und Fenster fachgerecht erneuert.</span></div>
-          <div class="np-card"><span class="ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="4" rx="1"/><rect x="3" y="10" width="18" height="4" rx="1"/><rect x="3" y="15" width="18" height="4" rx="1"/></svg></span><b>Holzbau</b><span class="t">Terrassen, Carports und Dachstühle aus regionalem Holz.</span></div>
-          <div class="np-card"><span class="ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17L17 3l4 4L7 21z"/><path d="M8 12l2 2M11 9l2 2M14 6l2 2"/></svg></span><b>Ausbau nach Maß</b><span class="t">Treppen, Möbel und Innenausbau ganz nach Ihren Plänen.</span></div>
-        </div>
+        <div class="rs-dish">Spaghetti al pomodoro<b>14 €</b></div>
       </div></div>
       <span class="tag l">Nachher</span>
       <span class="tag r">Vorher</span>
