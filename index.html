@@ -111,7 +111,8 @@ h1 em::after { content: ""; display: inline-block; width: .1em; height: .1em; ma
 .frame-bar { display: flex; align-items: center; gap: 7px; height: 42px; padding: 0 16px; background: #f1f1f3; border-bottom: 1px solid #e3e3e7; }
 .frame-bar i { width: 11px; height: 11px; border-radius: 50%; background: #d3d3d8; }
 .frame-bar i:first-child { background: var(--red); }
-.frame-bar span { flex: 1; max-width: 360px; height: 24px; margin: 0 auto; border-radius: 8px; background: #fff; border: 1px solid #e3e3e7; }
+.frame-bar span { flex: 1; max-width: 360px; height: 24px; margin: 0 auto; border-radius: 8px; background: #fff; border: 1px solid #e3e3e7; display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 0.78rem; line-height: 1; color: #6a6b73; letter-spacing: 0.01em; }
+.frame-bar span svg { width: 11px; height: 11px; flex: none; }
 .frame .compare { border: 0; border-radius: 0; box-shadow: none; }
 
 /* Vorher / Nachher */
@@ -322,7 +323,7 @@ html.js .rv.d1 { transition-delay: .08s; } html.js .rv.d2 { transition-delay: .1
   .showcase { margin-top: 52px; }
   .frame { border-radius: 14px; }
   .frame-bar { height: 30px; padding: 0 12px; }
-  .frame-bar span { display: none; }
+  .frame-bar span { height: 20px; max-width: 220px; font-size: 0.68rem; }
   .rev-form { padding: 28px 22px 30px; }
   .rev { padding: 22px 20px; }
   .topic summary { padding: 20px 20px; font-size: 1.2rem; }
@@ -416,7 +417,7 @@ h1 em::after { animation: drift 7s ease-in-out infinite; }
   :root:not([data-theme="light"]) .frame-bar { background: #1a1a1e; border-bottom-color: #26262c; }
   :root:not([data-theme="light"]) .frame-bar i { background: #3a3a41; }
   :root:not([data-theme="light"]) .frame-bar i:first-child { background: var(--red); }
-  :root:not([data-theme="light"]) .frame-bar span { background: #0f0f12; border-color: #26262c; }
+  :root:not([data-theme="light"]) .frame-bar span { background: #0f0f12; border-color: #26262c; color: #9a9aa3; }
   :root:not([data-theme="light"]) .showcase::before { background: radial-gradient(ellipse closest-side, rgba(251,0,0,.32), rgba(251,0,0,.08) 60%, transparent 100%); }
   :root:not([data-theme="light"]) .art { background: linear-gradient(160deg, #1f1f24, #17171b); }
   :root:not([data-theme="light"]) .svc article:hover { box-shadow: 0 1px 2px rgba(0,0,0,.4), 0 24px 44px -16px rgba(0,0,0,.7); }
@@ -460,7 +461,7 @@ h1 em::after { animation: drift 7s ease-in-out infinite; }
 :root[data-theme="dark"] .frame-bar { background: #1a1a1e; border-bottom-color: #26262c; }
 :root[data-theme="dark"] .frame-bar i { background: #3a3a41; }
 :root[data-theme="dark"] .frame-bar i:first-child { background: var(--red); }
-:root[data-theme="dark"] .frame-bar span { background: #0f0f12; border-color: #26262c; }
+:root[data-theme="dark"] .frame-bar span { background: #0f0f12; border-color: #26262c; color: #9a9aa3; }
 :root[data-theme="dark"] .showcase::before { background: radial-gradient(ellipse closest-side, rgba(251,0,0,.32), rgba(251,0,0,.08) 60%, transparent 100%); }
 :root[data-theme="dark"] .art { background: linear-gradient(160deg, #1f1f24, #17171b); }
 :root[data-theme="dark"] .svc article:hover { box-shadow: 0 1px 2px rgba(0,0,0,.4), 0 24px 44px -16px rgba(0,0,0,.7); }
@@ -520,7 +521,7 @@ h3, .topic summary, .qa h3, .legal h4 { font-weight: 700; }
       </div>
       <div class="showcase">
         <figure class="frame" style="margin-block:0">
-          <div class="frame-bar" aria-hidden="true"><i></i><i></i><i></i><span></span></div>
+          <div class="frame-bar" aria-hidden="true"><i></i><i></i><i></i><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>www.web-beispiel.de</span></div>
           <div class="compare" id="compare">
       <div class="layer s-old" aria-hidden="true"><div class="page">
         <div class="so-banner">*** Herzlich Willkommen auf der Homepage vom Gasthaus Beispiel ***</div>
