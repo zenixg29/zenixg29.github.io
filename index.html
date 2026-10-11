@@ -1000,7 +1000,13 @@ h1 .l1 { background: linear-gradient(var(--bg), var(--bg)) 0 .19em / 100% var(--
     go(el, true);
     try { if (history.pushState) history.pushState(null, '', '#' + id); } catch (err) {}
   });
+  /* Neu laden startet immer ganz oben. Nur ein geteilter Link mit #Abschnitt springt direkt dorthin. */
+  try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (err) {}
+  var nav0 = performance.getEntriesByType ? performance.getEntriesByType('navigation')[0] : null;
+  var reload = nav0 ? nav0.type === 'reload' : (performance.navigation && performance.navigation.type === 1);
+  if (reload && location.hash) { try { history.replaceState(null, '', location.pathname + location.search); } catch (err) {} }
   window.addEventListener('load', function () {
+    if (!location.hash || location.hash === '#top') { window.scrollTo(0, 0); return; }
     var el = location.hash.length > 1 ? document.getElementById(location.hash.slice(1)) : null;
     if (el) setTimeout(function () { go(el, false); }, 60);
   });
