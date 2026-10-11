@@ -508,13 +508,13 @@ html.measuring .rv, html.measuring .svc article, html.measuring .steps li, html.
 .hero::before, .contact::after,
 .services::before, .process::before, .about::before, .faq-sec::before, .reviews::before { background-position: 50% var(--gy, 0); }
 /* Punkte nur direkt zwischen den Buchstaben ausblenden (Band von Großbuchstaben-Oberkante bis Unterlänge) */
-.ink { --c: var(--bg); background: linear-gradient(var(--c), var(--c)) 0 .26em / 100% .92em no-repeat; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.ink { --c: var(--bg); background: linear-gradient(var(--c), var(--c)) 0 .19em / 100% .99em no-repeat; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
 .contact .ink { --c: var(--ink); }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .contact .ink { --c: #111114; } }
 :root[data-theme="dark"] .contact .ink { --c: #111114; }
 /* Überschrift oben: Punktreihe zwischen den beiden Zeilen ausblenden */
 h1 { --lh: round(up, .9em, var(--g)); line-height: var(--lh); }
-h1 .l1 { background: linear-gradient(var(--bg), var(--bg)) 0 .26em / 100% var(--lh) no-repeat; }
+h1 .l1 { background: linear-gradient(var(--bg), var(--bg)) 0 .19em / 100% var(--lh) no-repeat; }
 /* Gestrichelte Verbindungen genau zwischen die Kästen und mittig auf die Nummern */
 .steps li:not(:last-child)::after { width: 20px; right: -21px; top: 59px; background-position: center; }
 @media (max-width: 860px) { .steps li:not(:last-child)::after { width: 2px; height: 20px; left: 51px; right: auto; top: auto; bottom: -21px; } }
