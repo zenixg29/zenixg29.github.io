@@ -489,6 +489,35 @@ h1 em::after { animation: drift 7s ease-in-out infinite; }
 h1, h2, h3, .brand, .topic summary, .qa h3, .legal h4, .rev-sum b, .mail-big { font-family: var(--head); letter-spacing: 0 !important; }
 h1, h2, .brand, .rev-sum b { font-weight: 900; }
 h3, .topic summary, .qa h3, .legal h4 { font-weight: 700; }
+
+/* Punkteraster: Schrift sitzt auf den Punkten im Hintergrund (Raster 26px) */
+:root { --g: 26px; }
+body { line-height: var(--g); }
+h1 { line-height: round(up, .9em, var(--g)); }
+h2 { line-height: round(up, .92em, var(--g)); font-size: clamp(2.3rem, 5.2vw, 3.55rem); }
+.contact h2 { font-size: clamp(2.6rem, 6.4vw, 4.85rem); }
+h3, .svc h3, .steps h3, .rev-form h3, .legal h3, .topic summary, .qa h3, .legal h4 { line-height: var(--g); }
+.svc h3, .steps h3 { font-size: 1.55rem; }
+.rev-form h3, .legal h3 { font-size: 1.5rem; }
+.hero-sub { font-size: clamp(1.15rem, 2vw, 1.35rem); line-height: var(--g); }
+.lead, .svc p, .steps p, .about-text > p:not(.label), .facts li, .qa p, .rev p, .legal p, .rev-empty, .rev-note, .cf-note, .copied { line-height: var(--g); }
+.hero-actions p, footer, .rev-check, .cf-check, .rev-form label, .rev-form legend, .cform label { line-height: var(--g); }
+.facts b { margin-bottom: 0; }
+.mail-big { line-height: round(up, 1.1em, var(--g)); }
+html.measuring .rv, html.measuring .svc article, html.measuring .steps li, html.measuring .facts li, html.measuring .rev { transform: none !important; transition: none !important; }
+.hero::before, .contact::after,
+.services::before, .process::before, .about::before, .faq-sec::before, .reviews::before { background-position: 50% var(--gy, 0); }
+/* Punkte nur direkt zwischen den Buchstaben ausblenden (Band von Großbuchstaben-Oberkante bis Unterlänge) */
+.ink { --c: var(--bg); background: linear-gradient(var(--c), var(--c)) 0 .26em / 100% .92em no-repeat; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.contact .ink { --c: var(--ink); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .contact .ink { --c: #111114; } }
+:root[data-theme="dark"] .contact .ink { --c: #111114; }
+/* Überschrift oben: Punktreihe zwischen den beiden Zeilen ausblenden */
+h1 { --lh: round(up, .9em, var(--g)); line-height: var(--lh); }
+h1 .l1 { background: linear-gradient(var(--bg), var(--bg)) 0 .26em / 100% var(--lh) no-repeat; }
+/* Gestrichelte Verbindungen genau zwischen die Kästen und mittig auf die Nummern */
+.steps li:not(:last-child)::after { width: 20px; right: -21px; top: 59px; background-position: center; }
+@media (max-width: 860px) { .steps li:not(:last-child)::after { width: 2px; height: 20px; left: 51px; right: auto; top: auto; bottom: -21px; } }
 </style>
 </head>
 <body>
@@ -513,11 +542,11 @@ h3, .topic summary, .qa h3, .legal h4 { font-weight: 700; }
 <main id="top">
   <div class="hero" id="hero">
     <div class="wrap">
-      <h1>Werden Sie<br><em>sichtbar.</em></h1>
+      <h1><span class="l1">Werden Sie</span><br><em>sichtbar.</em></h1>
       <p class="hero-sub">Webdesign, Social Media &amp; Werbung für Unternehmen</p>
       <div class="hero-actions">
         <a class="btn" href="#kontakt">Erstgespräch anfragen</a>
-        <p>Das Erstgespräch ist unverbindlich.</p>
+        <p>Das Erstgespräch ist kostenlos und unverbindlich.</p>
       </div>
       <div class="showcase">
         <figure class="frame" style="margin-block:0">
@@ -593,7 +622,7 @@ h3, .topic summary, .qa h3, .legal h4 { font-weight: 700; }
     <ol class="steps">
       <li class="rv">
         <h3>Kennenlernen</h3>
-        <p>Wir sprechen in Ruhe über Ihr Unternehmen, Ihre Ziele und Ihre Wünsche. Das Erstgespräch ist unverbindlich.</p>
+        <p>Wir sprechen in Ruhe über Ihr Unternehmen, Ihre Ziele und Ihre Wünsche. Das Erstgespräch ist kostenlos und unverbindlich.</p>
       </li>
       <li class="rv d1">
         <h3>Entwurf</h3>
@@ -628,16 +657,16 @@ h3, .topic summary, .qa h3, .legal h4 { font-weight: 700; }
     <div class="head rv"><span class="label">Fragen</span><h2>Häufige Fragen</h2></div>
     <div class="topics rv">
       <details class="topic">
-        <summary>Kosten und Ablauf</summary>
+        <summary><span>Kosten und Ablauf</span></summary>
         <div class="qa">
           <h3>Was kostet eine Website?</h3>
-          <p>Es gibt ein Standardpaket, das für die meisten Unternehmen ausreicht. Haben Sie zusätzliche Wünsche, sind diese möglich und werden extra berechnet. Den genauen Preis besprechen wir im unverbindlichen Erstgespräch.</p>
+          <p>Es gibt ein Standardpaket, das für die meisten Unternehmen ausreicht. Haben Sie zusätzliche Wünsche, sind diese möglich und werden extra berechnet. Den genauen Preis besprechen wir im kostenlosen und unverbindlichen Erstgespräch.</p>
           <h3>Wie lange dauert es bis zur fertigen Seite?</h3>
           <p>Je nach Auftrag brauche ich etwa 2 bis 3 Wochen. Den genauen Zeitplan legen wir gemeinsam im Erstgespräch fest, damit Sie von Anfang an wissen, womit Sie rechnen können.</p>
         </div>
       </details>
       <details class="topic">
-        <summary>Nach dem Start</summary>
+        <summary><span>Nach dem Start</span></summary>
         <div class="qa">
           <h3>Was passiert, wenn etwas nicht funktioniert?</h3>
           <p>Treten nach dem Start Probleme oder Fehler auf, behebe ich diese kostenlos.</p>
@@ -646,7 +675,7 @@ h3, .topic summary, .qa h3, .legal h4 { font-weight: 700; }
         </div>
       </details>
       <details class="topic">
-        <summary>Social Media</summary>
+        <summary><span>Social Media</span></summary>
         <div class="qa">
           <h3>Was umfasst die Social-Media-Beratung?</h3>
           <p>Ich analysiere Ihre Kanäle, entwickle mit Ihnen eine Strategie und richte Profile sowie Vorlagen für Ihre Beiträge ein. Danach setzen Sie die Beiträge selbst um, und bei Fragen berate ich Sie weiter.</p>
@@ -1048,6 +1077,53 @@ h3, .topic summary, .qa h3, .legal h4 { font-weight: 700; }
       .catch(function () { say('Das hat leider nicht geklappt. Bitte schreiben Sie mir direkt per E-Mail.', 'err'); })
       .then(function () { btn.disabled = false; });
   });
+})();
+</script>
+<script>
+/* Punkteraster: jede Textzeile so verschieben, dass sie mittig zwischen zwei Punktreihen sitzt */
+(function () {
+  var G = 26;
+  var SEL = '.hero h1, .hero-sub, .hero-actions p, .head .lead, h2:not(.sr-only), .svc h3, .svc p, .steps h3, .steps p, .about-text > p:not(.label), .facts b, .topic summary > span, .qa h3, .qa p, .rev-sum, .rev-head, .rev p, .rev-empty, .rev-form h3, .rev-form > div > label, .rev-form legend, .rev-check, .contact .lead, .cform label:not(.cf-check), .cf-check, .or, .mail-big, .foot > span, .legal h3, .legal h4, .legal p';
+  var LAYERS = [['.hero', -110], ['.services', 0], ['.process', 0], ['.about', 0], ['.faq-sec', 0], ['.reviews', 0], ['.contact', 0]];
+  function top(el) { return el.getBoundingClientRect().top + window.scrollY; }
+  function mod(a) { return ((a % G) + G) % G; }
+  document.querySelectorAll('.hero h1, .hero-sub, .hero-actions p, h2:not(.sr-only), .head .lead, .contact .lead, .about-text > p:not(.label), .or').forEach(function (el) {
+    var s = document.createElement('span'); s.className = 'ink';
+    while (el.firstChild) s.appendChild(el.firstChild);
+    el.appendChild(s);
+  });
+  var probe = document.createElement('span');
+  probe.style.cssText = 'display:inline-block;width:0;height:0;vertical-align:baseline';
+  var busy = false;
+  function snap() {
+    busy = false;
+    var root = document.documentElement;
+    root.classList.add('measuring');
+    var els = document.querySelectorAll(SEL);
+    els.forEach(function (el) { el.style.paddingTop = ''; });
+    els.forEach(function (el) {
+      if (!el.offsetParent || el.closest('[hidden]')) return;
+      var host = el.firstElementChild && el.firstElementChild.classList.contains('ink') ? el.firstElementChild : el;
+      host.insertBefore(probe, host.firstChild);
+      var c = 0.34 * parseFloat(getComputedStyle(el).fontSize);
+      var d = mod(G / 2 + c - top(probe));
+      host.removeChild(probe);
+      if (d > 0.5) el.style.paddingTop = (parseFloat(getComputedStyle(el).paddingTop) + d) + 'px';
+    });
+    LAYERS.forEach(function (l) {
+      var el = document.querySelector(l[0]);
+      if (el) el.style.setProperty('--gy', mod(-(top(el) + l[1]) - G / 2) + 'px');
+    });
+    root.classList.remove('measuring');
+  }
+  function later() { if (!busy) { busy = true; requestAnimationFrame(snap); } }
+  snap();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(later);
+  window.addEventListener('load', later);
+  window.addEventListener('resize', later);
+  document.addEventListener('toggle', later, true);
+  document.addEventListener('click', function () { setTimeout(later, 30); });
+  if (window.ResizeObserver) new ResizeObserver(later).observe(document.body);
 })();
 </script>
 </body>
