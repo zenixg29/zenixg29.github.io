@@ -12,7 +12,7 @@
 /* Layout: Karte füllt alles, Bedienung schwebt darüber (oben Suche+Filter, rechts/unten Firmenkarte) */
 :root{
   --bg:#0a0a0c; --panel:#141417f2; --line:#26262c; --fg:#f4f4f6; --mute:#8f9099; --soft:#1d1d22;
-  --red:#fb0000; --green:#22c55e; --amber:#f5b301; --grey:#7a7a85;
+  --red:#fb0000; --green:#22c55e; --amber:#ff9d1a; --blue:#3b9bff; --grey:#7a7a85;
   --display:"Orbitron",system-ui,sans-serif; --body:"Sora",system-ui,-apple-system,"Segoe UI",sans-serif;
   color-scheme:dark;
 }
@@ -44,6 +44,8 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,a:focus-visible{
 .chip[aria-pressed="true"]{background:var(--red);border-color:var(--red);color:#fff;font-weight:600}
 .status{align-self:flex-start;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:5px 11px;font-size:12.5px;color:var(--mute)}
 .status b{color:var(--fg)}
+#legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin:0 4px 0 8px}
+#legend i:first-child{margin-left:0}
 
 .card{position:fixed;z-index:6;right:12px;top:150px;width:340px;max-height:calc(100% - 170px);overflow:auto;
   background:#141417;border:1px solid var(--line);border-radius:24px;padding:20px;box-shadow:0 1px 2px rgba(0,0,0,.4),0 12px 32px -12px rgba(0,0,0,.6)}
@@ -100,6 +102,7 @@ textarea{width:100%;min-height:64px;background:var(--soft);border:1px solid var(
     <button class="chip" id="fLight" aria-pressed="false">Helle Karte</button>
   </div>
   <div class="status" id="status">Karte lädt …</div>
+  <div class="status" id="legend"><i style="background:var(--green)"></i>offen <i style="background:var(--red)"></i>abgehakt <i style="background:var(--amber)"></i>teils abgehakt</div>
 </div>
 
 <aside class="card" id="card" hidden>
@@ -108,12 +111,12 @@ textarea{width:100%;min-height:64px;background:var(--soft);border:1px solid var(
   <div class="cat" id="cCat"></div>
   <div class="facts" id="cFacts"></div>
   <a class="gm" id="cGm" target="_blank" rel="noopener">In Google Maps ansehen ↗</a>
-  <p class="label">Abhaken</p>
+  <p class="label">Abhaken (rot = erledigt)</p>
   <div class="marks" id="marks">
-    <button class="mark" data-s="contacted"><i style="background:var(--green)"></i>Angeschrieben</button>
-    <button class="mark" data-s="no"><i style="background:var(--grey)"></i>Nichts für mich</button>
-    <button class="mark" data-s="later"><i style="background:var(--amber)"></i>Merken</button>
-    <button class="mark" data-s=""><i style="background:var(--red)"></i>Offen</button>
+    <button class="mark" data-s="contacted"><i style="background:var(--red)"></i>Angeschrieben</button>
+    <button class="mark" data-s="no"><i style="background:var(--red)"></i>Nichts für mich</button>
+    <button class="mark" data-s="later"><i style="background:var(--blue)"></i>Merken</button>
+    <button class="mark" data-s=""><i style="background:var(--green)"></i>Offen</button>
   </div>
   <p class="label">Notiz</p>
   <textarea id="cNote" placeholder="z. B. Website veraltet, Chef heißt …"></textarea>
@@ -121,14 +124,14 @@ textarea{width:100%;min-height:64px;background:var(--soft);border:1px solid var(
 
 <aside class="card list" id="list" hidden>
   <button class="x" id="listClose" aria-label="Schließen">✕</button>
-  <h2>Meine Liste</h2>
+  <h2 id="listTitle">Meine Liste</h2>
   <div id="listBody"></div>
-  <div class="tools">
+  <div class="tools" id="listTools">
     <button class="btn" id="btnExport">Sicherung speichern</button>
     <button class="btn" id="btnImport">Sicherung laden</button>
     <input type="file" id="file" accept="application/json,.json" hidden>
   </div>
-  <p class="hint">Deine Häkchen liegen in diesem Browser auf diesem Gerät. Mit der Sicherung nimmst du sie auf ein anderes Gerät mit.</p>
+  <p class="hint" id="listHint">Deine Häkchen liegen in diesem Browser auf diesem Gerät. Mit der Sicherung nimmst du sie auf ein anderes Gerät mit.</p>
 </aside>
 
 <script>
@@ -139,7 +142,9 @@ const KEY = 'businessMaps.v1';
 const START = {center:[9.527,48.805], zoom:14.5};          // Schorndorf
 const MIN_ZOOM = 13.5;                                        // ab hier werden Firmen geladen
 const OVERPASS = ['https://overpass-api.de/api/interpreter','https://overpass.private.coffee/api/interpreter'];
-const COLORS = {'':'#fb0000', contacted:'#22c55e', no:'#7a7a85', later:'#f5b301'};
+const GREEN = '#22c55e', RED = '#fb0000', ORANGE = '#ff9d1a', BLUE = '#3b9bff';
+const COLORS = {'':GREEN, contacted:RED, no:RED, later:BLUE};
+const isDone = s => s === 'contacted' || s === 'no';
 const LABELS = {'':'Offen', contacted:'Angeschrieben', no:'Nichts für mich', later:'Gemerkt'};
 
 /* ---------- Speicher ---------- */
@@ -188,37 +193,53 @@ map.addControl(new maplibregl.NavigationControl({visualizePitch:true}), 'bottom-
 map.addControl(new maplibregl.GeolocateControl({positionOptions:{enableHighAccuracy:true}}), 'bottom-right');
 
 window.businessMap = map;
-const firms = new Map();      // id -> {id,name,lat,lon,tags}
+const firms = new Map();      // id -> {id,name,lat,lon,tags,det}  det = Details (Website usw.) bekannt
+const byName = new Map();     // name -> [firma], zum Zusammenführen doppelter Einträge
 let loaded = [];              // schon geladene Rechtecke [w,s,e,n]
-let fNoWeb = false, fHideDone = false, current = null, busy = false, timer = 0;
+let fNoWeb = false, fHideDone = false, current = null, busy = false, timer = 0, ovFailAt = 0, bTimer = 0, tTimer = 0, inB = new Set();
+
+function addFirm(o){
+  let ex = o.id && firms.get(o.id);
+  const k = o.name.trim().toLowerCase();
+  if (!ex) for (const c of (byName.get(k) || [])) if (Math.abs(c.lat-o.lat) < 0.0005 && Math.abs(c.lon-o.lon) < 0.0007){ ex = c; break; }
+  if (ex){ if (o.det && !ex.det){ ex.tags = o.tags; ex.det = true; return true; } return false; }
+  if (!o.id) o.id = 't' + k.replace(/[^a-z0-9äöüß]/g,'').slice(0,24) + '_' + o.lat.toFixed(4) + '_' + o.lon.toFixed(4);
+  firms.set(o.id, o);
+  if (!byName.has(k)) byName.set(k, []);
+  byName.get(k).push(o);
+  return true;
+}
 
 const website = t => t.website || t['contact:website'] || t.url || '';
 const phone = t => t.phone || t['contact:phone'] || t['contact:mobile'] || '';
 const addr = t => { const a = [t['addr:street'], t['addr:housenumber']].filter(Boolean).join(' ');
   const b = [t['addr:postcode'], t['addr:city']].filter(Boolean).join(' '); return [a,b].filter(Boolean).join(', '); };
 
-function geojson(){
+function geojson(all){
   const feats = [];
   for (const f of firms.values()){
     const s = (store[f.id] && store[f.id].s) || '';
-    const web = !!website(f.tags);
-    if (fNoWeb && web) continue;
-    if (fHideDone && (s === 'contacted' || s === 'no')) continue;
+    const lead = !!f.det && !website(f.tags);
+    if (fNoWeb && !lead) continue;
+    if (fHideDone && isDone(s)) continue;
+    if (!all && inB.has(f.id) && current !== f.id) continue;   // Firma steckt in einem eingefärbten Gebäude: kein Punkt nötig
     feats.push({type:'Feature', geometry:{type:'Point',coordinates:[f.lon,f.lat]},
-      properties:{id:f.id, name:f.name, s, web, sel: current === f.id}});
+      properties:{id:f.id, name:f.name, s, lead, sel: current === f.id}});
   }
   return {type:'FeatureCollection', features:feats};
 }
 function refresh(){
   const src = map.getSource('firms'); if (!src) return;
-  const gj = geojson(); src.setData(gj);
+  src.setData(geojson()); const gj = geojson(true);
   const b = map.getBounds(); let open = 0, done = 0, noweb = 0;
   for (const ft of gj.features){ const [x,y] = ft.geometry.coordinates;
     if (x < b.getWest() || x > b.getEast() || y < b.getSouth() || y > b.getNorth()) continue;
-    if (ft.properties.s === 'contacted' || ft.properties.s === 'no') done++; else { open++; if (!ft.properties.web) noweb++; } }
+    if (isDone(ft.properties.s)) done++; else { open++; if (ft.properties.lead) noweb++; } }
   if (map.getZoom() < MIN_ZOOM) setStatus('Zoom näher ran, dann erscheinen die Firmen');
-  else if (!busy) setStatus('<b>'+open+'</b> offen, davon <b>'+noweb+'</b> ohne Website · <b>'+done+'</b> abgehakt');
+  else setStatus('<b>'+open+'</b> offen' + (noweb ? ', davon <b>'+noweb+'</b> ohne Website' : '') + ' · <b>'+done+'</b> abgehakt'
+    + (busy ? ' · lade Details …' : ovFailAt ? ' · Website-Infos gerade nicht abrufbar' : ''));
   const n = Object.keys(store).length; $('listCount').textContent = n ? '('+n+')' : '';
+  clearTimeout(bTimer); bTimer = setTimeout(colorBuildings, 250);
 }
 function setStatus(html){ $('status').innerHTML = html; }
 
@@ -239,24 +260,41 @@ map.on('style.load', () => {
     map.addLayer({id:'bm-3d', type:'fill-extrusion', source:'openmaptiles', 'source-layer':'building', minzoom:14,
       paint:{'fill-extrusion-color':'#2b1a1d', 'fill-extrusion-height':['coalesce',['get','render_height'],6],
         'fill-extrusion-base':['coalesce',['get','render_min_height'],0], 'fill-extrusion-opacity':0.9}});
+  map.addSource('bm-b', {type:'geojson', data:{type:'FeatureCollection', features:[]}});
+  map.addLayer({id:'bm-b', type:'fill-extrusion', source:'bm-b', paint:{
+    'fill-extrusion-color':['get','c'], 'fill-extrusion-height':['+',['get','h'],0.4],
+    'fill-extrusion-base':['get','b'], 'fill-extrusion-opacity':0.9}});
+  map.addLayer({id:'bm-b-hover', type:'fill-extrusion', source:'bm-b', filter:['==',['get','k'],''], paint:{
+    'fill-extrusion-color':'#ffffff', 'fill-extrusion-height':['+',['get','h'],1.2],
+    'fill-extrusion-base':['get','b'], 'fill-extrusion-opacity':0.45}});
   map.addSource('firms', {type:'geojson', data:geojson()});
   map.addLayer({id:'firms', type:'circle', source:'firms', paint:{
-    'circle-radius':['interpolate',['linear'],['zoom'],13,3,16,['case',['get','sel'],11,['get','web'],6,8],19,['case',['get','sel'],15,11]],
-    'circle-color':['match',['get','s'],'contacted',COLORS.contacted,'no',COLORS.no,'later',COLORS.later,COLORS['']],
-    'circle-opacity':['match',['get','s'],'no',0.55,1],
-    'circle-stroke-color':['case',['get','sel'],'#ffffff',['get','web'],'#0a0a0c','#ffffff'],
-    'circle-stroke-width':['case',['get','sel'],3,['get','web'],1,2],
+    'circle-radius':['interpolate',['linear'],['zoom'],13,3,16,['case',['get','sel'],11,['get','lead'],8,6.5],19,['case',['get','sel'],15,11]],
+    'circle-color':['match',['get','s'],'contacted',RED,'no',RED,'later',BLUE,GREEN],
+    'circle-stroke-color':['case',['get','sel'],'#ffffff',['get','lead'],'#ffffff','#0a0a0c'],
+    'circle-stroke-width':['case',['get','sel'],3,['get','lead'],2,1.2],
     'circle-pitch-alignment':'viewport'}});
   map.addLayer({id:'firms-label', type:'symbol', source:'firms', minzoom:16.2, layout:{
     'text-field':['get','name'], 'text-font':['Noto Sans Regular'], 'text-size':11.5, 'text-offset':[0,1.1], 'text-anchor':'top', 'text-optional':true, 'text-max-width':9},
     paint:{'text-color':isLight?'#111':'#f4f4f6','text-halo-color':isLight?'#fff':'#0a0a0c','text-halo-width':1.4}});
   if (!wired){ wired = true;
-  map.on('click','firms', e => { const id = e.features[0].properties.id; openCard(id); });
-  map.on('mouseenter','firms', () => map.getCanvas().style.cursor = 'pointer');
-  map.on('mouseleave','firms', () => map.getCanvas().style.cursor = '');
+  map.on('click', e => {
+    const hit = map.queryRenderedFeatures([[e.point.x-6,e.point.y-6],[e.point.x+6,e.point.y+6]], {layers:['firms']});
+    if (hit.length){ openCard(hit[0].properties.id); return; }
+    const bh = map.queryRenderedFeatures(e.point, {layers:['bm-b']});
+    if (bh.length){ const ids = String(bh[0].properties.ids).split('|').filter(id => firms.has(id));
+      if (ids.length === 1) openCard(ids[0], true); else if (ids.length) showChooser(ids); }
+  });
+  map.on('mouseenter', 'firms', () => map.getCanvas().style.cursor = 'pointer');
+  map.on('mouseleave', 'firms', () => map.getCanvas().style.cursor = '');
+  let hov = '';
+  const setHov = k => { if (k === hov) return; hov = k; if (map.getLayer('bm-b-hover')) map.setFilter('bm-b-hover', ['==',['get','k'],k]); map.getCanvas().style.cursor = k ? 'pointer' : ''; };
+  map.on('mousemove', 'bm-b', e => setHov(e.features[0].properties.k));
+  map.on('mouseleave', 'bm-b', () => setHov(''));
+  map.on('idle', () => { clearTimeout(tTimer); tTimer = setTimeout(scanTiles, 150); });
   }
   // gespeicherte Firmen sofort zeigen, auch ohne Nachladen
-  for (const id in store){ const r = store[id]; if (r.lat != null) firms.set(id, {id, name:r.name, lat:r.lat, lon:r.lon, tags:r.tags||{}}); }
+  for (const id in store){ const r = store[id]; if (r.lat != null && !firms.has(id)) addFirm({id, name:r.name, lat:r.lat, lon:r.lon, tags:r.tags||{}, det:!!r.det}); }
   refresh(); schedule();
 });
 map.on('moveend', () => {
@@ -267,9 +305,85 @@ map.on('moveend', () => {
 });
 function schedule(){ clearTimeout(timer); timer = setTimeout(loadFirms, 700); }
 
-/* ---------- Firmen aus OpenStreetMap laden ---------- */
+/* ---------- Firmen direkt aus den Kartendaten lesen (sofort da, kein Extra-Server) ---------- */
+const SKIP_CLASS = new Set(['bus','railway','aerialway','entrance','park','playground','school','college','kindergarten','library','town_hall','post',
+  'police','fire_station','place_of_worship','cemetery','information','toilets','recycling','drinking_water','parking','bicycle_parking','bicycle_rental',
+  'atm','castle','attraction','museum','stadium','pitch','swimming','garden','harbor','ferry_terminal','dog_park','shelter','telephone','hospital','zoo','golf','campsite']);
+const SKIP_SUB = new Set(['bus_stop','station','halt','tram_stop','platform','community_centre','university','public_building','courthouse','prison','embassy',
+  'townhall','vending_machine','parcel_locker','charging_station','post_box','fountain','viewpoint','artwork','memorial','monument','picnic_site','public_bookcase',
+  'social_facility','nursing_home','childcare','grave_yard','bench','waste_basket','car_sharing','taxi','parking_entrance','motorcycle_parking','hunting_stand','wayside_cross','wayside_shrine']);
+function scanTiles(){
+  if (map.getZoom() < MIN_ZOOM || !map.getSource('openmaptiles')) return;
+  let fs = []; try { fs = map.querySourceFeatures('openmaptiles', {sourceLayer:'poi'}); } catch(e) { return; }
+  let changed = false;
+  for (const f of fs){
+    const p = f.properties || {}, g = f.geometry;
+    if (!p.name || !g || g.type !== 'Point' || SKIP_CLASS.has(p.class) || SKIP_SUB.has(p.subclass)) continue;
+    let id = null;
+    if (typeof f.id === 'number' && f.id > 10){ const t = f.id % 10; if (t >= 1 && t <= 3) id = 'nwr'[t-1] + Math.floor(f.id / 10); }
+    if (addFirm({id, name:String(p.name), lat:g.coordinates[1], lon:g.coordinates[0], tags:{amenity:p.subclass || p.class || ''}, det:false})) changed = true;
+  }
+  if (changed) refresh();
+}
+
+/* ---------- Gebäude einfärben: grün = alles offen, rot = alles abgehakt, orange = teils ---------- */
+function inRing(x, y, ring){ let inside = false;
+  for (let i = 0, j = ring.length-1; i < ring.length; j = i++){ const a = ring[i], b = ring[j];
+    if ((a[1] > y) !== (b[1] > y) && x < (b[0]-a[0]) * (y-a[1]) / (b[1]-a[1]) + a[0]) inside = !inside; }
+  return inside; }
+function inPoly(x, y, poly){ if (!inRing(x, y, poly[0])) return false; for (let i = 1; i < poly.length; i++) if (inRing(x, y, poly[i])) return false; return true; }
+function colorBuildings(){
+  const src = map.getSource('bm-b'); if (!src) return;
+  const empty = {type:'FeatureCollection', features:[]};
+  const dots = set => { const ch = set.size !== inB.size || [...set].some(id => !inB.has(id)); inB = set; if (ch && map.getSource('firms')) map.getSource('firms').setData(geojson()); };
+  if (map.getZoom() < 14.3 || !map.getSource('openmaptiles')){ src.setData(empty); dots(new Set()); return; }
+  let bs = []; try { bs = map.querySourceFeatures('openmaptiles', {sourceLayer:'building'}); } catch(e) { return; }
+  const cell = 0.002, grid = new Map();
+  for (const f of firms.values()){ const k = Math.floor(f.lon/cell) + ':' + Math.floor(f.lat/cell); if (!grid.has(k)) grid.set(k, []); grid.get(k).push(f); }
+  // Die Kartendaten fassen oft viele Häuser unter einer ID zusammen: darum nur den einen Umriss einfärben, in dem die Firma liegt
+  const groups = new Map();     // Umriss-Schlüssel -> {poly, h, b, ids}
+  for (const bd of bs){
+    const g = bd.geometry; if (!g) continue;
+    const polys = g.type === 'Polygon' ? [g.coordinates] : g.type === 'MultiPolygon' ? g.coordinates : [];
+    for (const poly of polys){
+      let w = 1e9, s = 1e9, e = -1e9, n = -1e9;
+      for (const c of poly[0]){ if (c[0] < w) w = c[0]; if (c[0] > e) e = c[0]; if (c[1] < s) s = c[1]; if (c[1] > n) n = c[1]; }
+      const key = [w,s,e,n].map(v => v.toFixed(5)).join(',');   // gleiches Haus aus mehreren Kacheln nur einmal
+      for (let cx = Math.floor(w/cell); cx <= Math.floor(e/cell); cx++) for (let cy = Math.floor(s/cell); cy <= Math.floor(n/cell); cy++)
+        for (const f of (grid.get(cx + ':' + cy) || []))
+          if (f.lon >= w && f.lon <= e && f.lat >= s && f.lat <= n && inPoly(f.lon, f.lat, poly)){
+            if (!groups.has(key)){ const p = bd.properties || {}, mx = (w+e)/2, my = (s+n)/2;
+              // Wände minimal nach außen schieben, damit sie nicht mit dem grauen Haus darunter flimmern
+              const grow = r => r.map(c => [mx + (c[0]-mx)*1.03, my + (c[1]-my)*1.03]);
+              groups.set(key, {poly:poly.map(grow), h:+p.render_height || 6, b:+p.render_min_height || 0, ids:new Set()}); }
+            groups.get(key).ids.add(f.id); }
+    }
+  }
+  const feats = [];
+  for (const [key, gr] of groups){ const ids = gr.ids;
+    let done = 0; for (const id of ids) if (isDone((store[id] && store[id].s) || '')) done++;
+    feats.push({type:'Feature', geometry:{type:'Polygon', coordinates:gr.poly}, properties:{c: done === 0 ? GREEN : done === ids.size ? RED : ORANGE,
+      h: gr.h, b: gr.b, k: key, ids:[...ids].join('|')}}); }
+  src.setData({type:'FeatureCollection', features:feats});
+  const inside = new Set(); for (const gr of groups.values()) for (const id of gr.ids) inside.add(id);
+  dots(inside);
+}
+function showChooser(ids){
+  $('card').hidden = true; current = null;
+  $('listTitle').textContent = ids.length + ' Firmen in diesem Gebäude'; $('listTools').hidden = true; $('listHint').hidden = true;
+  const body = $('listBody'); body.textContent = '';
+  for (const id of ids){ const f = firms.get(id), st = (store[id] && store[id].s) || '';
+    const b = document.createElement('button'); b.className = 'row';
+    const i = document.createElement('i'); i.style.background = COLORS[st];
+    const sp = document.createElement('span'); sp.textContent = f.name;
+    const sm = document.createElement('small'); sm.textContent = [catOf(f.tags), LABELS[st]].filter(Boolean).join(' · '); sp.append(sm);
+    b.append(i, sp); b.onclick = () => openCard(id, true); body.append(b); }
+  $('list').hidden = false; refresh();
+}
+
+/* ---------- Details (Website, Telefon, Adresse) aus OpenStreetMap nachladen ---------- */
 async function loadFirms(){
-  if (busy || map.getZoom() < MIN_ZOOM) return;
+  if (busy || map.getZoom() < MIN_ZOOM || Date.now() - ovFailAt < 60000) return;
   const b = map.getBounds();
   let w = b.getWest(), s = b.getSouth(), e = b.getEast(), n = b.getNorth();
   // bei schräger Ansicht reicht der Blick weit: auf ca. 6 km begrenzen
@@ -285,7 +399,7 @@ async function loadFirms(){
     'nwr["name"]["tourism"~"^(hotel|guest_house|hostel|apartment|motel)$"]'+bb+';' +
     'nwr["name"]["leisure"~"^(fitness_centre|sports_centre|dance)$"]'+bb+';' +
     'nwr["name"]["healthcare"]'+bb+';);out center tags 2500;';
-  busy = true; setStatus('Lade Firmen …');
+  busy = true; refresh();
   let ok = false;
   for (const url of OVERPASS){
     try {
@@ -300,13 +414,13 @@ async function loadFirms(){
         const lat = el.lat != null ? el.lat : el.center && el.center.lat, lon = el.lon != null ? el.lon : el.center && el.center.lon;
         if (lat == null || !el.tags || !el.tags.name) continue;
         const id = el.type[0] + el.id;
-        firms.set(id, {id, name:el.tags.name, lat, lon, tags:el.tags});
+        addFirm({id, name:el.tags.name, lat, lon, tags:el.tags, det:true});
       }
       loaded.push([w,s,e,n]); ok = true; break;
     } catch(err) {}
   }
-  busy = false;
-  if (ok) refresh(); else setStatus('Firmen konnten gerade nicht geladen werden. Karte kurz bewegen zum Wiederholen.');
+  busy = false; ovFailAt = ok ? 0 : Date.now();
+  refresh(); if (current && !$('card').hidden) openCard(current);
 }
 
 /* ---------- Firmenkarte ---------- */
@@ -316,15 +430,15 @@ function fact(parent, label, value, href){
   else d.append(value);
   parent.append(d);
 }
-function openCard(id){
+function openCard(id, goMaps){
   const f = firms.get(id); if (!f) return;
   current = id; $('list').hidden = true;
   const t = f.tags, web = website(t), a = addr(t);
   $('cName').textContent = f.name; $('cCat').textContent = catOf(t);
   const facts = $('cFacts'); facts.textContent = '';
   const bd = document.createElement('div'), sp = document.createElement('span');
-  sp.className = 'badge ' + (web ? 'has' : 'lead');
-  sp.textContent = web ? 'Hat eine Website' : 'Keine Website eingetragen'; bd.append(sp); facts.append(bd);
+  sp.className = 'badge ' + (web || !f.det ? 'has' : 'lead');
+  sp.textContent = web ? 'Hat eine Website' : f.det ? 'Keine Website eingetragen' : 'Website-Info noch nicht geladen'; bd.append(sp); facts.append(bd);
   if (web) fact(facts, 'Website:', web.replace(/^https?:\/\//,'').replace(/\/$/,''), /^https?:\/\//.test(web) ? web : 'https://' + web);
   if (a) fact(facts, 'Adresse:', a);
   if (phone(t)) fact(facts, 'Telefon:', phone(t));
@@ -334,10 +448,11 @@ function openCard(id){
   $('cNote').value = r.note || '';
   for (const b of $('marks').children) b.setAttribute('aria-pressed', String((r.s || '') === b.dataset.s));
   $('card').hidden = false; refresh();
+  if (goMaps) window.open($('cGm').href, '_blank', 'noopener');
 }
 function record(id){
   const f = firms.get(id);
-  return store[id] || (store[id] = {name:f.name, lat:f.lat, lon:f.lon, s:'', note:'',
+  return store[id] || (store[id] = {name:f.name, lat:f.lat, lon:f.lon, s:'', note:'', det:!!f.det,
     tags:{website:website(f.tags), phone:phone(f.tags), 'addr:street':f.tags['addr:street'], 'addr:housenumber':f.tags['addr:housenumber'],
       'addr:postcode':f.tags['addr:postcode'], 'addr:city':f.tags['addr:city'], shop:f.tags.shop, amenity:f.tags.amenity, craft:f.tags.craft, office:f.tags.office}});
 }
@@ -354,6 +469,7 @@ $('cardClose').onclick = () => { $('card').hidden = true; current = null; refres
 
 /* ---------- Meine Liste ---------- */
 function renderList(){
+  $('listTitle').textContent = 'Meine Liste'; $('listTools').hidden = false; $('listHint').hidden = false;
   const body = $('listBody'); body.textContent = '';
   const ids = Object.keys(store).sort((a,b) => (store[b].t||'').localeCompare(store[a].t||''));
   if (!ids.length){ const p = document.createElement('p'); p.className = 'empty';
@@ -364,7 +480,7 @@ function renderList(){
     const s = document.createElement('span'); s.textContent = r.name;
     const sm = document.createElement('small'); sm.textContent = LABELS[r.s || ''] + (r.t ? ' · ' + r.t.split('-').reverse().join('.') : '') + (r.note ? ' · ' + r.note : '');
     s.append(sm); b.append(i, s);
-    b.onclick = () => { if (!firms.has(id)) firms.set(id, {id, name:r.name, lat:r.lat, lon:r.lon, tags:r.tags||{}});
+    b.onclick = () => { if (!firms.has(id)) addFirm({id, name:r.name, lat:r.lat, lon:r.lon, tags:r.tags||{}, det:!!r.det});
       map.flyTo({center:[r.lon,r.lat], zoom:Math.max(map.getZoom(),17)}); openCard(id); };
     body.append(b); }
 }
@@ -378,7 +494,7 @@ $('btnExport').onclick = () => {
 $('btnImport').onclick = () => $('file').click();
 $('file').onchange = async e => { const f = e.target.files[0]; if (!f) return;
   try { const d = JSON.parse(await f.text());
-    for (const id in d) if (d[id] && d[id].name && d[id].lat != null){ store[id] = d[id]; firms.set(id, {id, name:d[id].name, lat:d[id].lat, lon:d[id].lon, tags:d[id].tags||{}}); }
+    for (const id in d) if (d[id] && d[id].name && d[id].lat != null){ store[id] = d[id]; if (!firms.has(id)) addFirm({id, name:d[id].name, lat:d[id].lat, lon:d[id].lon, tags:d[id].tags||{}, det:!!d[id].det}); }
     save(); renderList(); refresh();
   } catch(err) { setStatus('Diese Datei ist keine Business-Maps-Sicherung.'); }
   e.target.value = ''; };
