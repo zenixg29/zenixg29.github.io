@@ -443,12 +443,36 @@ function openCard(id, goMaps){
   if (a) fact(facts, 'Adresse:', a);
   if (phone(t)) fact(facts, 'Telefon:', phone(t));
   if (t.opening_hours) fact(facts, 'Geöffnet:', t.opening_hours);
-  $('cGm').href = 'https://www.google.com/maps/search/' + encodeURIComponent(f.name + (a ? ', ' + a : '')) + '/@' + f.lat.toFixed(6) + ',' + f.lon.toFixed(6) + ',18z';
+  $('cGm').href = gmLink(f, a);
   const r = store[id] || {};
   $('cNote').value = r.note || '';
   for (const b of $('marks').children) b.setAttribute('aria-pressed', String((r.s || '') === b.dataset.s));
   $('card').hidden = false; refresh();
-  if (goMaps) window.open($('cGm').href, '_blank', 'noopener');
+  // Tab sofort öffnen (sonst blockt der Browser das Pop-up), Adresse nachschlagen, dann direkt zur Firma in Google Maps
+  const w = goMaps ? window.open('about:blank', '_blank') : null;
+  placeAddr(f).then(pa => {
+    const u = gmLink(f, pa);
+    if (current === id){ $('cGm').href = u; if (pa && !a) fact(facts, 'Adresse:', pa); }
+    if (w){ try { w.opener = null; w.location.href = u; } catch(e) { window.open(u, '_blank', 'noopener'); } }
+  });
+}
+/* Google Maps: mit Name + genauer Adresse öffnet Google direkt die Seite der Firma (mit Bewertungen) statt einer Trefferliste */
+const gmLink = (f, a) => 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(f.name + (a ? ', ' + a : ''));
+const revCache = new Map();
+async function placeAddr(f){
+  const a = addr(f.tags);
+  if (a && f.tags['addr:street'] && (f.tags['addr:city'] || f.tags['addr:postcode'])) return a;
+  if (revCache.has(f.id)) return revCache.get(f.id);
+  let out = a;
+  try {
+    const res = await fetch('https://photon.komoot.io/reverse?lang=de&limit=1&lon=' + f.lon.toFixed(6) + '&lat=' + f.lat.toFixed(6), {signal: AbortSignal.timeout(4000)});
+    const p = (((await res.json()).features || [])[0] || {}).properties || {};
+    const street = [p.street, p.housenumber].filter(Boolean).join(' ');
+    const place = [p.postcode, p.city || p.town || p.village || p.district].filter(Boolean).join(' ');
+    out = [street, place].filter(Boolean).join(', ') || a;
+  } catch(e) {}
+  revCache.set(f.id, out);
+  return out;
 }
 function record(id){
   const f = firms.get(id);
