@@ -100,6 +100,7 @@ textarea{width:100%;min-height:64px;background:var(--soft);border:1px solid var(
     <button class="chip" id="fHideDone" aria-pressed="false">Abgehakte ausblenden</button>
     <button class="chip" id="f3d" aria-pressed="true">3D</button>
     <button class="chip" id="fLight" aria-pressed="false">Helle Karte</button>
+    <button class="chip" id="fAdd" aria-pressed="false">+ Firma eintragen</button>
   </div>
   <div class="status" id="status">Karte lädt …</div>
   <div class="status" id="legend"><i style="background:var(--green)"></i>offen <i style="background:var(--red)"></i>abgehakt <i style="background:var(--amber)"></i>teils abgehakt</div>
@@ -120,6 +121,7 @@ textarea{width:100%;min-height:64px;background:var(--soft);border:1px solid var(
   </div>
   <p class="label">Notiz</p>
   <textarea id="cNote" placeholder="z. B. Website veraltet, Chef heißt …"></textarea>
+  <button class="btn" id="cDel" hidden style="margin-top:10px;font-size:13px">Selbst eingetragene Firma löschen</button>
 </aside>
 
 <aside class="card list" id="list" hidden>
@@ -141,7 +143,7 @@ const $ = id => document.getElementById(id);
 const KEY = 'businessMaps.v1';
 const START = {center:[9.527,48.805], zoom:14.5};          // Schorndorf
 const MIN_ZOOM = 13.5;                                        // ab hier werden Firmen geladen
-const OVERPASS = ['https://overpass-api.de/api/interpreter','https://overpass.private.coffee/api/interpreter'];
+const OVERPASS = ['https://overpass-api.de/api/interpreter','https://overpass.private.coffee/api/interpreter','https://overpass.openstreetmap.fr/api/interpreter'];
 const GREEN = '#22c55e', RED = '#fb0000', ORANGE = '#ff9d1a', BLUE = '#3b9bff';
 const COLORS = {'':GREEN, contacted:RED, no:RED, later:BLUE};
 const isDone = s => s === 'contacted' || s === 'no';
@@ -279,6 +281,11 @@ map.on('style.load', () => {
     paint:{'text-color':isLight?'#111':'#f4f4f6','text-halo-color':isLight?'#fff':'#0a0a0c','text-halo-width':1.4}});
   if (!wired){ wired = true;
   map.on('click', e => {
+    if (adding){ setAdding(false);   // selbst eine Firma eintragen, die in OpenStreetMap fehlt
+      const name = (window.prompt('Name der Firma, so wie sie bei Google steht:') || '').trim(); if (!name) return;
+      const id = 'm' + Date.now();
+      store[id] = {name, lat:e.lngLat.lat, lon:e.lngLat.lng, s:'', note:'', manual:true, tags:{}}; save();
+      addFirm({id, name, lat:e.lngLat.lat, lon:e.lngLat.lng, tags:{}, det:false}); refresh(); openCard(id); return; }
     const hit = map.queryRenderedFeatures([[e.point.x-6,e.point.y-6],[e.point.x+6,e.point.y+6]], {layers:['firms']});
     if (hit.length){ openCard(hit[0].properties.id); return; }
     const bh = map.queryRenderedFeatures(e.point, {layers:['bm-b']});
@@ -445,6 +452,8 @@ function openCard(id, goMaps){
   if (t.opening_hours) fact(facts, 'Geöffnet:', t.opening_hours);
   $('cGm').href = gmLink(f, a);
   const r = store[id] || {};
+  $('cDel').hidden = !r.manual;
+  if (r.manual) $('cCat').textContent = 'Selbst eingetragen';
   $('cNote').value = r.note || '';
   for (const b of $('marks').children) b.setAttribute('aria-pressed', String((r.s || '') === b.dataset.s));
   $('card').hidden = false; refresh();
@@ -480,7 +489,7 @@ function record(id){
     tags:{website:website(f.tags), phone:phone(f.tags), 'addr:street':f.tags['addr:street'], 'addr:housenumber':f.tags['addr:housenumber'],
       'addr:postcode':f.tags['addr:postcode'], 'addr:city':f.tags['addr:city'], shop:f.tags.shop, amenity:f.tags.amenity, craft:f.tags.craft, office:f.tags.office}});
 }
-function tidy(id){ const r = store[id]; if (r && !r.s && !r.note) delete store[id]; }
+function tidy(id){ const r = store[id]; if (r && !r.s && !r.note && !r.manual) delete store[id]; }
 $('marks').addEventListener('click', e => {
   const b = e.target.closest('.mark'); if (!b || !current) return;
   const r = record(current); r.s = b.dataset.s; r.t = new Date().toISOString().slice(0,10);
@@ -490,6 +499,15 @@ $('marks').addEventListener('click', e => {
 });
 $('cNote').addEventListener('input', () => { if (!current) return; const r = record(current); r.note = $('cNote').value; tidy(current); save(); });
 $('cardClose').onclick = () => { $('card').hidden = true; current = null; refresh(); };
+
+/* ---------- Firma selbst eintragen ---------- */
+let adding = false;
+function setAdding(on){ adding = on; $('fAdd').setAttribute('aria-pressed', String(on)); map.getCanvas().style.cursor = on ? 'crosshair' : '';
+  if (on){ $('card').hidden = true; $('list').hidden = true; setStatus('Tippe auf das Haus, in dem die Firma sitzt'); } else refresh(); }
+$('fAdd').onclick = () => setAdding(!adding);
+$('cDel').onclick = () => { if (!current || !store[current] || !store[current].manual) return;
+  const f = firms.get(current); if (f){ const l = byName.get(f.name.trim().toLowerCase()) || []; const i = l.indexOf(f); if (i >= 0) l.splice(i, 1); }
+  firms.delete(current); delete store[current]; save(); $('card').hidden = true; current = null; refresh(); };
 
 /* ---------- Meine Liste ---------- */
 function renderList(){
