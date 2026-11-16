@@ -252,10 +252,15 @@ function nextStyle(from){
   else setStatus('Die Karte lädt nicht. Prüfe die Internetverbindung.' + (lastErr ? ' Fehler: ' + lastErr.slice(0,120) : ''));
 }
 setTimeout(() => nextStyle(0), 9000);
-let wired = false;
+let wired = false, projNow = '';
+// Globus nur weit herausgezoomt. Nah dran flache Karte: sieht gleich aus, aber Drüberfahren und Antippen treffen dann
+// das ganze 3D-Haus (Wände und Dach), nicht nur den Grundriss.
+function setProj(){ const want = map.getZoom() < 12 ? 'globe' : 'mercator';
+  if (want !== projNow){ projNow = want; try { map.setProjection({type:want}); } catch(e) {} } }
+map.on('zoomend', setProj);
 map.on('style.load', () => {
   styleReady = true;
-  try { map.setProjection({type:'globe'}); } catch(e) {}
+  projNow = ''; setProj();
   if (map.getSource('firms')) return;
   const isLight = STYLES[styleIdx] === LIGHT || typeof STYLES[styleIdx] !== 'string' || /versatiles/.test(STYLES[styleIdx]);
   if (map.getSource('openmaptiles') && !map.getStyle().layers.some(l => l.type === 'fill-extrusion'))
@@ -345,34 +350,65 @@ function colorBuildings(){
   const dots = set => { const ch = set.size !== inB.size || [...set].some(id => !inB.has(id)); inB = set; if (ch && map.getSource('firms')) map.getSource('firms').setData(geojson()); };
   if (map.getZoom() < 14.3 || !map.getSource('openmaptiles')){ src.setData(empty); dots(new Set()); return; }
   let bs = []; try { bs = map.querySourceFeatures('openmaptiles', {sourceLayer:'building'}); } catch(e) { return; }
-  const cell = 0.002, grid = new Map();
-  for (const f of firms.values()){ const k = Math.floor(f.lon/cell) + ':' + Math.floor(f.lat/cell); if (!grid.has(k)) grid.set(k, []); grid.get(k).push(f); }
-  // Die Kartendaten fassen oft viele Häuser unter einer ID zusammen: darum nur den einen Umriss einfärben, in dem die Firma liegt
-  const groups = new Map();     // Umriss-Schlüssel -> {poly, h, b, ids}
+  // Die Kartendaten fassen oft viele Häuser unter einer ID zusammen. Darum: das Haus nehmen, in dem die Firma liegt,
+  // plus direkt angebaute kleine Anbauten (gemeinsame Wand >= 2 m, höchstens halb so groß) und Stücke desselben Hauses
+  // aus der Nachbarkachel. Gleich große Nachbarhäuser (Reihenhäuser in der Altstadt) bleiben grau.
+  const MX = 111320 * Math.cos(map.getCenter().lat * Math.PI / 180), MY = 110540;
+  const P = new Map();          // Umriss-Schlüssel -> Umriss (gleiche Umrisse aus mehreren Kacheln nur einmal)
   for (const bd of bs){
     const g = bd.geometry; if (!g) continue;
     const polys = g.type === 'Polygon' ? [g.coordinates] : g.type === 'MultiPolygon' ? g.coordinates : [];
-    for (const poly of polys){
+    for (const poly of polys){ const r = poly[0]; if (!r || r.length < 4) continue;
       let w = 1e9, s = 1e9, e = -1e9, n = -1e9;
-      for (const c of poly[0]){ if (c[0] < w) w = c[0]; if (c[0] > e) e = c[0]; if (c[1] < s) s = c[1]; if (c[1] > n) n = c[1]; }
-      const key = [w,s,e,n].map(v => v.toFixed(5)).join(',');   // gleiches Haus aus mehreren Kacheln nur einmal
-      for (let cx = Math.floor(w/cell); cx <= Math.floor(e/cell); cx++) for (let cy = Math.floor(s/cell); cy <= Math.floor(n/cell); cy++)
-        for (const f of (grid.get(cx + ':' + cy) || []))
-          if (f.lon >= w && f.lon <= e && f.lat >= s && f.lat <= n && inPoly(f.lon, f.lat, poly)){
-            if (!groups.has(key)){ const p = bd.properties || {}, mx = (w+e)/2, my = (s+n)/2;
-              // Wände minimal nach außen schieben, damit sie nicht mit dem grauen Haus darunter flimmern
-              const grow = r => r.map(c => [mx + (c[0]-mx)*1.03, my + (c[1]-my)*1.03]);
-              groups.set(key, {poly:poly.map(grow), h:+p.render_height || 6, b:+p.render_min_height || 0, ids:new Set()}); }
-            groups.get(key).ids.add(f.id); }
+      for (const c of r){ if (c[0] < w) w = c[0]; if (c[0] > e) e = c[0]; if (c[1] < s) s = c[1]; if (c[1] > n) n = c[1]; }
+      const key = [w,s,e,n].map(v => v.toFixed(5)).join(','); if (P.has(key)) continue;
+      let ar = 0; for (let i = 0, j = r.length-1; i < r.length; j = i++) ar += (r[j][0]+r[i][0]) * MX * (r[j][1]-r[i][1]) * MY;
+      const pr = bd.properties || {};
+      P.set(key, {key, id:bd.id, poly, ring:r, w, s, e, n, area:Math.abs(ar/2), h:+pr.render_height || 6, b:+pr.render_min_height || 0});
     }
   }
-  const feats = [];
-  for (const [key, gr] of groups){ const ids = gr.ids;
+  const cell = 0.001, grid = new Map();
+  for (const q of P.values()) for (let cx = Math.floor(q.w/cell); cx <= Math.floor(q.e/cell); cx++) for (let cy = Math.floor(q.s/cell); cy <= Math.floor(q.n/cell); cy++){
+    const k = cx + ':' + cy; if (!grid.has(k)) grid.set(k, []); grid.get(k).push(q); }
+  const near = q => { const out = new Set(), pad = 0.00001;
+    for (let cx = Math.floor((q.w-pad)/cell); cx <= Math.floor((q.e+pad)/cell); cx++) for (let cy = Math.floor((q.s-pad)/cell); cy <= Math.floor((q.n+pad)/cell); cy++)
+      for (const o of (grid.get(cx + ':' + cy) || [])) if (o !== q && o.w <= q.e+pad && o.e >= q.w-pad && o.s <= q.n+pad && o.n >= q.s-pad) out.add(o);
+    return out; };
+  const toM = c => [c[0]*MX, c[1]*MY];
+  const wall = (A, B) => { const a = A.map(toM), b = B.map(toM); let L = 0;   // Länge gemeinsamer Wände in Metern (0,3 m Toleranz)
+    for (let i = 0; i < a.length-1; i++){ const p0 = a[i], p1 = a[i+1], dx = p1[0]-p0[0], dy = p1[1]-p0[1], len = Math.hypot(dx, dy); if (len < 0.2) continue;
+      const ux = dx/len, uy = dy/len;
+      for (let j = 0; j < b.length-1; j++){ const r0 = b[j], r1 = b[j+1];
+        if (Math.abs((r0[0]-p0[0])*uy - (r0[1]-p0[1])*ux) > 0.3 || Math.abs((r1[0]-p0[0])*uy - (r1[1]-p0[1])*ux) > 0.3) continue;
+        const t0 = (r0[0]-p0[0])*ux + (r0[1]-p0[1])*uy, t1 = (r1[0]-p0[0])*ux + (r1[1]-p0[1])*uy;
+        const lo = Math.max(0, Math.min(t0, t1)), hi = Math.min(len, Math.max(t0, t1)); if (hi > lo) L += hi - lo; } }
+    return L; };
+  const edgeDist = (c, r) => { const p = toM(c); let d = 1e9;
+    for (let i = 0; i < r.length-1; i++){ const a0 = toM(r[i]), a1 = toM(r[i+1]), vx = a1[0]-a0[0], vy = a1[1]-a0[1], l2 = vx*vx + vy*vy || 1e-9;
+      const t = Math.max(0, Math.min(1, ((p[0]-a0[0])*vx + (p[1]-a0[1])*vy) / l2)); d = Math.min(d, Math.hypot(p[0]-a0[0]-t*vx, p[1]-a0[1]-t*vy)); }
+    return d; };
+  const overlaps = (A, B) => B.ring.some(c => inRing(c[0], c[1], A.ring) && edgeDist(c, A.ring) > 0.5);   // Kachelstücke überlappen sich
+  const homes = new Map();      // Umriss-Schlüssel -> Firmen darin
+  for (const f of firms.values()){
+    for (const q of (grid.get(Math.floor(f.lon/cell) + ':' + Math.floor(f.lat/cell)) || []))
+      if (f.lon >= q.w && f.lon <= q.e && f.lat >= q.s && f.lat <= q.n && inPoly(f.lon, f.lat, q.poly)){
+        if (!homes.has(q.key)) homes.set(q.key, new Set()); homes.get(q.key).add(f.id); break; }
+  }
+  const feats = [], inside = new Set();
+  for (const [hk, ids] of homes){ const home = P.get(hk);
     let done = 0; for (const id of ids) if (isDone((store[id] && store[id].s) || '')) done++;
-    feats.push({type:'Feature', geometry:{type:'Polygon', coordinates:gr.poly}, properties:{c: done === 0 ? GREEN : done === ids.size ? RED : ORANGE,
-      h: gr.h, b: gr.b, k: key, ids:[...ids].join('|')}}); }
+    const c = done === 0 ? GREEN : done === ids.size ? RED : ORANGE;
+    const members = [home];
+    for (const q of near(home)){ if (homes.has(q.key)) continue;
+      const piece = q.id === home.id && (overlaps(home, q) || overlaps(q, home));
+      if (piece || (q.area <= home.area * 0.5 && wall(home.ring, q.ring) >= 2)) members.push(q); }
+    for (const q of members){ const mx = (q.w+q.e)/2, my = (q.s+q.n)/2;
+      // Wände minimal nach außen schieben, damit sie nicht mit dem grauen Haus darunter flimmern
+      const grow = r => r.map(v => [mx + (v[0]-mx)*1.03, my + (v[1]-my)*1.03]);
+      feats.push({type:'Feature', geometry:{type:'Polygon', coordinates:q.poly.map(grow)}, properties:{c, h:q.h, b:q.b, k:hk, ids:[...ids].join('|')}}); }
+    for (const id of ids) inside.add(id);
+  }
   src.setData({type:'FeatureCollection', features:feats});
-  const inside = new Set(); for (const gr of groups.values()) for (const id of gr.ids) inside.add(id);
   dots(inside);
 }
 function showChooser(ids){
