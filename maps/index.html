@@ -289,9 +289,13 @@ async function loadFirms(){
   let ok = false;
   for (const url of OVERPASS){
     try {
-      const res = await fetch(url, {method:'POST', body:'data='+encodeURIComponent(q), headers:{'Content-Type':'application/x-www-form-urlencoded'}});
-      if (!res.ok) throw new Error(res.status);
-      const data = await res.json();
+      const ac = new AbortController(), kill = setTimeout(() => ac.abort(), 15000);
+      let data;
+      try {
+        const res = await fetch(url, {method:'POST', body:'data='+encodeURIComponent(q), headers:{'Content-Type':'application/x-www-form-urlencoded'}, signal:ac.signal});
+        if (!res.ok) throw new Error(res.status);
+        data = await res.json();
+      } finally { clearTimeout(kill); }
       for (const el of data.elements || []){
         const lat = el.lat != null ? el.lat : el.center && el.center.lat, lon = el.lon != null ? el.lon : el.center && el.center.lon;
         if (lat == null || !el.tags || !el.tags.name) continue;
