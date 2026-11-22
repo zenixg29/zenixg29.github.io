@@ -1,0 +1,39 @@
+name: Leads suchen
+# Sucht jeden Sonntag Firmen rund um Schorndorf und bewertet ihre Websites.
+# Das Ergebnis wird verschlüsselt im Branch "daten" abgelegt (nur Claude/Mika können es lesen).
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 3 * * 0'
+  push:
+    branches: [main]
+    paths: ['.github/scripts/leads.py', '.github/workflows/leads.yml']
+permissions:
+  contents: write
+concurrency: leads
+jobs:
+  leads:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -q requests
+      - name: Firmen suchen und Websites prüfen
+        run: python3 .github/scripts/leads.py > /tmp/leads.json 2> /tmp/log.txt; tail -n 3 /tmp/log.txt
+      - name: Verschlüsseln
+        run: |
+          openssl rand -out /tmp/k.bin 32
+          openssl enc -aes-256-cbc -pbkdf2 -salt -in /tmp/leads.json -out /tmp/leads.json.enc -pass file:/tmp/k.bin
+          openssl pkeyutl -encrypt -pubin -inkey .github/leads-public.pem -pkeyopt rsa_padding_mode:oaep -in /tmp/k.bin -out /tmp/leads.key.enc
+          rm /tmp/k.bin /tmp/leads.json
+      - name: In Branch daten ablegen
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898732+github-actions[bot]@users.noreply.github.com"
+          if git fetch -q --depth=1 origin daten; then git checkout -q -B daten FETCH_HEAD; else git checkout -q --orphan daten; git rm -rqf .; fi
+          cp /tmp/leads.json.enc /tmp/leads.key.enc .
+          git add leads.json.enc leads.key.enc
+          git commit -qm "Leads aktualisiert" && git push -q origin daten || echo "nichts Neues"

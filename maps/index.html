@@ -309,6 +309,15 @@ map.on('style.load', () => {
   for (const id in store){ const r = store[id]; if (r.lat != null && !firms.has(id)) addFirm({id, name:r.name, lat:r.lat, lon:r.lon, tags:r.tags||{}, det:!!r.det}); }
   refresh(); schedule();
 });
+/* Haken, die Claude gesetzt hat (status.json im selben Ordner): nur Firmen-ID + Status + Datum, keine Namen */
+fetch('status.json?' + Date.now(), {cache:'no-store'}).then(r => r.ok ? r.json() : null).then(j => {
+  if (!j || !j.firmen) return; let ch = false;
+  for (const id in j.firmen){ const x = j.firmen[id], r = store[id];
+    if (r && r.s && r.t && x.t && r.t > x.t) continue;          // auf diesem Gerät neuer gesetzt: lokal gewinnt
+    if (r && r.s === x.s) continue;
+    store[id] = Object.assign(r || {}, {s:x.s, t:x.t, claude:true}); ch = true; }
+  if (ch){ save(); refresh(); }
+}).catch(() => {});
 map.on('moveend', () => {
   const c = map.getCenter();
   try { localStorage.setItem(KEY + '.view', JSON.stringify({c:[c.lng,c.lat], z:map.getZoom()})); } catch(e) {}
