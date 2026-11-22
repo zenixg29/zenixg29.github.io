@@ -79,6 +79,8 @@ def check(url):
     except Exception:
         out['score'] = 4; out['why'].append('Website nicht erreichbar'); return out
     out['final'] = r.url
+    if r.status_code in (403, 429, 503):
+        out['score'] = 1; out['why'].append('Website blockt die Prüfung (selbst anschauen)'); return out
     if r.status_code >= 400:
         out['score'] = 4; out['why'].append(f'Website Fehler {r.status_code}'); return out
     low = html.lower()
