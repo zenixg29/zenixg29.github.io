@@ -1,0 +1,23 @@
+name: Bilder holen
+# Holt frei lizenzierte Fotos von Wikimedia Commons für Kunden-Entwürfe (Ergebnis im Branch "daten", Ordner bilder/).
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/bilder-anfrage.json']
+permissions:
+  contents: write
+concurrency: daten
+jobs:
+  bilder:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install -q requests && python3 .github/scripts/bilder.py
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898732+github-actions[bot]@users.noreply.github.com"
+          if git fetch -q --depth=1 origin daten; then git checkout -q -B daten FETCH_HEAD; else git checkout -q --orphan daten; git rm -rqf .; fi
+          mkdir -p bilder && cp -r /tmp/bilder/* bilder/
+          git add bilder && git commit -qm "Bilder geholt" && git push -q origin daten || echo "nichts Neues"

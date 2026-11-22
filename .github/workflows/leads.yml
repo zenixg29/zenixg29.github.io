@@ -10,7 +10,7 @@ on:
     paths: ['.github/scripts/leads.py', '.github/workflows/leads.yml']
 permissions:
   contents: write
-concurrency: leads
+concurrency: daten
 jobs:
   leads:
     runs-on: ubuntu-latest
